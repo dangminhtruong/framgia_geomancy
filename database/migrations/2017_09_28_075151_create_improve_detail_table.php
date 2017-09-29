@@ -18,8 +18,8 @@ class CreateImproveDetailTable extends Migration
             $table->integer('quantity');
             $table->integer('improve_blueprints_id')->unsigned();
             $table->foreign('improve_blueprints_id')->references('id')->on('improve_blueprints');
-            $table->integer('users_id')->unsigned();
-            $table->foreign('users_id')->references('id')->on('users');
+            $table->integer('products_id')->unsigned();
+            $table->foreign('products_id')->references('id')->on('products');
             $table->softDeletes();
             $table->timestamps();
         });
