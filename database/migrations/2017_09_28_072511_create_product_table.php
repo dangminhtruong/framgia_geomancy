@@ -21,8 +21,8 @@ class CreateProductTable extends Migration
             $table->integer('stock')->default(50);
             $table->jsonb('attribute');
             $table->tinyInteger('del_flg')->default(0);
-            $table->integer('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('category');
+            $table->integer('categories_id')->unsigned();
+            $table->foreign('categories_id')->references('id')->on('categories');
             $table->softDeletes();
             $table->timestamps();
         });

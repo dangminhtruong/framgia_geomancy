@@ -16,8 +16,8 @@ class CreateGalleryTable extends Migration
         Schema::create('gallery', function (Blueprint $table) {
             $table->increments('id');
             $table->string('image_name', 100);
-            $table->integer('blueprint_id')->unsigned();
-            $table->foreign('blueprint_id')->references('id')->on('blueprint');
+            $table->integer('blueprints_id')->unsigned();
+            $table->foreign('blueprints_id')->references('id')->on('blueprints');
             $table->softDeletes();
             $table->timestamps();
         });

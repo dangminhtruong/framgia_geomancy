@@ -16,8 +16,8 @@ class CreateImproveDetailTable extends Migration
         Schema::create('improve_detail', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('quantity');
-            $table->integer('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('blueprint');
+            $table->integer('improve_blueprints_id')->unsigned();
+            $table->foreign('improve_blueprints_id')->references('id')->on('improve_blueprints');
             $table->integer('users_id')->unsigned();
             $table->foreign('users_id')->references('id')->on('users');
             $table->softDeletes();

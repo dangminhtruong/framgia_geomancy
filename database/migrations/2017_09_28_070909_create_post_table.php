@@ -21,8 +21,8 @@ class CreatePostTable extends Migration
             $table->tinyInteger('publish_flg')->default(1);
             $table->integer('users_id')->unsigned();
             $table->foreign('users_id')->references('id')->on('users');
-            $table->integer('type_id')->unsigned();
-            $table->foreign('type_id')->references('id')->on('type');
+            $table->integer('types_id')->unsigned();
+            $table->foreign('types_id')->references('id')->on('types');
             $table->softDeletes();
             $table->timestamps();
         });
