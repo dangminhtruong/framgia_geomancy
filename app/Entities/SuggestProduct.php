@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Entities;
+
+use App\Entities\BaseEntity;
+
+class SuggestProduct extends BaseEntity
+{
+    protected $table = 'suggest_products';
+
+    protected $fillable = [
+        'name',
+        'price',
+        'attribute',
+        'blueprints_id',
+        'categories_id',
+    ];
+
+    /**
+     *  Get the blueprint own this suggest product
+     */
+    public function blueprint()
+    {
+        return $this->belongsTo(\App\Entity\Blueprint::class, 'blueprints_id');
+    }
+
+    /**
+     *  Get the category own this suggest product
+     */
+    public function category()
+    {
+        return $this->belongsTo(\App\Entity\Category::class, 'categories_id');
+    }
+}
