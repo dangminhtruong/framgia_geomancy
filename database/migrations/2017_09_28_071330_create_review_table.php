@@ -19,8 +19,8 @@ class CreateReviewTable extends Migration
             $table->text('comment');
             $table->integer('users_id')->unsigned();
             $table->foreign('users_id')->references('id')->on('users');
-            $table->integer('post_id')->unsigned();
-            $table->foreign('post_id')->references('id')->on('post');
+            $table->integer('posts_id')->unsigned();
+            $table->foreign('posts_id')->references('id')->on('posts');
             $table->softDeletes();
             $table->timestamps();
         });

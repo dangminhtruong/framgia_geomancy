@@ -16,10 +16,10 @@ class CreateBlueprintDetailTable extends Migration
         Schema::create('blueprint_detail', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('quantity');
-            $table->integer('blueprint_id')->unsigned();
-            $table->foreign('blueprint_id')->references('id')->on('blueprint');
-            $table->integer('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('product');
+            $table->integer('blueprints_id')->unsigned();
+            $table->foreign('blueprints_id')->references('id')->on('blueprints');
+            $table->integer('products_id')->unsigned();
+            $table->foreign('products_id')->references('id')->on('products');
             $table->softDeletes();
             $table->timestamps();
         });

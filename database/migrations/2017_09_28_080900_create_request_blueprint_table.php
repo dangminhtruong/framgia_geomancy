@@ -17,8 +17,8 @@ class CreateRequestBlueprintTable extends Migration
             $table->increments('id');
             $table->text('description');
             $table->tinyInteger('status')->default(0);
-            $table->integer('improve_blueprint_id')->unsigned();
-            $table->foreign('improve_blueprint_id')->references('id')->on('improve_blueprint');
+            $table->integer('improve_blueprints_id')->unsigned()->nullable();
+            $table->foreign('improve_blueprints_id')->references('id')->on('improve_blueprints');
             $table->integer('users_id')->unsigned();
             $table->foreign('users_id')->references('id')->on('users');
             $table->softDeletes();

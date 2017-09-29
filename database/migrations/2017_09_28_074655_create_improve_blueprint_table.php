@@ -18,8 +18,8 @@ class CreateImproveBlueprintTable extends Migration
             $table->text('description')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('publish_flg')->default(0);
-            $table->integer('blueprint_id')->unsigned();
-            $table->foreign('blueprint_id')->references('id')->on('blueprint');
+            $table->integer('blueprints_id')->unsigned();
+            $table->foreign('blueprints_id')->references('id')->on('blueprints');
             $table->integer('users_id')->unsigned();
             $table->foreign('users_id')->references('id')->on('users');
             $table->softDeletes();

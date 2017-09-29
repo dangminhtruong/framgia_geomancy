@@ -17,10 +17,10 @@ class CreateOrderDetailTable extends Migration
             $table->increments('id');
             $table->integer('quantity');
             $table->integer('price_per_product');
-            $table->integer('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('product');
-            $table->integer('order_id')->unsigned();
-            $table->foreign('order_id')->references('id')->on('order');
+            $table->integer('products_id')->unsigned();
+            $table->foreign('products_id')->references('id')->on('products');
+            $table->integer('orders_id')->unsigned();
+            $table->foreign('orders_id')->references('id')->on('orders');
             $table->softDeletes();
             $table->timestamps();
         });

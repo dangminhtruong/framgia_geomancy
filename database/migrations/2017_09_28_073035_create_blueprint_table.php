@@ -18,8 +18,8 @@ class CreateBlueprintTable extends Migration
             $table->string('title', 100);
             $table->text('description')->nullable();
             $table->tinyInteger('publish_flg')->default(1);
-            $table->integer('topic_id')->unsigned();
-            $table->foreign('topic_id')->references('id')->on('topic');
+            $table->integer('topics_id')->unsigned();
+            $table->foreign('topics_id')->references('id')->on('topics');
             $table->softDeletes();
             $table->timestamps();
         });
