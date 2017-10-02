@@ -13,4 +13,8 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+
+
+Route::post('dang-nhap', 'Auth\AuthController@login')->name('login');
+Route::get('dang-xuat', 'Auth\AuthController@logout')->name('logout');
