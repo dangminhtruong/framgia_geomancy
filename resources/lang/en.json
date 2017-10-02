@@ -1,0 +1,32 @@
+{
+    /*===== Nav bar =====*/
+    "Home": "Home",
+
+    "Product": "Product",
+    "Fishes": "Fishes",
+    "FishTanks": "Fish Tanks",
+    "SandGravel": "Sand & Gravel",
+    "3DLanscape": "3D Landscape",
+    "Plants": "Plants",
+    "Filters": "Filters",
+    "AquariumLight": "Aquarium Light",
+    "FishsFood": "Fish's Food",
+    "NewArrival": "New Arrival",
+    "TrendingItems": "Trending Items",
+    "AllItems": "New Items",
+
+    "Blueprints": "Blueprints",
+    "NewBlueprints": "New Blueprints",
+    "TrendingBlueprints": "Trending blueprints",
+    "AllBlueprint": "All blueprints",
+
+    "Posts": "Posts",
+    "NewPosts": "New Posts",
+    "TrendingPosts": "Trending Posts",
+    "AllPosts": "All Posts",
+
+    "MyBlueprints": "My Blueprints",
+    "AllBlueprints": "All Blueprints",
+    "CloneBlueprints": "Clone Blueprints",
+    "CreateBlueprints": "Create New Blueprints"
+}
