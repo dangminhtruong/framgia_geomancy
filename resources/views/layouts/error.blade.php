@@ -5,9 +5,9 @@
     <p>
         <strong>
         @if (session('error_msg'))
-            {{session('error_msg')}}
+            {{ session('error_msg') }}
         @else
-            {{$errors->first('form_error')}}
+            {{ $errors->first('form_error') }}
         @endif
         </strong>
     </p>

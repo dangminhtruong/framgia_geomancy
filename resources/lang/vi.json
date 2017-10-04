@@ -42,5 +42,11 @@
     "Email_Validate.String": "Email không được để trống",
     "Email_Validate.Email": "Email không đúng định dạng",
     "Password_Validate.Required": "Password không được để trống",
-    "Password_Validate.String": "Password không được để trống"
+    "Password_Validate.String": "Password không được để trống",
+
+    "LoginExists": "Bạn đã đăng nhập",
+    "LoginSuccess": "Đăng nhập thành công",
+    "LoginFail": "Email hoặc password không hợp lệ",
+    "LoutoutSuccess": "Đăng xuất thành công",
+    "LogoutFail": "Bạn chưa đăng nhập"
 }
