@@ -1,0 +1,23 @@
+.error-text {
+    font-size: 14px;
+    margin-top: -3px;
+    padding-left: 3px;
+}
+.box-alert {
+    width: 400px;
+    position: fixed;
+    top: 80px;
+    right: 30px;
+    z-index: 9999999;
+}
+.avatar {
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+}
+.avatar-box {
+    list-style-type: none;
+    width: 35px;
+    margin-left: 60%;
+}

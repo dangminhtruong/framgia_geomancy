@@ -1,0 +1,46 @@
+{
+    "Nav.Home": "Trang Chủ",
+
+    "Nav.Product": "Sản Phẩm",
+    "Nav.Fishes": "Cá",
+    "Nav.FishTanks": "Bể Cá",
+    "Nav.SandGravel": "Cát & Sỏi",
+    "Nav.3DLanscape": "Tranh 3D",
+    "Nav.Plants": "Cây Thủy Sinh",
+    "Nav.Filters": "Hệ Thống Lọc",
+    "Nav.AquariumLight": "Đèn",
+    "Nav.FishsFood": "Thức Ăn Cho Cá",
+    "Nav.NewArrival": "Sản Phẩm Mới",
+    "Nav.TrendingItems": "Sản Phẩm Nổi Bật",
+    "Nav.AllItems": "Toàn Bộ Sản Phẩm",
+
+    "Nav.Blueprints": "Bản Thiết Kế",
+    "Nav.NewBlueprints": "Thiết Kế Mới",
+    "Nav.TrendingBlueprints": "Thiết Kế Nổi Bật",
+    "Nav.AllBlueprint": "Toàn Bộ Thiết Kế",
+
+    "Nav.Posts": "Bài Viết",
+    "Nav.NewPosts": "Bài Viết Mới",
+    "Nav.TrendingPosts": "Bài Viết Nổi Bật",
+    "Nav.AllPosts": "Toàn Bộ Bài Viết",
+
+    "Nav.MyBlueprints": "Thiết Kế Của Tôi",
+    "Nav.AllBlueprints": "Toàn Bộ Thiết Kế",
+    "Nav.CloneBlueprints": "Thiết Kế Sao Chép",
+    "Nav.CreateBlueprints": "Tạo Thiết Kế Mới",
+
+    "Form.Password": "Mật khẩu",
+    "Form.RememberMe": "Nhớ mật khẩu",
+    "Form.Login": "Đăng nhập",
+    "Form.Logout": "Đăng xuất",
+    "Form.Forget": "Quên mật khẩu?",
+    "Form.Registration": "Đăng ký",
+    "Form.ForgetText": "Chưa có tài khoản?",
+    "Form.Close": "Đóng",
+
+    "Email_Validate.Required": "Email không được để trống",
+    "Email_Validate.String": "Email không được để trống",
+    "Email_Validate.Email": "Email không đúng định dạng",
+    "Password_Validate.Required": "Password không được để trống",
+    "Password_Validate.String": "Password không được để trống"
+}
