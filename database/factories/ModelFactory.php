@@ -25,7 +25,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Entities\Category::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'name' => $faker->sentence($nbWords = 2, $variableNbWords = true),
         'description' => $faker->text,
         'created_at' => $faker->dateTime($max = 'now', $timezone = date_default_timezone_get()),
     ];
@@ -35,11 +35,11 @@ $factory->define(App\Entities\User::class, function (Faker\Generator $faker) {
     return [
         'socialite_id' => $faker->numberBetween($min = 1, $max = 1000),
         'email' => $faker->email,
-        'password' => $faker->password,
+        'password' => bcrypt('000000'),
         'name' => $faker->name,
         'address' => $faker->address,
         'phone' => $faker->phoneNumber,
-        'role' => $faker->numberBetween($min = 1, $max = 3),
+        'role' => 0,
         'created_at' => $faker->dateTime($max = 'now', $timezone = date_default_timezone_get())
     ];
 });
@@ -47,11 +47,22 @@ $factory->define(App\Entities\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Entities\Product::class, function (Faker\Generator $faker) {
     $get_category = DB::table('categories')->pluck('id')->toArray();
     $category_random_id = array_rand($get_category, 2);
+    $attribute = [
+        $faker->sentence($nbWords = 2, $variableNbWords = true)
+        => $faker->sentence($nbWords = 2, $variableNbWords = true),
+        $faker->sentence($nbWords = 2, $variableNbWords = true)
+        => $faker->sentence($nbWords = 2, $variableNbWords = true),
+        $faker->sentence($nbWords = 2, $variableNbWords = true)
+        => $faker->sentence($nbWords = 2, $variableNbWords = true),
+        $faker->sentence($nbWords = 2, $variableNbWords = true)
+        => $faker->sentence($nbWords = 2, $variableNbWords = true),
+    ];
+
     return [
-        'name' => $faker->sentence($nbWords = 5, $variableNbWords = true),
+        'name' => $faker->sentence($nbWords = 2, $variableNbWords = true),
         'slug' => $faker->slug,
         'price' => $faker->numberBetween($min = 100000, $max = 99000),
-        'attribute' => $faker->sentence($nbWords = 5, $variableNbWords = true),
+        'attribute' => json_encode($attribute),
         'categories_id' => $category_random_id[1],
         'created_at' => $faker->dateTime($max = 'now', $timezone = date_default_timezone_get()),
     ];
@@ -59,7 +70,7 @@ $factory->define(App\Entities\Product::class, function (Faker\Generator $faker) 
 
 $factory->define(App\Entities\Topic::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->sentence($nbWords = 5, $variableNbWords = true),
+        'name' => $faker->sentence($nbWords = 2, $variableNbWords = true),
         'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
         'created_at' => $faker->dateTime($max = 'now', $timezone = date_default_timezone_get()),
     ];
@@ -105,7 +116,7 @@ $factory->define(App\Entities\BlueprintDetail::class, function (Faker\Generator 
 
 $factory->define(App\Entities\Type::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->sentence($nbWords = 5, $variableNbWords = true),
+        'name' => $faker->sentence($nbWords = 2, $variableNbWords = true),
         'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
         'created_at' => $faker->dateTime($max = 'now', $timezone = date_default_timezone_get()),
     ];
@@ -127,7 +138,7 @@ $factory->define(App\Entities\SuggestProduct::class, function (Faker\Generator $
         => $faker->sentence($nbWords = 5, $variableNbWords = true),
     ];
     return [
-        'name' => $faker->sentence($nbWords = 5, $variableNbWords = true),
+        'name' => $faker->sentence($nbWords = 2, $variableNbWords = true),
         'price' => $faker->numberBetween($min = 100000, $max = 99000),
         'attribute' => json_encode($attribute),
         'blueprints_id' => $blueprint_random_id[1],
@@ -169,7 +180,7 @@ $factory->define(App\Entities\Post::class, function (Faker\Generator $faker) {
     $user = DB::table('users')->pluck('id')->toArray();
     $user_random_id = array_rand($user, 2);
     return [
-        'title' => $faker->sentence($nbWords = 10, $variableNbWords = true),
+        'title' => $faker->sentence($nbWords = 5, $variableNbWords = true),
         'body' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
         'slug' => $faker->slug,
         'users_id' => $user_random_id[1],

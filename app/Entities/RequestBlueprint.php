@@ -6,7 +6,7 @@ use App\Entities\BaseEntity;
 
 class RequestBlueprint extends BaseEntity
 {
-    protected $table = 'request_blueprint';
+    protected $table = 'request_blueprints';
 
     protected $fillable = [
         'description',

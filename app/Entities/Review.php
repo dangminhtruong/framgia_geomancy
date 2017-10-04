@@ -6,7 +6,7 @@ use App\Entities\BaseEntity;
 
 class Review extends BaseEntity
 {
-    protected $table = 'review';
+    protected $table = 'reviews';
 
     protected $fillable = [
         'rate',
