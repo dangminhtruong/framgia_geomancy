@@ -24,23 +24,27 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         if (Auth::check()) {
-            return $this->flashResponse->fail('home', 'Bạn đã đăng nhập');
+
+            return $this->flashResponse->fail('home', __('LoginExists'));
         }
 
         $user = $request->only('email', 'password');
         if (Auth::attempt($user, $request->input('remember_me_checkbox'))) {
-            return $this->flashResponse->success('home', 'Đăng nhập thành công');
+
+            return $this->flashResponse->success('home', __('LoginSuccess'));
         }
 
-        return $this->formResponse->response($request, 'Email hoặc password không hợp lệ');
+        return $this->formResponse->response($request, __('LoginFail'));
     }
 
     public function logout()
     {
         if (Auth::check()) {
             Auth::logout();
-            return $this->flashResponse->success('home', 'Đăng xuất thành công');
+
+            return $this->flashResponse->success('home', __('LoutoutSuccess'));
         }
-        return $this->flashResponse->fail('home', 'Bạn chưa đăng nhập');
+
+        return $this->flashResponse->fail('home', __('LogoutFail'));
     }
 }

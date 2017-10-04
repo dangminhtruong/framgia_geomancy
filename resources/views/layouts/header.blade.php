@@ -10,138 +10,138 @@
             <div id="navbar" class="navbar-nav-wrapper">
                 <ul class="nav navbar-nav" id="responsive-menu">
                     <li>
-                        <a href="#">{{__('Nav.Home')}}</a>
+                        <a href="#">{{ __('Nav.Home') }}</a>
                     </li>
 
                     <li>
-                        <a href="#">{{__('Nav.Product')}}</a>
+                        <a href="#">{{ __('Nav.Product') }}</a>
                         <ul>
                             <li>
-                                <a href="#">{{__('Nav.Fishes')}}</a>
+                                <a href="#">{{ __('Nav.Fishes') }}</a>
                                 <ul>
-                                    <li><a href="#">{{__('Nav.NewArrival')}}</a></li>
-                                    <li><a href="#">{{__('Nav.TrendingItems')}}</a></li>
-                                    <li><a href="#">{{__('Nav.AllItems')}}</a></li>
+                                    <li><a href="#">{{ __('Nav.NewArrival') }}</a></li>
+                                    <li><a href="#">{{ __('Nav.TrendingItems') }}</a></li>
+                                    <li><a href="#">{{ __('Nav.AllItems') }}</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">{{__('Nav.FishsFood')}}</a>
+                                <a href="#">{{ __('Nav.FishsFood') }}</a>
                                 <ul>
-                                    <li><a href="#">{{__('Nav.NewArrival')}}</a></li>
-                                    <li><a href="#">{{__('Nav.TrendingItems')}}</a></li>
-                                    <li><a href="#">{{__('Nav.AllItems')}}</a></li>
+                                    <li><a href="#">{{ __('Nav.NewArrival') }}</a></li>
+                                    <li><a href="#">{{ __('Nav.TrendingItems') }}</a></li>
+                                    <li><a href="#">{{ __('Nav.AllItems') }}</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">{{__('Nav.FishTanks')}}</a>
+                                <a href="#">{{ __('Nav.FishTanks') }}</a>
                                 <ul>
-                                    <li><a href="#">{{__('Nav.NewArrival')}}</a></li>
-                                    <li><a href="#">{{__('Nav.TrendingItems')}}</a></li>
-                                    <li><a href="#">{{__('Nav.AllItems')}}</a></li>
+                                    <li><a href="#">{{ __('Nav.NewArrival') }}</a></li>
+                                    <li><a href="#">{{ __('Nav.TrendingItems') }}</a></li>
+                                    <li><a href="#">{{ __('Nav.AllItems') }}</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">{{__('Nav.SandGravel')}}</a>
+                                <a href="#">{{ __('Nav.SandGravel') }}</a>
                                 <ul>
-                                    <li><a href="#">{{__('Nav.NewArrival')}}</a></li>
-                                    <li><a href="#">{{__('Nav.TrendingItems')}}</a></li>
-                                    <li><a href="#">{{__('Nav.AllItems')}}</a></li>
+                                    <li><a href="#">{{ __('Nav.NewArrival') }}</a></li>
+                                    <li><a href="#">{{ __('Nav.TrendingItems') }}</a></li>
+                                    <li><a href="#">{{ __('Nav.AllItems') }}</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">{{__('Nav.3DLanscape')}}</a>
+                                <a href="#">{{ __('Nav.3DLanscape') }}</a>
                                 <ul>
-                                    <li><a href="#">{{__('Nav.NewArrival')}}</a></li>
-                                    <li><a href="#">{{__('Nav.TrendingItems')}}</a></li>
-                                    <li><a href="#">{{__('Nav.AllItems')}}</a></li>
+                                    <li><a href="#">{{ __('Nav.NewArrival') }}</a></li>
+                                    <li><a href="#">{{ __('Nav.TrendingItems') }}</a></li>
+                                    <li><a href="#">{{ __('Nav.AllItems') }}</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">{{__('Nav.Plants')}}</a>
+                                <a href="#">{{ __('Nav.Plants') }}</a>
                                 <ul>
-                                    <li><a href="#">{{__('Nav.NewArrival')}}</a></li>
-                                    <li><a href="#">{{__('Nav.TrendingItems')}}</a></li>
-                                    <li><a href="#">{{__('Nav.AllItems')}}</a></li>
+                                    <li><a href="#">{{ __('Nav.NewArrival') }}</a></li>
+                                    <li><a href="#">{{ __('Nav.TrendingItems') }}</a></li>
+                                    <li><a href="#">{{ __('Nav.AllItems') }}</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">{{__('Nav.Filters')}}</a>
+                                <a href="#">{{ __('Nav.Filters') }}</a>
                                 <ul>
-                                    <li><a href="#">{{__('Nav.NewArrival')}}</a></li>
-                                    <li><a href="#">{{__('Nav.TrendingItems')}}</a></li>
-                                    <li><a href="#">{{__('Nav.AllItems')}}</a></li>
+                                    <li><a href="#">{{ __('Nav.NewArrival') }}</a></li>
+                                    <li><a href="#">{{ __('Nav.TrendingItems') }}</a></li>
+                                    <li><a href="#">{{ __('Nav.AllItems') }}</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">{{__('Nav.AquariumLight')}}</a>
+                                <a href="#">{{ __('Nav.AquariumLight') }}</a>
                                 <ul>
-                                    <li><a href="#">{{__('Nav.NewArrival')}}</a></li>
-                                    <li><a href="#">{{__('Nav.TrendingItems')}}</a></li>
-                                    <li><a href="#">{{__('Nav.AllItems')}}</a></li>
+                                    <li><a href="#">{{ __('Nav.NewArrival') }}</a></li>
+                                    <li><a href="#">{{ __('Nav.TrendingItems') }}</a></li>
+                                    <li><a href="#">{{ __('Nav.AllItems') }}</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
 
                     <li>
-                        <a href="#">{{__('Nav.Blueprints')}}</a>
+                        <a href="#">{{ __('Nav.Blueprints') }}</a>
                         <ul>
                             <li>
-                                <a href="#">{{__('Nav.NewBlueprints')}}</a>
+                                <a href="#">{{ __('Nav.NewBlueprints') }}</a>
                                 <ul>
-                                    <li><a href="#">{{__('Nav.FishTanks')}}</a></li>
+                                    <li><a href="#">{{ __('Nav.FishTanks') }}</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">{{__('Nav.TrendingBlueprints')}}</a>
+                                <a href="#">{{ __('Nav.TrendingBlueprints') }}</a>
                                 <ul>
-                                    <li><a href="#">{{__('Nav.FishTanks')}}</a></li>
+                                    <li><a href="#">{{ __('Nav.FishTanks') }}</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">{{__('Nav.AllBlueprint')}}</a>
+                                <a href="#">{{ __('Nav.AllBlueprint') }}</a>
                                 <ul>
-                                    <li><a href="#">{{__('Nav.FishTanks')}}</a></li>
+                                    <li><a href="#">{{ __('Nav.FishTanks') }}</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
 
                     <li>
-                        <a href="#">{{__('Nav.Posts')}}</a>
+                        <a href="#">{{ __('Nav.Posts') }}</a>
                         <ul>
                             <li>
-                                <a href="#">{{__('Nav.NewPosts')}}</a>
+                                <a href="#">{{ __('Nav.NewPosts') }}</a>
                                 <ul>
-                                    <li><a href="#">{{__('Nav.FishTanks')}}</a></li>
+                                    <li><a href="#">{{ __('Nav.FishTanks') }}</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">{{__('Nav.TrendingPosts')}}</a>
+                                <a href="#">{{ __('Nav.TrendingPosts') }}</a>
                                 <ul>
-                                    <li><a href="#">{{__('Nav.FishTanks')}}</a></li>
+                                    <li><a href="#">{{ __('Nav.FishTanks') }}</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">{{__('Nav.AllPost')}}</a>
+                                <a href="#">{{ __('Nav.AllPosts') }}</a>
                                 <ul>
-                                    <li><a href="#">{{__('Nav.FishTanks')}}</a></li>
+                                    <li><a href="#">{{ __('Nav.FishTanks') }}</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
 
                     <li>
-                        <a href="#">{{__('Nav.MyBlueprints')}}</a>
+                        <a href="#">{{ __('Nav.MyBlueprints') }}</a>
                         <ul>
                             <li>
-                                <a href="#">{{__('Nav.AllBlueprints')}}</a>
+                                <a href="#">{{ __('Nav.AllBlueprints') }}</a>
                                 <ul>
-                                    <li><a href="#">{{__('FNav.ishTanks')}}</a></li>
+                                    <li><a href="#">{{ __('Nav.FishTanks') }}</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">{{__('Nav.CloneBlueprints')}}</a></li>
-                            <li><a href="#">{{__('Nav.CreateBlueprints')}}</a></li>
+                            <li><a href="#">{{ __('Nav.CloneBlueprints') }}</a></li>
+                            <li><a href="#">{{ __('Nav.CreateBlueprints') }}</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -162,9 +162,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('logout')}}" class="normal">
+                                <a href="{{route('logout') }}" class="normal">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i>
-                                    {{__('Form.Logout')}}
+                                    {{ __('Form.Logout') }}
                                 </a>
                             </li>
                         </ul>

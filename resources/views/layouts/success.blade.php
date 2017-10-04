@@ -1,6 +1,6 @@
 <div id="success_msg" class="alert alert-success alert-dismissible fade in box-alert"  role="alert">
     <p>
-        <strong>{{session('success_msg')}}</strong>
+        <strong>{{ session('success_msg') }}</strong>
     </p>
 </div>
 <script>
