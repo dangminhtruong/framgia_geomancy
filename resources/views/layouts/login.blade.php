@@ -1,4 +1,4 @@
-@if ($errors->first('email') != null || $errors->first('password') != null ||old('email') != null)
+@if ($errors->first('email') != null || $errors->first('password') != null || old('email') != null)
 	<script>
 	$(document).ready(function() {
 		$('#loginModal').modal('show');
@@ -34,7 +34,7 @@
 				<div class="form-group">
 					<label>Email</label>
 					<input name="email" class="form-control" placeholder="Email..." type="text" value="{{ old('email') }}">
-					<p class="text-danger help-block error-text">{{$errors->first('email')}}</p>
+					<p class="text-danger help-block error-text">{{ $errors->first('email') }}</p>
 				</div>
 
 			</div>
@@ -44,7 +44,7 @@
 				<div class="form-group">
 					<label>{{ __('Form.Password')}}</label>
 					<input name="password" class="form-control" placeholder="{{ __('Password')}}..." type="password">
-					<p class="text-danger help-block error-text">{{$errors->first('password')}}</p>
+					<p class="text-danger help-block error-text">{{ $errors->first('password') }}</p>
 				</div>
 
 			</div>

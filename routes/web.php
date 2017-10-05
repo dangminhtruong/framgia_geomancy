@@ -18,3 +18,4 @@ Route::get('/', function () {
 
 Route::post('dang-nhap', 'Auth\AuthController@login')->name('login');
 Route::get('dang-xuat', 'Auth\AuthController@logout')->name('logout');
+Route::post('dang-ky', 'Auth\RegistrationController@store')->name('signup');
