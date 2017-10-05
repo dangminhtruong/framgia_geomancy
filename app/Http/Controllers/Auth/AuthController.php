@@ -8,16 +8,22 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginRequest;
 use App\Framgia\Response\FlashResponse;
 use App\Framgia\Response\FormResponse;
+use App\Repositories\Eloquents\UserRepository;
 
 class AuthController extends Controller
 {
     protected $flashResponse;
     protected $formResponse;
+    protected $userRepository;
 
-    public function __construct(FlashResponse $flashResponse, FormResponse $formResponse)
-    {
+    public function __construct(
+        FlashResponse $flashResponse,
+        FormResponse $formResponse,
+        UserRepository $userRepository
+    ) {
         $this->flashResponse = $flashResponse;
         $this->formResponse = $formResponse;
+        $this->userRepository = $userRepository;
     }
 
 

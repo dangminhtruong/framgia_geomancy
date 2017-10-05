@@ -152,7 +152,8 @@
                     <li class="dropdown avatar-box">
                         <a style="display: flex;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <img class="avatar" src="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg" class="thumb"/>
-                            <i style="color: white;margin-top: 10px;" class="fa fa-chevron-down" aria-hidden="true"></i>
+                            <span class="f-name" title="{{ Auth::user()->name }}">{{ Auth::user()->name }}</span>
+                            <i class="fa fa-chevron-down f-icon" aria-hidden="true"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li>

@@ -48,5 +48,30 @@
     "LoginSuccess": "Đăng nhập thành công",
     "LoginFail": "Email hoặc password không hợp lệ",
     "LoutoutSuccess": "Đăng xuất thành công",
-    "LogoutFail": "Bạn chưa đăng nhập"
+    "LogoutFail": "Bạn chưa đăng nhập",
+
+    "Form.SignupText": "Đăng ký tài khoản",
+    "Form.Username": "Tên hiển thị",
+    "Form.RePassword": "Nhập lại mật khẩu",
+    "Form.LoginText": "Đã có tài khoản?",
+    "Form.Signup": "Đăng ký",
+
+    "Tên hiển thị không được để trống" : "Tên hiển thị không được để trống",
+    "Tên hiển thị tối thiểu 6 ký tự" : "Tên hiển thị tối thiểu 6 ký tự",
+    "Tên hiển thị tối đa 10 ký tự" : "Tên hiển thị tối đa 10 ký tự",
+
+    "Email không được để trống" : "Email không được để trống",
+    "Email không đúng định dạng" : "Email không đúng định dạng",
+    "Email tối đa 100 ký tự" : "Email tối đa 100 ký tự",
+    "Email đã có người sử dụng" : "Email đã có người sử dụng",
+
+    "Password không được để trống" : "Password không được để trống",
+    "assword tối thiểu 6 ký tự" : "Password tối thiểu 6 ký tự",
+    "Password tối đa 100 ký tự" : "Password tối đa 100 ký tự",
+    "Password không trùng nhau" : "Password không trùng nhau",
+
+    "Không được để trống trường này" : "Không được để trống trường này",
+
+    "Đăng ký tài khoản thành công": "Đăng ký tài khoản thành công",
+    "Có lỗi xảy ra, vui lòng tử lại sau": "Có lỗi xảy ra, vui lòng tử lại sau"
 }
