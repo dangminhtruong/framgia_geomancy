@@ -14,8 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
-
-
 Route::post('dang-nhap', 'Auth\AuthController@login')->name('login');
 Route::get('dang-xuat', 'Auth\AuthController@logout')->name('logout');
-Route::post('dang-ky', 'Auth\RegistrationController@store')->name('signup');
+Route::get('request-fish-tanks-blueprint', 'Blueprint\BlueprintController@getRequestFishTanksBlueprint')
+    ->name('getRequestFishTanksBlueprint');
+Route::post('request-fish-tanks-blueprint', 'Blueprint\BlueprintController@postRequestFishTanksBlueprint')
+    ->name('postRequestFishTanksBlueprint');
+
