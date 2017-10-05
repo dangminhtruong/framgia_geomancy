@@ -49,7 +49,6 @@
     "LoginFail": "Email hoặc password không hợp lệ",
     "LoutoutSuccess": "Đăng xuất thành công",
     "LogoutFail": "Bạn chưa đăng nhập",
-
     "Form.FullName" : "Họ tên",
     "Form.Address" : "Địa chỉ",
     "Form.Phone" : "Số điện thoại",
@@ -59,5 +58,42 @@
     "Form.UserExits" : "Bạn đã có tài khoản ?",
 
     "Request.Blueprint" : "Nhận bể cá ưa thích theo thết kế của bạn chỉ với ba bước !",
-    "Request.BlueprintSuccess" : "Yêu cầu thiết thành công !"
+    "Request.BlueprintSuccess" : "Yêu cầu thiết thành công !",
+
+    "Form.SignupText": "Đăng ký tài khoản",
+    "Form.Username": "Tên hiển thị",
+    "Form.RePassword": "Nhập lại mật khẩu",
+    "Form.LoginText": "Đã có tài khoản?",
+    "Form.Signup": "Đăng ký",
+
+    "Tên hiển thị không được để trống" : "Tên hiển thị không được để trống",
+    "Tên hiển thị tối thiểu 6 ký tự" : "Tên hiển thị tối thiểu 6 ký tự",
+    "Tên hiển thị tối đa 10 ký tự" : "Tên hiển thị tối đa 10 ký tự",
+
+    "Email không được để trống" : "Email không được để trống",
+    "Email không đúng định dạng" : "Email không đúng định dạng",
+    "Email tối đa 100 ký tự" : "Email tối đa 100 ký tự",
+    "Email đã có người sử dụng" : "Email đã có người sử dụng",
+
+    "Password không được để trống" : "Password không được để trống",
+    "assword tối thiểu 6 ký tự" : "Password tối thiểu 6 ký tự",
+    "Password tối đa 100 ký tự" : "Password tối đa 100 ký tự",
+    "Password không trùng nhau" : "Password không trùng nhau",
+
+    "Không được để trống trường này" : "Không được để trống trường này",
+
+    "Đăng ký tài khoản thành công": "Đăng ký tài khoản thành công",
+
+    "Khôi phục mật khẩu": "Khôi phục mật khẩu",
+    "Khôi phục": "Khôi phục",
+    "Quay lại": "Quay lại",
+
+    "Không tìm thấy địa chỉ email": "Không tìm thấy địa chỉ email",
+    "Mail reset mật khẩu đã được gửi cho quý khách": "Mail reset mật khẩu đã được gửi cho quý khách",
+    "Cập nhật mật khẩu": "Cập nhật mật khẩu",
+    "Cập nhật": "Cập nhật",
+    "Nhập lại": "Nhập lại",
+    "Cập nhật mật khẩu thành công": "Cập nhật mật khẩu thành công",
+    "Có lỗi xảy ra, vui lòng thử lại sau": "Có lỗi xảy ra, vui lòng thử lại sau",
+    "Yêu cầu reset mật khẩu đã hết hạn": "Yêu cầu reset mật khẩu đã hết hạn"
 }

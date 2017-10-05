@@ -14,9 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
-Route::post('dang-nhap', 'Auth\AuthController@login')->name('login');
-Route::get('dang-xuat', 'Auth\AuthController@logout')->name('logout');
-Route::get('request-fish-tanks-blueprint', 'BlueprintController@getRequestFishTanksBlueprint')
-    ->name('getRequestFishTanksBlueprint');
-Route::post('request-fish-tanks-blueprint', 'BlueprintController@postRequestFishTanksBlueprint')
-    ->name('postRequestFishTanksBlueprint');
+
+Route::post('auth/login', 'Auth\AuthController@login')->name('login');
+Route::get('auth/logout', 'Auth\AuthController@logout')->name('logout');
+Route::post('registration', 'Auth\RegistrationController@store')->name('signup');
+Route::post('reset/password', 'Auth\ForgetPasswordController@requestToken')->name('forget-password');
+Route::get('reset/password/{token}', 'Auth\ForgetPasswordController@resetPassword')->name('confirm-token');
+Route::post('update/password', 'Auth\ForgetPasswordController@updatePassword')->name('update-password');
