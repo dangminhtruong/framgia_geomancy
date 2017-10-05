@@ -29,11 +29,7 @@
         @include('layouts.header')
 
         <div class="main-wrapper scrollspy-container">
-            <div class="hero img-bg-01">
-				<div class="container">
-                    @yield('content')
-                </div>
-            </div>
+            @yield('content')
         </div>
 
         @include('layouts.footer')
