@@ -1,32 +1,38 @@
+@if ($errors->first('f_email') != null)
+	<script>
+	$(document).ready(function() {
+		$('#forgotPasswordModal').modal('show');
+	});
+	</script>
+@endif
 <div id="forgotPasswordModal" class="modal fade login-box-wrapper" tabindex="-1" data-backdrop="static" data-keyboard="false" data-replace="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		<h4 class="modal-title text-center">Restore your forgotten password</h4>
+		<h4 class="modal-title text-center">{{ __('Khôi phục mật khẩu') }}</h4>
 	</div>
-
-	<div class="modal-body">
-		<div class="row gap-20">
-			<div class="col-sm-12 col-md-12">
-				<p class="mb-20">Maids table how learn drift but purse stand yet set. Music me house could among oh as their. Piqued our sister shy nature almost his wicket. Hand dear so we hour to.</p>
-			</div>
-
-			<div class="col-sm-12 col-md-12">
-				<div class="form-group">
-					<label>Email Address</label>
-					<input class="form-control" placeholder="Enter your email address" type="text">
+	<form method="POST" action="{{ route('forget-password')}}">
+		{{ csrf_field() }}
+		<div class="modal-body">
+			<div class="row gap-20">
+				<div class="col-sm-12 col-md-12">
+					<div class="form-group">
+						<label>Email</label>
+						<input name="f_email" class="form-control" placeholder="Enter..." type="email" value="{{ old('f_email') }}">
+						<p class="text-danger help-block error-text">{{ $errors->first('f_email') }}</p>
+					</div>
 				</div>
-			</div>
 
-			<div class="col-sm-12 col-md-12">
-				<div class="login-box-box-action">
-					Return to <a data-toggle="modal" href="#loginModal">Log-in</a>
+				<div class="col-sm-12 col-md-12">
+					<div class="login-box-box-action">
+						{{ __('Quay lại') }} <a data-toggle="modal" href="#loginModal">{{ __('Form.Login') }}</a>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="modal-footer text-center">
-		<button type="button" class="btn btn-primary">Restore</button>
-		<button type="button" data-dismiss="modal" class="btn btn-primary btn-border">Close</button>
-	</div>
+		<div class="modal-footer text-center">
+			<button type="submit" class="btn btn-primary">{{ __('Khôi phục') }}</button>
+			<button type="button" data-dismiss="modal" class="btn btn-primary btn-border">Close</button>
+		</div>
+	</form>
 </div>

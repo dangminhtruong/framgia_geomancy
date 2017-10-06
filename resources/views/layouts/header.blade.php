@@ -1,9 +1,10 @@
 <header id="header">
-   <nav class="navbar navbar-default navbar-fixed-top navbar-sticky-function navbar-arrow">
-      <div class="container">
-         <div class="logo-wrapper">
-            <div class="logo">
-               <a href="index-2.html"><img src="images/logo-white.png" alt="Logo"/></a>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-sticky-function navbar-arrow">
+        <div class="container">
+            <div class="logo-wrapper">
+                <div class="logo">
+                    <a href="index-2.html"><img src="{{ asset('images/logo-white.png') }}" alt="Logo" /></a>
+                </div>
             </div>
          </div>
          <div id="navbar" class="navbar-nav-wrapper">
