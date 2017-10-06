@@ -81,4 +81,16 @@
 .request_blueprint{
     background-color: #ffffff !important;
 }
+.arrow-down {
+    color: white;margin-top: 10px;
+}
+.flex-tag {
+    display: flex;
+}
+.reset-ttl {
+    margin-bottom: 0px;
+}
+.f-bg-image {
+    background-image: url('../images/breadcrumb-bg.jpg');
+}
 
