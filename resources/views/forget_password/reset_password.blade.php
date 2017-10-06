@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('pageTitle', 'Home')
 @section('content')
-    <div class="breadcrumb-image-bg pb-100 no-bg" style="background-image:url('http://localhost:8000/images/breadcrumb-bg.jpg');">
+    <div class="breadcrumb-image-bg pb-100 no-bg f-bg-image">
         <div class="container">
         </div>
     </div>
@@ -15,7 +15,7 @@
                             {{ csrf_field() }}
                             <div class="confirmation-inner">
                                 <div class="promo-box-02 bg-success mb-40">
-                                    <h4 style="margin-bottom: 0px;">{{ __('Cập nhật mật khẩu') }}</h4>
+                                    <h4 class="reset-ttl">{{ __('Cập nhật mật khẩu') }}</h4>
                                 </div>
 
                                 <div class="row gap-20">
