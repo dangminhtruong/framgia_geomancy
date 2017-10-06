@@ -29,6 +29,8 @@
     "themify-icons": "^0.1.2",
     "simple-line-icons": "^2.4.1",
     "flaticon-travel": "*",
-    "framgia_geomancy_fonts": "https://github.com/dqhuy78/framgia_geomancy_fonts.git"
+    "framgia_geomancy_fonts": "https://github.com/dqhuy78/framgia_geomancy_fonts.git",
+    "ckeditor": "^4.7.3",
+    "ckfinder": "*"
   }
 }

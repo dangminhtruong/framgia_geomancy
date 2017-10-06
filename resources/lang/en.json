@@ -27,5 +27,16 @@
     "Nav.MyBlueprints": "My Blueprints",
     "Nav.AllBlueprints": "All Blueprints",
     "Nav.CloneBlueprints": "Clone Blueprints",
-    "Nav.CreateBlueprints": "Create New Blueprints"
+    "Nav.CreateBlueprints": "Create New Blueprints",
+
+    "Form.FullName" : "Full name",
+    "Form.Address" : "Address",
+    "Form.Phone" : "Phone",
+    "Form.BirthDay" : "Birth day",
+    "Form.Descriptions" : "Description",
+    "Form.RetypePass" : "Retype password",
+    "Form.UserExits" : "You already has account ?",
+
+    "Request.Blueprint" : "Get your Fish Tank just 3 step !",
+    "Request.BlueprintSuccess" : "Request bluepeint successfull !"
 }
