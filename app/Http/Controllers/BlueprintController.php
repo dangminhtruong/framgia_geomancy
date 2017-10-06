@@ -20,7 +20,7 @@ class BlueprintController extends Controller
 
     public function getRequestFishTanksBlueprint()
     {
-        return view('layouts.request_blueprint');
+        return view('blueprint.request_blueprint');
     }
 
     public function postRequestFishTanksBlueprint(RequireBlueprintRequest $request)
