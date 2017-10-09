@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link rel="shortcut icon" href="images/ico/favicon.png">
         {{ HTML::style('bowerrc/bootstrap/dist/css/bootstrap.min.css') }}
+        {{ HTML::style('css/truong.css') }}
         {{ HTML::style('css/main.css') }}
         {{ HTML::style('css/plugin.css') }}
         {{ HTML::style('css/style.css') }}

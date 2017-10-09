@@ -16,7 +16,8 @@ class ProductController extends Controller
     public function __construct(
         ProductRepositoryInterface $productRepository,
         JsonResponse $jsonResponse
-    ) {
+    )
+    {
         $this->productRepository = $productRepository;
         $this->jsonResponse = $jsonResponse;
     }

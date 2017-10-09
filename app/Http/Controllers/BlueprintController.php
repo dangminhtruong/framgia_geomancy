@@ -4,18 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\RequireBlueprintRequest;
+use App\Http\Requests\CreateBlueprintRequest;
 use App\Entities\User;
 use App\Entities\RequestBlueprint;
-use App\Framgia\Response\FlashResponse;
-use App\Framgia\Response\FormResponse;
-use Hash;
+use App\Repositories\Contracts\UserRepositoryInterface as UserRepository;
+use App\Repositories\Contracts\BlueprintRepositoryInterface as BlueprintRepository;
+use App\Repositories\Contracts\TopicRepositoryInterface as TopicRepository;
+use App\Repositories\Contracts\GalleryRepositoryInterface as GalleryRepository;
+use Hash, Auth;
 
 class BlueprintController extends Controller
 {
-    public function __construct(FlashResponse $flashResponse, FormResponse $formResponse)
+    private $blueprintRepository;
+    private $topicRepository;
+    private $galleryRepository;
+    private $userRepository;
+
+    public function __construct(
+        BlueprintRepository $blueprintRepository,
+        TopicRepository $topicRepository,
+        GalleryRepository $galleryRepository,
+        UserRepository $userRepository
+    )
     {
-        $this->flashResponse = $flashResponse;
-        $this->formResponse = $formResponse;
+        $this->blueprintRepository = $blueprintRepository;
+        $this->topicRepository = $topicRepository;
+        $this->galleryRepository = $galleryRepository;
+        $this->userRepository = $userRepository;
     }
 
     public function getRequestFishTanksBlueprint()
@@ -25,22 +40,17 @@ class BlueprintController extends Controller
 
     public function postRequestFishTanksBlueprint(RequireBlueprintRequest $request)
     {
-        $user = User::create([
-            'email' => $request->customer_email,
-            'name' => $request->customer_name,
-            'address' => $request->customer_address,
-            'phone' => $request->customer_phone,
-            'role' => 0,
-            'password' => Hash::make($request->customer_password),
-            'remember_token' => $request->_token
-        ]);
+        return $this->blueprintRepository->createRequestBlueprint($request);
+    }
 
-        $requestBlueprint = RequestBlueprint::create([
-            'users_id' => $user->id,
-            'description' => $request->customer_description
-        ]);
+    public function getCreateBlueprint()
+    {
+        $topics = $this->topicRepository->getAllTopics();
+        return view('blueprint.create_blueprint', compact('topics'));
+    }
 
-        return $this->flashResponse->success('getRequestFishTanksBlueprint',
-            __('Request blueprint successfull !'));
+    public function postCreateBlueprint(CreateBlueprintRequest $request)
+    {
+        return $this->blueprintRepository->createBlueprint($request);
     }
 }
