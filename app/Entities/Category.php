@@ -18,7 +18,7 @@ class Category extends BaseEntity
      */
     public function products()
     {
-        return $this->hasMany(\App\Entity\Product::class);
+        return $this->hasMany(\App\Entities\Product::class);
     }
 
     /**
@@ -26,6 +26,6 @@ class Category extends BaseEntity
      */
     public function suggests()
     {
-        return $this->hasMany(\App\Entity\SuggestProduct::class);
+        return $this->hasMany(\App\Entities\SuggestProduct::class);
     }
 }

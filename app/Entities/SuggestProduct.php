@@ -21,7 +21,7 @@ class SuggestProduct extends BaseEntity
      */
     public function blueprint()
     {
-        return $this->belongsTo(\App\Entity\Blueprint::class, 'blueprints_id');
+        return $this->belongsTo(\App\Entities\Blueprint::class, 'blueprints_id');
     }
 
     /**
@@ -29,6 +29,6 @@ class SuggestProduct extends BaseEntity
      */
     public function category()
     {
-        return $this->belongsTo(\App\Entity\Category::class, 'categories_id');
+        return $this->belongsTo(\App\Entities\Category::class, 'categories_id');
     }
 }

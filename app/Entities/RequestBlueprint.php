@@ -20,7 +20,7 @@ class RequestBlueprint extends BaseEntity
      */
     public function improve()
     {
-        return $this->hasOne(\App\Entity\ImproveBlueprint::class, 'improve_blueprints_id');
+        return $this->hasOne(\App\Entities\ImproveBlueprint::class, 'improve_blueprints_id');
     }
 
     /**
@@ -28,6 +28,6 @@ class RequestBlueprint extends BaseEntity
      */
     public function user()
     {
-        return $this->belongsTo(\App\Entity\User::class, 'users_id');
+        return $this->belongsTo(\App\Entities\User::class, 'users_id');
     }
 }

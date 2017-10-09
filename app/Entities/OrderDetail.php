@@ -20,7 +20,7 @@ class OrderDetail extends BaseEntity
      */
     public function order()
     {
-        return $this->belongsTo(\App\Entity\Order::class, 'orders_id');
+        return $this->belongsTo(\App\Entities\Order::class, 'orders_id');
     }
 
     /**
@@ -28,6 +28,6 @@ class OrderDetail extends BaseEntity
      */
     public function product()
     {
-        return $this->hasOne(\App\Entity\Product::class, 'products_id');
+        return $this->hasOne(\App\Entities\Product::class, 'products_id');
     }
 }

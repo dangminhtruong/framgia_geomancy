@@ -21,7 +21,7 @@ class Blueprint extends BaseEntity
      */
     public function topic()
     {
-        return $this->belongsTo(\App\Entity\Topic::class, 'topics_id');
+        return $this->belongsTo(\App\Entities\Topic::class, 'topics_id');
     }
 
     /**
@@ -29,7 +29,7 @@ class Blueprint extends BaseEntity
      */
     public function user()
     {
-        return $this->belongsTo(\App\Entity\User::class, 'users_id');
+        return $this->belongsTo(\App\Entities\User::class, 'users_id');
     }
 
     /**
@@ -37,7 +37,7 @@ class Blueprint extends BaseEntity
      */
     public function details()
     {
-        return $this->hasMany(\App\Entity\BlueprintDetail::class);
+        return $this->hasMany(\App\Entities\BlueprintDetail::class);
     }
 
     /**
@@ -45,7 +45,7 @@ class Blueprint extends BaseEntity
      */
     public function suggests()
     {
-        return $this->hasMany(\App\Entity\SuggestProduct::class);
+        return $this->hasMany(\App\Entities\SuggestProduct::class);
     }
 
     /**
@@ -53,6 +53,6 @@ class Blueprint extends BaseEntity
      */
     public function improves()
     {
-        return $this->hasMany(\App\Entity\ImproveBlueprint::class);
+        return $this->hasMany(\App\Entities\ImproveBlueprint::class);
     }
 }
