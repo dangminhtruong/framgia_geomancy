@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/admin', function() {
+    return view('admin.welcome');
+});
+
 Route::post('auth/login', 'Auth\AuthController@login')->name('login');
 Route::get('auth/logout', 'Auth\AuthController@logout')->name('logout');
 Route::post('registration', 'Auth\RegistrationController@store')->name('signup');

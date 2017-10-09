@@ -31,6 +31,9 @@
     "flaticon-travel": "*",
     "framgia_geomancy_fonts": "https://github.com/dqhuy78/framgia_geomancy_fonts.git",
     "ckeditor": "^4.7.3",
-    "ckfinder": "*"
+    "ckfinder": "*",
+    "PACE": "pace-js#1.0.2",
+    "animate.css": "animate-css#^3.5.2",
+    "toastr": "^2.1.3"
   }
 }
