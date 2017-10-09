@@ -21,3 +21,10 @@ Route::post('reset/password', 'Auth\ForgetPasswordController@requestToken')->nam
 Route::get('reset/password/{token}', 'Auth\ForgetPasswordController@resetPassword')->name('confirm-token');
 Route::post('update/password', 'Auth\ForgetPasswordController@updatePassword')->name('update-password');
 
+Route::get('request-fish-tanks-blueprint', 'BlueprintController@getRequestFishTanksBlueprint')
+    ->name('getRequestFishTanksBlueprint');
+Route::post('request-fish-tanks-blueprint', 'BlueprintController@postRequestFishTanksBlueprint')
+    ->name('postRequestFishTanksBlueprint');
+Route::get('create-blueprint', 'BlueprintController@getCreateBlueprint')->name('getCreateBlueprint');
+Route::post('create-blueprint', 'BlueprintController@postCreateBlueprint')->name('postCreateBlueprint');
+
