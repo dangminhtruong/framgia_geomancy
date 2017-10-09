@@ -22,7 +22,7 @@ class Post extends BaseEntity
      */
     public function user()
     {
-        return $this->belongsTo(\App\Entity\User::class, 'users_id');
+        return $this->belongsTo(\App\Entities\User::class, 'users_id');
     }
 
     /**
@@ -30,7 +30,7 @@ class Post extends BaseEntity
      */
     public function type()
     {
-        return $this->belongsTo(\App\Entity\Type::class, 'types_id');
+        return $this->belongsTo(\App\Entities\Type::class, 'types_id');
     }
 
     /**
@@ -38,6 +38,6 @@ class Post extends BaseEntity
      */
     public function reviews()
     {
-        return $this->hasMany(\App\Entity\Review::class);
+        return $this->hasMany(\App\Entities\Review::class);
     }
 }

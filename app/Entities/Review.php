@@ -20,7 +20,7 @@ class Review extends BaseEntity
      */
     public function user()
     {
-        return $this->belongsTo(\App\Entity\User::class, 'users_id');
+        return $this->belongsTo(\App\Entities\User::class, 'users_id');
     }
 
     /**
@@ -28,6 +28,6 @@ class Review extends BaseEntity
      */
     public function post()
     {
-        return $this->belongsTo(\App\Entity\Post::class, 'posts_id');
+        return $this->belongsTo(\App\Entities\Post::class, 'posts_id');
     }
 }
