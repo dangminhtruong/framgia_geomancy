@@ -17,7 +17,7 @@
             <hr>
         </div>
     </div>
-    @include('admin.product.product_header')
+    @include('admin.product.product_category')
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-filled">

@@ -79,7 +79,7 @@ class Paginator
     private static function initConfig($config)
     {
         if ($config['total_record'] == 0) {
-            $config['total_page'] == 0;
+            $config['total_page'] = 0;
 
             return $config;
         }

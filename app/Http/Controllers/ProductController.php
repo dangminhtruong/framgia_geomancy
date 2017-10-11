@@ -37,7 +37,7 @@ class ProductController extends Controller
     {
         $products = $this->productRepository
             ->getByCategory($request->categories_id, $request->pageNo);
-        $totalProduct = $this->productRepository->count($request->categories_id);
+        $totalProduct = $this->productRepository->count($request->categories_id) ?: 0;
         $paginate = Paginator::paginate($config = [
             'total_record' => $totalProduct,
             'current_page' => $request->pageNo,
