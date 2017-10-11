@@ -4,12 +4,12 @@ function ajaxSubmit(url, method, data, success_callback, error_callback)
         url: SITE_URL + url,
         type: method,
         data: data,
-        beforeSend: function() {
-            // $('#load_scr').css('display', 'table');
-        },
-        complete: function() {
-            // $('#load_scr').css('display', 'none');
-        },
+        // beforeSend: function() {
+        //     // $('#load_scr').css('display', 'table');
+        // },
+        // complete: function() {
+        //     // $('#load_scr').css('display', 'none');
+        // },
         success: function(result) {
             if (success_callback != null) {
                 success_callback(result);

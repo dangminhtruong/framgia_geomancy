@@ -2,13 +2,14 @@ $(document).ready(function() {
     $('#tableExample3').DataTable({
         dom: "<'row'<'col-sm-4 col-sm-offset-8'f>>tp",
         "language": {
-            "search": "Tìm trong trang"
+            "search": "Tìm trong trang",
+            "emptyTable": "Không có dữ liệu"
         },
         "bPaginate": false
     });
 
     //===== CATEGORY CHANGE =====//
-    $('#_category').on('change', function(e) {
+    $('#_category').on('change', function(e){
         e.preventDefault();
 
         var categories_id = $(this).val();
@@ -23,14 +24,20 @@ $(document).ready(function() {
             pageNo: 1,
             _token: $('meta[name="csrf-token"]').attr('content'),
         }
-
+        var selectOption = $(this);
+        selectOption.prop('disabled', true);
+        $('#_product-table').html('<div class="text-center"><img src="' + SITE_URL + 'images/ajax-loader.svg"/></div>');
         ajaxSubmit('admin/product', 'POST', data, function(result) {
-            $('#_product-table').html('<div class="text-center"><img src="' + SITE_URL + 'images/ajax-loader.svg"/></div>');
             $('#_product-table').html(result.data.view);
             $('#tableExample3').DataTable({
                 dom: "<'row'<'col-sm-4 col-sm-offset-8'f>>tp",
+                "language": {
+                    "search": "Tìm trong trang",
+                    "emptyTable": "Không có dữ liệu"
+                },
                 "bPaginate": false
             });
+            selectOption.prop('disabled', false);
         }, null);
     });
 
@@ -61,11 +68,15 @@ $(document).ready(function() {
             _token: $('meta[name="csrf-token"]').attr('content'),
         }
 
+        $('#_product-table').html('<div class="text-center"><img src="' + SITE_URL + 'images/ajax-loader.svg"/></div>');
         ajaxSubmit('admin/product', 'POST', data, function(result) {
-            $('#_product-table').html('<div class="text-center"><img src="' + SITE_URL + 'images/ajax-loader.svg"/></div>');
             $('#_product-table').html(result.data.view);
             $('#tableExample3').DataTable({
                 dom: "<'row'<'col-sm-4 col-sm-offset-8'f>>tp",
+                "language": {
+                    "search": "Tìm trong trang",
+                    "emptyTable": "Không có dữ liệu"
+                },
                 "bPaginate": false
             });
         }, null);
