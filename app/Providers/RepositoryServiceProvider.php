@@ -11,6 +11,10 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\Contracts\UserRepositoryInterface::class,
             \App\Repositories\Eloquents\UserRepository::class,
         ],
+        'product' => [
+            \App\Repositories\Contracts\ProductRepositoryInterface::class,
+            \App\Repositories\Eloquents\ProductRepository::class,
+        ]
     ];
 
 

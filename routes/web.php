@@ -25,3 +25,6 @@ Route::post('registration', 'Auth\RegistrationController@store')->name('signup')
 Route::post('reset/password', 'Auth\ForgetPasswordController@requestToken')->name('forget-password');
 Route::get('reset/password/{token}', 'Auth\ForgetPasswordController@resetPassword')->name('confirm-token');
 Route::post('update/password', 'Auth\ForgetPasswordController@updatePassword')->name('update-password');
+
+Route::get('/admin/product', 'ProductController@index');
+Route::post('/admin/product', 'ProductController@paginateProductByCategory');

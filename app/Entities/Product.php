@@ -19,10 +19,42 @@ class Product extends BaseEntity
     ];
 
     /**
-     *  Get the category own this product
+     * Get the category own this product
      */
     public function category()
     {
         return $this->belongsTo(\App\Entities\Category::class, 'categories_id');
+    }
+
+    /**
+     * Format timestamp to d-m-Y
+     */
+    public function getCreatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d-m-Y');
+    }
+
+    /**
+     * Format timestamp to d-m-Y
+     */
+    public function getUpdatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d-m-Y');
+    }
+
+    /**
+     * Convert json to array
+     */
+    public function getAttributeAttribute($value)
+    {
+        return json_decode($value);
+    }
+
+    /**
+     * Format price
+     */
+    public function getPriceAttribute($value)
+    {
+        return number_format($value);
     }
 }
