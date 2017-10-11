@@ -179,6 +179,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
 
         App\Providers\RepositoryServiceProvider::class,
+        App\Providers\ViewServiceProvider::class,
     ],
 
     /*

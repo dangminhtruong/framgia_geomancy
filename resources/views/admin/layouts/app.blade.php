@@ -14,6 +14,9 @@
         {{ HTML::style('css/pe-icons/helper.css') }}
         {{ HTML::style('css/stroke-icons/style.css') }}
         {{ HTML::style('css/admin.css') }}
+        <script>
+            var SITE_URL = 'http://localhost:8000/';
+        </script>
         @yield('style')
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ __('Trang quản trị') }}</title>
@@ -26,10 +29,12 @@
                 @yield('content')
             </section>
         </div>
-        {{ HTML::script('bowerrc/PACE/page.min.js') }}
+        {{ HTML::script('bowerrc/PACE/pace.min.js') }}
         {{ HTML::script('bowerrc/jquery/dist/jquery.min.js') }}
         {{ HTML::script('bowerrc/jquery-migrate-3.0.1/index.js') }}
         {{ HTML::script('bowerrc/bootstrap/dist/js/bootstrap.min.js') }}
+        {{ HTML::script('bowerrc/toastr/toastr.min.js') }}
+        @yield('script')
         {{ HTML::script('js/luna.js') }}
     </body>
 </html>

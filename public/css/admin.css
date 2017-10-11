@@ -2848,3 +2848,11 @@ fieldset[disabled] .form-control {
   color: #ffffff !important;
   padding: 6px 12px !important;
 }
+/* Custom */
+.no-sort::after { display: none!important; }
+.no-sort { pointer-events: none!important; cursor: default!important; }
+.zero-right-padding {padding-right: 0 !important;}
+.overflow-hidden {overflow-y: hidden !important}
+.pd-top-15 {padding-top: 15px !important;}
+.full-width {width: 100% !important;}
+.zero-left-padding {padding-left: 0 !important;}

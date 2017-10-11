@@ -84,7 +84,7 @@ class User extends Authenticatable
     }
 
     /**
-     *  Bcrypt password
+     *  Convert json to array
      */
     public function setPasswordAttribute($value)
     {
