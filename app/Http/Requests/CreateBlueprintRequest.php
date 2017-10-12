@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RequireBlueprintRequest extends FormRequest
+class CreateBlueprintRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,17 @@ class RequireBlueprintRequest extends FormRequest
     public function rules()
     {
         return [
-            'customer_description' => 'required'
+            'blueprint_name' => 'required|unique:blueprints,title|max:100',
+            'img.*' => 'image|mimes:jpeg,png,jpg'
         ];
     }
 
     public function messages()
     {
         return [
-            'customer_description.required' => __('Form.FillOutDesc')
+            'blueprint_name.required' => __('Form.FillOutTitle'),
+            'blueprint_name.unique' => __('Form.Duplicate'),
+            'img.mimes' => __('Form.ImageType')
         ];
     }
 }
