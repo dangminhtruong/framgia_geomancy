@@ -51,4 +51,9 @@ class ProductController extends Controller
 
         return $this->jsonResponse->success('', ['view' => $view]);
     }
+
+    public function getSearchProduct(Request $request)
+    {
+        return $this->productRepository->searchProduct($request);
+    }
 }

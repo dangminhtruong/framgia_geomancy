@@ -27,4 +27,9 @@ class ProductRepository extends AbstractRepository implements ProductRepositoryI
             ->where('categories_id', $categoryId)
             ->count();
     }
+
+    public function searchProduct($request)
+    {
+        return $this->model()->select('id', 'name')->where('name', 'like', '%' . str_replace('%', '-', $request->keyWord) . '%')->get();
+    }
 }
