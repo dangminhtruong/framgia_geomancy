@@ -41,4 +41,8 @@ Route::group(['prefix' => 'blueprint'], function () {
         Route::get('/', 'BlueprintController@getCreateBlueprint')->name('getCreateBlueprint');
         Route::post('/', 'BlueprintController@postCreateBlueprint')->name('postCreateBlueprint');
     });
+
+    Route::group(['prefix' => 'search-product'], function() {
+        Route::get('/', 'ProductController@getSearchProduct')->name('getSearchProduct');
+    });
 });

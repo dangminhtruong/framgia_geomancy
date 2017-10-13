@@ -27,6 +27,18 @@ class RepositoryServiceProvider extends ServiceProvider
         'gallery' => [
             \App\Repositories\Contracts\GalleryRepositoryInterface::class,
             \App\Repositories\Eloquents\GalleryRepository::class
+        ],
+        'blueprintDetal' => [
+            \App\Repositories\Contracts\BlueprintDetailRepositoryInterface::class,
+            \App\Repositories\Eloquents\BlueprintDetailRepository::class
+        ],
+        'category' => [
+            \App\Repositories\Contracts\CategoryRepositoryInterface::class,
+            \App\Repositories\Eloquents\CategoryRepository::class
+        ],
+        'suggestProduct' => [
+            \App\Repositories\Contracts\SuggestProductRepositoryInterface::class,
+            \App\Repositories\Eloquents\SuggestProductRepository::class
         ]
     ];
 

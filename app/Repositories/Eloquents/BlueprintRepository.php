@@ -4,6 +4,8 @@ namespace App\Repositories\Eloquents;
 
 use App\Repositories\Contracts\BlueprintRepositoryInterface;
 use App\Repositories\Contracts\GalleryRepositoryInterface as GalleryRepository;
+use App\Repositories\Contracts\BlueprintDetailRepositoryInterface as BlueprintDetailRepository;
+use App\Repositories\Contracts\SuggestProductRepositoryInterface as SuggestProductRepository;
 use App\Framgia\Response\FlashResponse;
 use App\Framgia\Response\FormResponse;
 use App\Entities\Blueprint;
@@ -16,17 +18,23 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
     private $galleryRepository;
     private $flashResponse;
     private $formResponse;
+    private $blueprintDetailRepository;
+    private $suggestProductRepository;
 
     function __construct(
         GalleryRepository $galleryRepository,
         FlashResponse $flashResponse,
-        FormResponse $formResponse
+        BlueprintDetailRepository $blueprintDetailRepository,
+        FormResponse $formResponse,
+        SuggestProductRepository $suggestProductRepository
     )
     {
         $this->model = $this->model();
         $this->galleryRepository = $galleryRepository;
         $this->flashResponse = $flashResponse;
         $this->formResponse = $formResponse;
+        $this->blueprintDetailRepository = $blueprintDetailRepository;
+        $this->suggestProductRepository = $suggestProductRepository;
     }
 
     public function model()
@@ -55,6 +63,24 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
         $blueprintData = array_add($blueprintData, 'publish_flg', 1);
         $blueprintData = array_add($blueprintData, 'users_id', Auth::user()->id);
         $addBlueprint = $this->create($blueprintData);
+
+        $suggestProductData = [];
+        $suggestProductData = array_add($suggestProductData, 'name', $request->suggestName);
+        $suggestProductData = array_add($suggestProductData, 'categories_id', $request->categoryId);
+        $suggestProductData = array_add($suggestProductData, 'price', $request->suggestPrice);
+        $suggestProductData = array_add($suggestProductData, 'blueprints_id', $addBlueprint->id);
+        $suggestProductData = array_add($suggestProductData, 'attribute', $request->suggestDesc);
+        $this->suggestProductRepository->create($suggestProductData);
+
+        if ($request->blueprint_product) {
+            foreach ($request->blueprint_product as $productId) {
+                $blueprintDetailData = [];
+                $blueprintDetailData = array_add($blueprintDetailData, 'quantity', 1);
+                $blueprintDetailData = array_add($blueprintDetailData, 'products_id', $productId);
+                $blueprintDetailData = array_add($blueprintDetailData, 'blueprints_id', $addBlueprint->id);
+                $this->blueprintDetailRepository->create($blueprintDetailData);
+            }
+        }
 
         if (!$request->hasFile('img')) {
             return $this->flashResponse->success('getCreateBlueprint',
