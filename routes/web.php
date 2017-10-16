@@ -34,6 +34,8 @@ Route::prefix('admin')->group(function () {
         Route::get('create', 'ProductController@create')->name('product-create');
         Route::post('create', 'ProductController@store')->name('product-store');
         Route::post('delete', 'ProductController@delete')->name('product-delete');
+        Route::get('update/{productId}', 'ProductController@update')->name('product-update');
+        Route::post('update', 'ProductController@save')->name('product-save');
     });
 });
 

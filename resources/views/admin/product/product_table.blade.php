@@ -36,7 +36,7 @@
                                             @if (isset($product->attribute->Image))
                                                 <img class="img-responsive auto-center" src="{{ asset('images/products/' . $product->attribute->Image) }}"/>
                                             @else
-                                                <img class="img-responsive" src="{{ asset('images/default-image.png') }}"/>
+                                                <img class="img-responsive custom-width" src="{{ asset('images/default-image.png') }}"/>
                                             @endif
                                         </div>
                                     </div>
@@ -83,7 +83,7 @@
                             {{ __('Mở rộng') }}<span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="#">{{ __('Cập nhật') }}</a></li>
+                            <li><a href="{{ route('product-update', ['productId' => $product->id]) }}">{{ __('Cập nhật') }}</a></li>
                             <li><a class="_delete_product" data-product="{{ $product->id }}" href="javascript:void(0)">{{ __('Xóa') }}</a></li>
                         </ul>
                     </div>

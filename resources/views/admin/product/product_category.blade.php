@@ -6,9 +6,22 @@
         <div class="row">
             <div class="col-md-10">
                 <select name="categories_id" id="_category" class="select2_demo_1 form-control full-width">
-                    @foreach ($categories as $category)
-                        <option value="{{ $category->id }}" title="{{ $category->description }}">{{ $category->name }}</option>
-                    @endforeach
+                    @if (!isset($id))
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" title="{{ $category->description }}">
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
+                    @else
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" title="{{ $category->description }}"
+                                @if ($category->id == $id)
+                                    selected="selected">
+                                @endif
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
         </div>
