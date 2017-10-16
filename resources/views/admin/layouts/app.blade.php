@@ -30,6 +30,7 @@
                 @yield('content')
             </section>
         </div>
+        @include('admin.layouts.loading')
         @if (session('error_msg') || $errors->first('form_error') != null)
             @include('layouts.error')
         @endif

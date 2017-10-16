@@ -11,6 +11,7 @@ use App\Http\Requests\AddProductRequest;
 use App\Framgia\Response\FlashResponse;
 use App\Framgia\Response\FormResponse;
 use App\Framgia\Helpers\FramgiaHelper;
+use App\Http\Requests\DeleteProductRequest;
 
 class ProductController extends Controller
 {
@@ -99,5 +100,15 @@ class ProductController extends Controller
         }
 
         return $this->flashResponse->success('product-create', __('Thêm sản phẩm thành công'));
+    }
+
+    public function delete(DeleteProductRequest $request)
+    {
+        try {
+            $this->productRepository->deleteById($request->id);
+        } catch (Exception $e) {
+            return $this->jsonResponse->queryError('Có lỗi xảy ra, vui lòng thử lại');
+        }
+        return $this->jsonResponse->success('Xóa sản phẩm thành công');
     }
 }
