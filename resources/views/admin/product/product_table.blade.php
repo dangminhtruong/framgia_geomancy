@@ -33,8 +33,8 @@
                                     <h4 class="m-t-none">{{ __('Thông tin sản phẩm') }}</h4>
                                     <div class="row pd-top-15">
                                         <div class="col-md-6 col-md-offset-3">
-                                            @if (isset($product->attribute->image))
-                                                <img class="img-responsive" src="{{ asset('images/product/' . $product->attribute->image) }}"/>
+                                            @if (isset($product->attribute->Image))
+                                                <img class="img-responsive auto-center" src="{{ asset('images/products/' . $product->attribute->Image) }}"/>
                                             @else
                                                 <img class="img-responsive" src="{{ asset('images/default-image.png') }}"/>
                                             @endif
@@ -42,16 +42,32 @@
                                     </div>
                                     <div class="row pd-top-15">
                                         @foreach ($product->attribute as $key => $value)
-                                            <p class="col-md-5 pd-top-15 text-left">
-                                                {{ $key }}
-                                            </p>
-                                            <p class="col-md-1 pd-top-15 text-left">
-                                                :
-                                            </p>
-                                            <p class="col-md-6 pd-top-15 text-left">
-                                                {{ $value }}
-                                            </p>
+                                            @if ($key != 'Image' && $key != 'Description')
+                                                <p class="col-md-5 pd-top-15 text-left">
+                                                    {{ str_replace('_', ' ', $key) }}
+                                                </p>
+                                                <p class="col-md-1 pd-top-15 text-left">
+                                                    :
+                                                </p>
+                                                <p class="col-md-6 pd-top-15 text-left">
+                                                    {{ $value }}
+                                                </p>
+                                            @endif
                                         @endforeach
+                                        <p class="col-md-5 pd-top-15 text-left">
+                                            {{ __('Mô tả') }}
+                                        </p>
+                                        <p class="col-md-1 pd-top-15 text-left">
+                                            :
+                                        </p>
+                                        <p class="txt-indent">
+                                        <p class="col-md-6 pd-top-15 text-left">
+                                            @if (isset($product->attribute->Description))
+                                                {{ __($product->attribute->Description) }}
+                                            @else
+                                                {{ __('Không có mô tả') }}
+                                            @endif
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="modal-footer">

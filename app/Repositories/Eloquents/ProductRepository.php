@@ -32,4 +32,9 @@ class ProductRepository extends AbstractRepository implements ProductRepositoryI
     {
         return $this->model()->select('id', 'name')->where('name', 'like', '%' . $request->keyWord . '%')->get();
     }
+
+    public function create($data)
+    {
+        return $this->model()->create($data);
+    }
 }

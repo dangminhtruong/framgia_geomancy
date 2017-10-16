@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function() {
     return view('welcome');
-})->name('home');
+});
+
 Route::post('auth/login', 'Auth\AuthController@login')->name('login');
 Route::get('auth/logout', 'Auth\AuthController@logout')->name('logout');
 
@@ -21,13 +22,20 @@ Route::post('registration', 'Auth\RegistrationController@store')->name('signup')
 Route::post('reset/password', 'Auth\ForgetPasswordController@requestToken')->name('forget-password');
 Route::get('reset/password/{token}', 'Auth\ForgetPasswordController@resetPassword')->name('confirm-token');
 Route::post('update/password', 'Auth\ForgetPasswordController@updatePassword')->name('update-password');
+
 Route::prefix('admin')->group(function () {
     Route::get('/', function () {
-        return view('admin.welcome');
+        return view('admin.product.product_form');
     });
-    Route::get('product', 'ProductController@index');
-    Route::post('product', 'ProductController@paginateProductByCategory');
+
+    Route::prefix('product')->group(function () {
+        Route::get('/', 'ProductController@index')->name('product-show');
+        Route::post('/', 'ProductController@paginateProductByCategory');
+        Route::get('create', 'ProductController@create')->name('product-create');
+        Route::post('create', 'ProductController@store')->name('product-store');
+    });
 });
+
 Route::group(['prefix' => 'blueprint'], function () {
 
     Route::group(['prefix' => 'request-fish-tanks-blueprint'], function () {

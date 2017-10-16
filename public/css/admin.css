@@ -2856,3 +2856,8 @@ fieldset[disabled] .form-control {
 .pd-top-15 {padding-top: 15px !important;}
 .full-width {width: 100% !important;}
 .zero-left-padding {padding-left: 0 !important;}
+.width-30 {width: 30% !important;}
+.margin-top-20 {margin-top: 25px !important;}
+.label-highlight {color: #ffffff; font-weight: 500;}
+.txt-indent {text-indent: 15px;}
+.auto-center {margin: 0 auto;}

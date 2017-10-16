@@ -38,8 +38,8 @@
                 <span class="sub-nav-icon"><i class="stroke-arrow"></i></span>
                 </a>
                 <ul id="charts" class="nav nav-second collapse">
-                    <li><a href="#">{{ __('Danh sách sản phẩm') }}</a></li>
-                    <li><a href="#">{{ __('Thêm sản phẩm') }}</a></li>
+                    <li><a href="{{ route('product-show') }}">{{ __('Danh sách sản phẩm') }}</a></li>
+                    <li><a href="{{ route('product-create') }}">{{ __('Thêm sản phẩm') }}</a></li>
                 </ul>
             </li>
             <li>

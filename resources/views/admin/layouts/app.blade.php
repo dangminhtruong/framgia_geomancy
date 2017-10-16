@@ -14,6 +14,7 @@
         {{ HTML::style('css/pe-icons/helper.css') }}
         {{ HTML::style('css/stroke-icons/style.css') }}
         {{ HTML::style('css/admin.css') }}
+        {{ HTML::style('css/custom.css') }}
         <script>
             var SITE_URL = 'http://localhost:8000/';
         </script>
@@ -29,6 +30,12 @@
                 @yield('content')
             </section>
         </div>
+        @if (session('error_msg') || $errors->first('form_error') != null)
+            @include('layouts.error')
+        @endif
+        @if (session('success_msg')))
+            @include('layouts.success')
+        @endif
         {{ HTML::script('bowerrc/PACE/pace.min.js') }}
         {{ HTML::script('bowerrc/jquery/dist/jquery.min.js') }}
         {{ HTML::script('bowerrc/jquery-migrate-3.0.1/index.js') }}

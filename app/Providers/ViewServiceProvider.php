@@ -13,7 +13,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('admin.product.product_header', function($view) {
+        view()->composer('admin.product.product_category', function($view) {
             $view->with('categories', \App\Entities\Category::get());
         });
     }
