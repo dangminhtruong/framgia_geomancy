@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use App\Entities\BaseEntity;
+use App\Entities;
 
 class Blueprint extends BaseEntity
 {
@@ -21,7 +22,7 @@ class Blueprint extends BaseEntity
      */
     public function topic()
     {
-        return $this->belongsTo(\App\Entities\Topic::class, 'topics_id');
+        return $this->belongsTo(Topic::class, 'topics_id');
     }
 
     /**
@@ -29,7 +30,7 @@ class Blueprint extends BaseEntity
      */
     public function user()
     {
-        return $this->belongsTo(\App\Entities\User::class, 'users_id');
+        return $this->belongsTo(User::class, 'users_id');
     }
 
     /**
@@ -37,7 +38,7 @@ class Blueprint extends BaseEntity
      */
     public function details()
     {
-        return $this->hasMany(\App\Entities\BlueprintDetail::class);
+        return $this->hasMany(BlueprintDetail::class, 'blueprints_id');
     }
 
     /**
@@ -45,7 +46,7 @@ class Blueprint extends BaseEntity
      */
     public function suggests()
     {
-        return $this->hasMany(\App\Entities\SuggestProduct::class);
+        return $this->hasMany(SuggestProduct::class);
     }
 
     /**
@@ -53,6 +54,20 @@ class Blueprint extends BaseEntity
      */
     public function improves()
     {
-        return $this->hasMany(\App\Entities\ImproveBlueprint::class);
+        return $this->hasMany(ImproveBlueprint::class);
+    }
+
+    /**
+     *  Get the products belong to this blueprint
+     */
+    public function product()
+    {
+        return $this->belongsToMany(Product::class, 'blueprint_detail', 'blueprints_id', 'products_id')
+            ->withPivot('quantity');
+    }
+
+    public function gallery()
+    {
+        return $this->hasMany(Gallery::class, 'blueprints_id', 'id');
     }
 }

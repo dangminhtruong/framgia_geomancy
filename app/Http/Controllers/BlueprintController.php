@@ -56,4 +56,33 @@ class BlueprintController extends Controller
     {
         return $this->blueprintRepository->createBlueprint($request);
     }
+
+    public function getCreateDone($id)
+    {
+        return view('blueprint.create_blueprint_done', compact('id'));
+    }
+
+    public function getUpdateBlueprint($id)
+    {
+        $blueprintInfo = $this->blueprintRepository->getBlueprintInfo($id);
+        $topicInfo = $this->blueprintRepository->findBlueprintTopic($id);
+        $topics = $this->topicRepository->getAllTopics();
+        $categories = $this->categoryRepository->getAllCategory();
+        $blueprintProduct = $this->blueprintRepository->getBlueprintProduct($id);
+        $gallery = $this->blueprintRepository->getBlueprintImage($id);
+        return view('blueprint.update_blueprint',
+            compact(
+                'blueprintInfo',
+                'blueprintProduct',
+                'topicInfo', 'topics',
+                'categories',
+                'gallery'
+            )
+        );
+    }
+
+    public function postUpdateBlueprint(Request $request, $id)
+    {
+        $this->blueprintRepository->updateBlueprint($request, $id);
+    }
 }

@@ -54,6 +54,11 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
         return $result;
     }
 
+    public function update()
+    {
+        $result = $this->model::save($data);
+    }
+
     public function createBlueprint($request)
     {
         $blueprintData = [];
@@ -64,19 +69,21 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
         $blueprintData = array_add($blueprintData, 'users_id', Auth::user()->id);
         $addBlueprint = $this->create($blueprintData);
 
-        $suggestProductData = [];
-        $suggestProductData = array_add($suggestProductData, 'name', $request->suggestName);
-        $suggestProductData = array_add($suggestProductData, 'categories_id', $request->categoryId);
-        $suggestProductData = array_add($suggestProductData, 'price', $request->suggestPrice);
-        $suggestProductData = array_add($suggestProductData, 'blueprints_id', $addBlueprint->id);
-        $suggestProductData = array_add($suggestProductData, 'attribute', $request->suggestDesc);
-        $this->suggestProductRepository->create($suggestProductData);
+        if ($request->suggestName) {
+            $suggestProductData = [];
+            $suggestProductData = array_add($suggestProductData, 'name', $request->suggestName);
+            $suggestProductData = array_add($suggestProductData, 'categories_id', $request->categoryId);
+            $suggestProductData = array_add($suggestProductData, 'price', $request->suggestPrice);
+            $suggestProductData = array_add($suggestProductData, 'blueprints_id', $addBlueprint->id);
+            $suggestProductData = array_add($suggestProductData, 'attribute', $request->suggestDesc);
+            $this->suggestProductRepository->create($suggestProductData);
+        }
 
         if ($request->blueprint_product) {
-            foreach ($request->blueprint_product as $productId) {
+            foreach ($request->blueprint_product as $id => $quatity) {
                 $blueprintDetailData = [];
-                $blueprintDetailData = array_add($blueprintDetailData, 'quantity', 1);
-                $blueprintDetailData = array_add($blueprintDetailData, 'products_id', $productId);
+                $blueprintDetailData = array_add($blueprintDetailData, 'products_id', $id);
+                $blueprintDetailData = array_add($blueprintDetailData, 'quantity', $quatity);
                 $blueprintDetailData = array_add($blueprintDetailData, 'blueprints_id', $addBlueprint->id);
                 $this->blueprintDetailRepository->create($blueprintDetailData);
             }
@@ -95,8 +102,7 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
             $files->move('images/gallery/', $files->getClientOriginalName());
         }
 
-        return $this->flashResponse->success('getCreateBlueprint',
-            __('Create blueprint successfull !'));
+        return redirect()->route('getCreateDone', [$addBlueprint->id]);
     }
 
     public function createRequestBlueprint($request)
@@ -107,7 +113,64 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
             'description' => $request->customer_description
         ]);
 
-        return $this->flashResponse->success('getRequestFishTanksBlueprint',
-            __('Request blueprint successfull !'));
+        return $this->flashResponse->success(
+            'getRequestFishTanksBlueprint',
+            __('Request blueprint successfull !')
+        );
+    }
+
+    public function getBlueprintInfo($blueprintId)
+    {
+        return $this->model::find($blueprintId);
+    }
+
+    public function findBlueprintTopic($blueprintId)
+    {
+        return $this->model::find($blueprintId);
+    }
+
+    public function getBlueprintProduct($blueprintId)
+    {
+        return $this->model::find($blueprintId)->product;
+    }
+
+    public function getBlueprintImage($blueprintId)
+    {
+        return $this->model::find($blueprintId)->gallery;
+    }
+
+    public function updateBlueprint($request, $blueprintId)
+    {
+        $blueprintUpdate = $this->model::find($blueprintId);
+        $blueprintUpdate->title = $request->blueprint_name;
+        $blueprintUpdate->description = $request->blueprint_desc;
+        $blueprintUpdate->topics_id = $request->topic_id;
+        $blueprintUpdate->publish_flg = 1;
+        $blueprintUpdate->save();
+
+        if ($request->blueprint_product) {
+            foreach ($request->blueprint_product as $id => $quatity) {
+                $blueprintDetailData = [];
+                $blueprintDetailData = array_add($blueprintDetailData, 'products_id', $id);
+                $blueprintDetailData = array_add($blueprintDetailData, 'quantity', $quatity);
+                $blueprintDetailData = array_add($blueprintDetailData, 'blueprints_id', $blueprintId);
+                $this->blueprintDetailRepository->create($blueprintDetailData);
+            }
+        }
+
+        if (!$request->hasFile('img')) {
+            return $this->flashResponse->success(
+                'getCreateBlueprint',
+                __('Create blueprint successfull !')
+            );
+        }
+
+        foreach ($request->file('img') as $files) {
+            $galleryData = [];
+            $galleryData = array_add($galleryData, 'image_name', $files->getClientOriginalName());
+            $galleryData = array_add($galleryData, 'blueprints_id', $blueprintId);
+            $galleryAdd = $this->galleryRepository->create($galleryData);
+            $files->move('images/gallery/', $files->getClientOriginalName());
+        }
     }
 }

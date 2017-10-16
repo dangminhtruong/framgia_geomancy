@@ -57,4 +57,8 @@ class Product extends BaseEntity
     {
         return number_format($value);
     }
+
+    public function blueprint(){
+        return $this->belongsToMany('App\Entities\Blueprint');
+    }
 }
