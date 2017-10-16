@@ -148,16 +148,16 @@
                 <li class="dropdown avatar-box">
                     <a href="#" class="dropdown-toggle flex-tag" data-toggle="dropdown" role="button"
                         aria-expanded="false">
-                    <img class="avatar"
-                        src="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg"
-                        class="thumb"/>
-                    <i class="fa fa-chevron-down arrow-down" aria-hidden="true"></i>
+                        <img class="avatar"
+                            src="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg"
+                            class="thumb"/>
+                        <i class="fa fa-chevron-down arrow-down" aria-hidden="true"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li>
                             <a class="normal" href="#">
                             <i class="fa fa-tachometer" aria-hidden="true"></i>
-                            Something
+                                {{ Auth::user()->name }}
                             </a>
                         </li>
                         <li>
