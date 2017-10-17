@@ -70,6 +70,7 @@ class BlueprintController extends Controller
         $categories = $this->categoryRepository->getAllCategory();
         $blueprintProduct = $this->blueprintRepository->getBlueprintProduct($id);
         $gallery = $this->blueprintRepository->getBlueprintImage($id);
+
         return view('blueprint.update_blueprint',
             compact(
                 'blueprintInfo',
@@ -84,5 +85,26 @@ class BlueprintController extends Controller
     public function postUpdateBlueprint(Request $request, $id)
     {
         $this->blueprintRepository->updateBlueprint($request, $id);
+        return redirect()->route('getViewBlueprint', [$id])->with('success_msg', 'Update successfull');
+    }
+
+    public function getRemoveGallery($id)
+    {
+        return $this->galleryRepository->remove($id);
+    }
+
+    public function getViewBlueprint($id)
+    {
+        $blueprintInfo = $this->blueprintRepository->getBlueprintInfo($id);
+        $gallery = $this->blueprintRepository->getBlueprintImage($id);
+        $blueprintProduct = $this->blueprintRepository->getBlueprintProduct($id);
+
+        return view("blueprint.view_blueprint",
+            compact(
+                'blueprintInfo',
+                'gallery',
+                'blueprintProduct'
+            )
+        );
     }
 }

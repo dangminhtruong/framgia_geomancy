@@ -24,8 +24,7 @@ class checkSigned
         if (Auth::check()) {
             return $next($request);
         } else {
-
-            return $this->flashResponse->fail('home', __('Need.Login'));
+            return back()->with('error_msg', __('Need.Login'));
         }
     }
 }

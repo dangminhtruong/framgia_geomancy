@@ -95,11 +95,12 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
         }
 
         foreach ($request->file('img') as $files) {
+            $plusName = ($this->galleryRepository->countImages($addBlueprint->id) + 1) . '_';
             $galleryData = [];
-            $galleryData = array_add($galleryData, 'image_name', $files->getClientOriginalName());
+            $galleryData = array_add($galleryData, 'image_name', $plusName . $files->getClientOriginalName());
             $galleryData = array_add($galleryData, 'blueprints_id', $addBlueprint->id);
             $galleryAdd = $this->galleryRepository->create($galleryData);
-            $files->move('images/gallery/', $files->getClientOriginalName());
+            $files->move('images/gallery/', $plusName . $files->getClientOriginalName());
         }
 
         return redirect()->route('getCreateDone', [$addBlueprint->id]);

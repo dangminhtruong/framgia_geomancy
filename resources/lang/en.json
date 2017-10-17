@@ -50,7 +50,7 @@
   "CreateBlueprint.Suggest.Price": "Price",
   "CreateBlueprint.Suggest.Quantity" : "Quantity",
   "CreateBlueprint.Suggest.Description": "Description suggest product",
-  "CreateBlueprint.Suggest.Type": "Product type",
+  "CreateBlueprint.Suggest.Type": "Product's type",
   "CreateBlueprint.Title.pTag" : "Celebrated no he decisively thoroughly",
   "CreateBlueprint.About.pTag" : "Compliment interested discretion estimating on stimulated apartments oh. Dear so sing when in find read of call. As distrusts behaviour abilities defective uncommonly",
   "Form.Duplicate" : "Title is duplicated",
@@ -62,10 +62,23 @@
   "CreateBlueprint.Done.Alert" : "Your blueprint have been successfully created",
   "CreateBlueprint.Done.Guid" : "To review or update this blueprint, just click below",
 
+  "ViewBlueprint.ListWith1" : "100% safety",
+  "ViewBlueprint.ListWith2" : "Instantly confirmed",
+  "ViewBlueprint.ListWith3" : "Free cancellation",
+  "ViewBlueprint.Assure1" : "100% private",
+  "ViewBlueprint.Assure2" : "Instantly confirmed",
+  "ViewBlueprint.Assure3" : "Free cancellation",
+  "ViewBlueprint.Assure4" : "Satisfaction guarantee",
+  "ViewBlueprint.Relatded" : "Relatded Blueprint",
+
   "SignUp" : "Sign Up",
   "Need.Login" : "To skip. Please login first !",
   "Gallery" : "Gallery",
   "Home" : "Home",
   "Edit" : "Edit",
-  "View" : "view"
+  "View" : "view",
+  "Bild" : "BILD/CLONE",
+  "Clone" : "Clone",
+  "Bild" : "Place Bild",
+  "Not.Chager" : "You won't yet be charged"
 }
