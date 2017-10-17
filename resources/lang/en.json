@@ -48,6 +48,7 @@
   "CreateBlueprint.Topic": "Topic",
   "CreateBlueprint.Suggest.Name": "Product's name",
   "CreateBlueprint.Suggest.Price": "Price",
+  "CreateBlueprint.Suggest.Quantity" : "Quantity",
   "CreateBlueprint.Suggest.Description": "Description suggest product",
   "CreateBlueprint.Suggest.Type": "Product type",
   "CreateBlueprint.Title.pTag" : "Celebrated no he decisively thoroughly",
@@ -57,8 +58,14 @@
   "Form.ImageType" : "The photo you uploaded was not in the correct format",
   "Form.FillOutDesc" : "Please fill out description",
   "CreateBlueprint.Home.Title" : "Create Blueprint",
-  
+  "CreateBlueprint.Done.Congrat" : "Congratulation",
+  "CreateBlueprint.Done.Alert" : "Your blueprint have been successfully created",
+  "CreateBlueprint.Done.Guid" : "To review or update this blueprint, just click below",
+
   "SignUp" : "Sign Up",
+  "Need.Login" : "To skip. Please login first !",
   "Gallery" : "Gallery",
-  "Home" : "Home" 
+  "Home" : "Home",
+  "Edit" : "Edit",
+  "View" : "view"
 }

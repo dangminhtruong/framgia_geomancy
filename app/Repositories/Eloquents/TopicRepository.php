@@ -21,7 +21,8 @@ class TopicRepository extends AbstractRepository implements TopicRepositoryInter
 
     public function getAllTopics()
     {
-        $result = $this->model::all();
+        $result = $this->model::select('id', 'name', 'description')->get();
         return $result;
     }
+
 }

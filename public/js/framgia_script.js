@@ -41,16 +41,19 @@ $(document).ready(function() {
             if (result.length != 0) {
                 html = '';
                 for (i in result) {
-                    html += '<li><button type="button" class="btn btn-link product-name" value=' + result[i].id + '>' + result[i].name + '</a></li>';
+                    html += '<li><button type="button" class="btn btn-link product-name" value=' + result[i].id + '>' +
+                        result[i].name + '</a></li>';
                     $('#search-drop-result').html(html);
                 };
                 $('.product-name').click(function() {
                     var id = $(this).val();
                     var name = $(this).text();
-                    var checkBox = '<div class="col-xss-12 col-xs-6 col-sm-6 col-md-4">' +
-                        '<div class="checkbox-block">' +
-                        '<input name="blueprint_product[]" type="checkbox" value= ' + id + ' class="checkbox" checked/>' +
-                        '<label class="" for="filter_checkbox-1">' + name + '</label></div></div>';
+                    var checkBox = '<div class="col-xss-12 col-xs-6 col-sm-6 col-md-6">' +
+                        '<div class="col-xs-6 col-sm-8"><div class="form-group">' +
+                        '<label>Product\'s name: </label>' + name + '</div> </div><div class="col-xs-6 col-sm-4">' +
+                        '<div class="form-group form-spin-group"><label>Quantity</label>' +
+                        '<input type="text" class="form-control form-spin" name="blueprint_product[' + id + ']" value="1" /> ' +
+                        '</div></div></div>';
                     $('#blueprint-prd').append(checkBox);
                 });
             } else {

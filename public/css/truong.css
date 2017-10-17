@@ -1,3 +1,13 @@
 .no-bg{
 	background-image:url('/images/hero-header/03.jpg');
 }
+.edit-gallery-img{
+	max-height: 20vh;
+}
+.img-btn{
+	margin: auto;
+}
+#img_gallery{
+	margin-bottom: 5vh;
+}
+
