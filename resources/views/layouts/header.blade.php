@@ -161,7 +161,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('logout') }}" class="normal">
+                            <a href="{{ route('profile') }}" class="normal">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            {{ __('Thông tin cá nhân') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('logout') }}" class="normal">
                             <i class="fa fa-sign-out" aria-hidden="true"></i>
                             {{ __('Form.Logout') }}
                             </a>

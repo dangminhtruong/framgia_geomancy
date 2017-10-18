@@ -43,7 +43,7 @@
     padding-left: 3px;
 }
 .box-alert {
-    width: 400px;
+    max-width: 400px;
     position: fixed;
     top: 80px;
     right: 30px;
@@ -92,5 +92,5 @@
 }
 .f-bg-image {
     background-image: url('../images/breadcrumb-bg.jpg');
-} 
+}
 

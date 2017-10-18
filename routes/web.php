@@ -13,10 +13,16 @@
 
 Route::get('/', function() {
     return view('welcome');
-});
+})->name('home');
 
 Route::post('auth/login', 'Auth\AuthController@login')->name('login');
 Route::get('auth/logout', 'Auth\AuthController@logout')->name('logout');
+
+Route::group(['prefix' => 'user', 'middleware' => 'customer.auth'], function() {
+    Route::get('profile', 'UserController@index')->name('profile');
+    Route::post('profile', 'UserController@save')->name('profile-update');
+});
+
 
 Route::post('registration', 'Auth\RegistrationController@store')->name('signup');
 Route::post('reset/password', 'Auth\ForgetPasswordController@requestToken')->name('forget-password');
