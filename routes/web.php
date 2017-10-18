@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function() {
+Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
@@ -54,7 +54,7 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
 
     Route::group(['prefix' => 'request-fish-tanks-blueprint'], function () {
         Route::get('/', 'BlueprintController@getRequestFishTanksBlueprint')
-            ->name('GetRequestFishTanksBlueprint');
+            ->name('getRequestFishTanksBlueprint');
         Route::post('/', 'BlueprintController@postRequestFishTanksBlueprint')
             ->name('postRequestFishTanksBlueprint');
     });
@@ -64,18 +64,21 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
         Route::post('/', 'BlueprintController@postCreateBlueprint')->name('postCreateBlueprint');
     });
 
-    Route::group(['prefix' => 'search-product'], function() {
+    Route::group(['prefix' => 'search-product'], function () {
         Route::get('/', 'ProductController@getSearchProduct')->name('getSearchProduct');
     });
 
-    Route::group(['prefix' => 'create-success'], function() {
+    Route::group(['prefix' => 'create-success'], function () {
         Route::get('/{id}', 'BlueprintController@getCreateDone')->name('getCreateDone');
     });
 
-    Route::group(['prefix' => 'update-blueprint'], function() {
-        Route::group(['prefix' => '{id}'], function() {
+    Route::group(['prefix' => 'update-blueprint'], function () {
+        Route::group(['prefix' => '{id}'], function () {
             Route::get('/', 'BlueprintController@getUpdateBlueprint')->name('getUpdateBlueprint');
             Route::post('/', 'BlueprintController@postUpdateBlueprint')->name('postUpdateBlueprint');
         });
+        Route::get("remove-gallery/{id}", "BlueprintController@getRemoveGallery")->name('getRemoveGallery');
     });
+
+    Route::get('view-blueprint/{id}', 'BlueprintController@getViewBlueprint')->name('getViewBlueprint');
 });

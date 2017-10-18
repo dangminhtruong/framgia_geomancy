@@ -24,4 +24,22 @@ class GalleryRepository extends AbstractRepository implements GalleryRepositoryI
         $result = $this->model::create($data);
         return $result;
     }
+
+    public function findById($id)
+    {
+        $result = $this->model::find($id);
+        return $result;
+    }
+
+    public function remove($id)
+    {
+        $imgRemove = $this->findById($id);
+        $imgRemove->delete();
+        return "removed";
+    }
+
+    public function countImages($blueprintId)
+    {
+        return $this->model::where('blueprints_id', $blueprintId)->count() + 1;
+    }
 }

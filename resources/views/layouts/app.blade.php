@@ -7,11 +7,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link rel="shortcut icon" href="images/ico/favicon.png">
         {{ HTML::style('bowerrc/bootstrap/dist/css/bootstrap.min.css') }}
-        {{ HTML::style('css/truong.css') }}
         {{ HTML::style('css/main.css') }}
         {{ HTML::style('css/plugin.css') }}
+        {{ HTML::style('bowerrc/slick-carousel/slick/slick.css') }}
+        {{ HTML::style('bowerrc/slick-carousel/slick/slick-theme.css') }}
         {{ HTML::style('css/style.css') }}
         {{ HTML::style('css/custom.css') }}
+        {{ HTML::style('css/truong.css') }}
         {{ HTML::script('bowerrc/jquery/dist/jquery.min.js') }}
         {{ HTML::script('bowerrc/jquery-migrate-3.0.1/index.js') }}
         @yield('style')
@@ -38,9 +40,11 @@
         @if (session('success_msg')))
             @include('layouts.success')
         @endif
+        {{ HTML::script('bowerrc/slick-carousel/slick/slick.min.js') }}
         {{ HTML::script('js/core-plugins.js') }}
         {{ HTML::script('js/customs.js') }}
         {{ HTML::script('js/loading.js') }}
+        {{ HTML::script('bowerrc/sweetalert/docs/assets/sweetalert/sweetalert.min.js') }}
         {{ HTML::script('bowerrc/ckeditor/ckeditor.js') }}
         {{ HTML::script('js/framgia_script.js') }}
         @yield('script')
