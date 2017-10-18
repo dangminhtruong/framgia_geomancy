@@ -81,4 +81,42 @@ $(document).ready(function() {
             });
         }, null);
     });
+
+    //===== DELETE PRODUCT =====//
+    $('#_product-table').on('click', '._delete_product', function(e) {
+        e.preventDefault();
+        var isTrue = confirm('Bạn có chắc muốn xóa sản phẩm này');
+        if (isTrue) {
+            var productId = $(this).data('product');
+            if (isNaN(parseInt(productId))) {
+                toastr.warning('Có lỗi xảy ra, vui lòng thử lại');
+
+                return false;
+            }
+            var data = {
+                id: productId,
+                _token: $('meta[name="csrf-token"]').attr('content'),
+            };
+            $('#load_scr').css('display', 'table');
+            ajaxSubmit('admin/product/delete', 'POST', data, function(result) {
+                if (result.code == 200) {
+                    $('#productNo' + productId).remove();
+                    $('#load_scr').css('display', 'none');
+                    toastr.success(result.message);
+
+                    return true;
+                }
+                $('#load_scr').css('display', 'none');
+                toastr.warning(result.message);
+
+                return false;
+            }, function() {
+                toastr.warning('Có lỗi xảy ra, vui lòng thử lại');
+                return false;
+            });
+            return true;
+        }
+        toastr.info('Đã hủy thao tác');
+        return false;
+    })
 });

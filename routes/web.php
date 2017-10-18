@@ -33,6 +33,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/', 'ProductController@paginateProductByCategory');
         Route::get('create', 'ProductController@create')->name('product-create');
         Route::post('create', 'ProductController@store')->name('product-store');
+        Route::post('delete', 'ProductController@delete')->name('product-delete');
     });
 });
 

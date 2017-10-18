@@ -37,4 +37,11 @@ class ProductRepository extends AbstractRepository implements ProductRepositoryI
     {
         return $this->model()->create($data);
     }
+
+    public function deleteById($id)
+    {
+        return $this->model()
+            ->where('id', $id)
+            ->delete();
+    }
 }

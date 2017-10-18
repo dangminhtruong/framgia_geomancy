@@ -2861,3 +2861,9 @@ fieldset[disabled] .form-control {
 .label-highlight {color: #ffffff; font-weight: 500;}
 .txt-indent {text-indent: 15px;}
 .auto-center {margin: 0 auto;}
+.loading {display: none;position: fixed;z-index: 99999;top: 0;left: 0;height: 100%;width: 100%;background-color: rgba(255, 255, 255, 0.8);text-align: center;}
+.load {display: table !important;}
+.cell {display: table-cell; vertical-align: middle; }
+.circle-clipper .circle  {border-width: 5px;}
+.hide {display: none !important;}
+.text-load {font-weight: bold;color: black;margin-top: 10px;}

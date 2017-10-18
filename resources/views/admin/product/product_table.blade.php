@@ -12,7 +12,7 @@
     </thead>
     <tbody>
         @foreach($products as $product)
-            <tr>
+            <tr id="productNo{{ $product->id }}">
                 <td class="pd-top-15">{{ $product->name }}</td>
                 <td class="text-center pd-top-15">{{ $product->price }} đ</td>
                 <td class="text-center pd-top-15">{{ $product->stock }}</td>
@@ -84,7 +84,7 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li><a href="#">{{ __('Cập nhật') }}</a></li>
-                            <li><a href="#">{{ __('Xóa') }}</a></li>
+                            <li><a class="_delete_product" data-product="{{ $product->id }}" href="javascript:void(0)">{{ __('Xóa') }}</a></li>
                         </ul>
                     </div>
                 </td>
