@@ -41,7 +41,7 @@ $(document).ready(function() {
         }, null);
     });
 
-    //===== PAGINATE =====//
+    //===== PAGINATE PRODUCT =====//
     $('#_product-table').on('click', '.paginate_button a', function(e) {
         e.preventDefault();
 
@@ -118,5 +118,38 @@ $(document).ready(function() {
         }
         toastr.info('Đã hủy thao tác');
         return false;
+    });
+
+    //===== PAGINATE CATEGORY =====//
+    $('#_category-table').on('click', '.paginate_button a', function(e) {
+        e.preventDefault();
+
+        var pageNo = $(this).data('page');
+        if (pageNo == '') {
+            return false;
+        }
+        if (isNaN(parseInt(pageNo))) {
+            toastr.warning('Có lỗi xảy ra, vui lòng thử lại');
+
+            return false;
+        }
+
+        var data = {
+            pageNo: pageNo,
+            _token: $('meta[name="csrf-token"]').attr('content'),
+        }
+
+        $('#_category-table').html('<div class="text-center"><img src="' + SITE_URL + 'images/ajax-loader.svg"/></div>');
+        ajaxSubmit('admin/category', 'POST', data, function(result) {
+            $('#_category-table').html(result.data.view);
+            $('#tableExample3').DataTable({
+                dom: "<'row'<'col-sm-4 col-sm-offset-8'f>>tp",
+                "language": {
+                    "search": "Tìm trong trang",
+                    "emptyTable": "Không có dữ liệu"
+                },
+                "bPaginate": false
+            });
+        }, null);
     })
 });

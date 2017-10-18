@@ -37,6 +37,11 @@ Route::prefix('admin')->group(function () {
         Route::get('update/{productId}', 'ProductController@update')->name('product-update');
         Route::post('update', 'ProductController@save')->name('product-save');
     });
+
+    Route::prefix('category')->group(function () {
+        Route::get('/', 'CategoryController@index')->name('category-show');
+        Route::post('/', 'CategoryController@paginateCategory');
+    });
 });
 
 Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function () {

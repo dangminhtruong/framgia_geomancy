@@ -56,13 +56,13 @@
                 </ul>
             </li>
             <li>
-                <a href="#charts" data-toggle="collapse" aria-expanded="false">
+                <a href="#cat" data-toggle="collapse" aria-expanded="false">
                 {{ __('Danh mục') }}
                 <span class="sub-nav-icon"><i class="stroke-arrow"></i></span>
                 </a>
-                <ul id="charts" class="nav nav-second collapse">
+                <ul id="cat" class="nav nav-second collapse">
                     <li><a href="#">{{ __('Bản thiết kế') }}</a></li>
-                    <li><a href="#">{{ __('Sản phẩm') }}</a></li>
+                    <li><a href="{{ route('category-show') }}">{{ __('Sản phẩm') }}</a></li>
                     <li><a href="#">{{ __('Bài viết') }}</a></li>
                 </ul>
             </li>
