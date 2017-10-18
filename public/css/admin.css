@@ -2867,3 +2867,6 @@ fieldset[disabled] .form-control {
 .circle-clipper .circle  {border-width: 5px;}
 .hide {display: none !important;}
 .text-load {font-weight: bold;color: black;margin-top: 10px;}
+.custom-width {max-width: 250px !important;}
+.block-left {text-align: left;display: block;}
+.mgr-top-15 {margin-top: 15px;}

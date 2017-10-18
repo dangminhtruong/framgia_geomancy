@@ -44,4 +44,18 @@ class ProductRepository extends AbstractRepository implements ProductRepositoryI
             ->where('id', $id)
             ->delete();
     }
+
+    public function findById($productId)
+    {
+        return $this->model()
+            ->where('id', $productId)
+            ->first();
+    }
+
+    public function updateById($productId, $data)
+    {
+        return $this->model()
+            ->where('id', $productId)
+            ->update($data);
+    }
 }

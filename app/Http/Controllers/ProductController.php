@@ -12,6 +12,7 @@ use App\Framgia\Response\FlashResponse;
 use App\Framgia\Response\FormResponse;
 use App\Framgia\Helpers\FramgiaHelper;
 use App\Http\Requests\DeleteProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 
 class ProductController extends Controller
 {
@@ -110,5 +111,47 @@ class ProductController extends Controller
             return $this->jsonResponse->queryError('Có lỗi xảy ra, vui lòng thử lại');
         }
         return $this->jsonResponse->success('Xóa sản phẩm thành công');
+    }
+
+    public function update($productId)
+    {
+        if (!is_numeric($productId)) {
+            return redirect()->back();
+        }
+
+        $product = $this->productRepository->findById($productId);
+        if (!$product) {
+            return redirect()->back();
+        }
+
+        return view('admin.product.update_form', compact('product'));
+    }
+
+    public function save(UpdateProductRequest $request)
+    {
+        if ($request->file('image')->isValid()) {
+            $path = $request->image->move(
+                'images/products',
+                $request->file('image')->getClientOriginalName()
+            );
+            if (!$path) {
+                return $this->formResponse->response($request, __('Upload ảnh thất bại'));
+            }
+        }
+
+        $data = $request->only(['name', 'price', 'stock', 'categories_id']);
+        $data['slug'] = str_slug($request->name);
+        $attribute = $request->except(['_token', 'name', 'price', 'stock', 'categories_id', 'image', 'id']);
+        $attribute['image'] = $request->file('image')->getClientOriginalName();
+        $attribute = FramgiaHelper::formateAttribute($attribute);
+        $data['attribute'] = json_encode($attribute);
+        try {
+            $createResult = $this->productRepository->updateById($request->id, $data);
+        } catch (Exception $e) {
+            return $this->formResponse->response($request, __('Có lỗi xảy ra, vui lòng thử lại'));
+        }
+
+        return $this->flashResponse->success('product-show', __('Cập nhật sản phẩm thành công'));
+
     }
 }
