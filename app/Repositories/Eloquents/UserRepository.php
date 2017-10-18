@@ -26,4 +26,11 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     {
         return $this->model()->where('email', $email)->first();
     }
+
+    public function updateById($userId, $data)
+    {
+        return $this->model()
+            ->where('id', $userId)
+            ->update($data);
+    }
 }
