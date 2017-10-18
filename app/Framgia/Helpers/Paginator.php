@@ -25,7 +25,7 @@ class Paginator
         'a_active' => '',
         'li_active' => 'active',
         'li_style' => 'paginate_button',
-        'record_per_page' => 30,
+        'record_per_page' => 5,
         'link_per_page' => 5,
         'link' => '',
     ];

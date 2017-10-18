@@ -26,8 +26,7 @@ class ProductController extends Controller
         JsonResponse $jsonResponse,
         FlashResponse $flashResponse,
         FormResponse $formResponse
-    )
-    {
+    ) {
         $this->productRepository = $productRepository;
         $this->jsonResponse = $jsonResponse;
         $this->flashResponse = $flashResponse;
@@ -37,7 +36,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = $this->productRepository->getByCategory(1, 1);
-        $totalProduct = $this->productRepository->count(1);
+        $totalProduct = $this->productRepository->count(1) ?: 0;
         $paginate = Paginator::paginate($config = [
             'total_record' => $totalProduct,
             'current_page' => 1,
