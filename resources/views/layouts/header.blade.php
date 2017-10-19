@@ -155,11 +155,18 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li>
-                            <a class="normal" href="#">
-                            <i class="fa fa-tachometer" aria-hidden="true"></i>
+                            <a class="normal" href="javascript:void(0)">
                                 {{ Auth::user()->name }}
                             </a>
                         </li>
+                        @if (Auth::check())
+                        <li>
+                            <a class="normal" href="{{ route('admin') }}">
+                            <i class="fa fa-tachometer" aria-hidden="true"></i>
+                                {{ __('Trang quản trị') }}
+                            </a>
+                        </li>
+                        @endif
                         <li>
                             <a href="{{ route('profile') }}" class="normal">
                             <i class="fa fa-user" aria-hidden="true"></i>

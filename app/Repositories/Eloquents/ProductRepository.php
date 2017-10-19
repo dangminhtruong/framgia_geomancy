@@ -16,6 +16,8 @@ class ProductRepository extends AbstractRepository implements ProductRepositoryI
     {
         return $this->model()
             ->where('categories_id', $categoryId)
+            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->skip(($pageNo - 1) * $rowPerPage)
             ->take($rowPerPage)
             ->get();

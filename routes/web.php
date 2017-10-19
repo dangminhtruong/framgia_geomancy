@@ -29,10 +29,10 @@ Route::post('reset/password', 'Auth\ForgetPasswordController@requestToken')->nam
 Route::get('reset/password/{token}', 'Auth\ForgetPasswordController@resetPassword')->name('confirm-token');
 Route::post('update/password', 'Auth\ForgetPasswordController@updatePassword')->name('update-password');
 
-Route::prefix('admin')->group(function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
     Route::get('/', function () {
         return view('admin.product.product_form');
-    });
+    })->name('admin');
 
     Route::prefix('product')->group(function () {
         Route::get('/', 'ProductController@index')->name('product-show');

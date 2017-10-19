@@ -20,4 +20,10 @@ class FlashResponse
         return redirect()->route($route_name)
             ->with('error_msg', $message);
     }
+
+    public function successAndBack($message)
+    {
+        return redirect()->back()
+            ->with('success_msg', $message);
+    }
 }
