@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::post('auth/login', 'Auth\AuthController@login')->name('login');
 Route::get('auth/logout', 'Auth\AuthController@logout')->name('logout');
 
-Route::group(['prefix' => 'user', 'middleware' => 'customer.auth'], function() {
+Route::group(['prefix' => 'user', 'middleware' => 'customer.auth'], function () {
     Route::get('profile', 'UserController@index')->name('profile');
     Route::post('profile', 'UserController@save')->name('profile-update');
 });
@@ -52,7 +52,7 @@ Route::prefix('admin')->group(function () {
 
 Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function () {
 
-    Route::group(['prefix' => 'request-fish-tanks-blueprint'], function () {
+    Route::group(['prefix' => 'request-blueprint'], function () {
         Route::get('/', 'BlueprintController@getRequestFishTanksBlueprint')
             ->name('getRequestFishTanksBlueprint');
         Route::post('/', 'BlueprintController@postRequestFishTanksBlueprint')
@@ -62,6 +62,7 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
     Route::group(['prefix' => 'create-blueprint'], function () {
         Route::get('/', 'BlueprintController@getCreateBlueprint')->name('getCreateBlueprint');
         Route::post('/', 'BlueprintController@postCreateBlueprint')->name('postCreateBlueprint');
+        Route::get('add-attribute/{id}', 'BlueprintController@getAddAttribute')->name('getAddAttribute');
     });
 
     Route::group(['prefix' => 'search-product'], function () {

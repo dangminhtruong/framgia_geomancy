@@ -10,6 +10,7 @@ use App\Framgia\Response\FlashResponse;
 use App\Framgia\Response\FormResponse;
 use App\Entities\Blueprint;
 use App\Entities\RequestBlueprint;
+use App\Framgia\Helpers\FramgiaHelper;
 use Auth, Hash;
 
 class BlueprintRepository extends AbstractRepository implements BlueprintRepositoryInterface
@@ -70,12 +71,16 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
         $addBlueprint = $this->create($blueprintData);
 
         if ($request->suggestName) {
+            $tojson = [];
+            foreach (array_chunk($request->atrribute, 2) as $key => $value) {
+                $tojson[$value[0]] = $value[1];
+            }
             $suggestProductData = [];
             $suggestProductData = array_add($suggestProductData, 'name', $request->suggestName);
             $suggestProductData = array_add($suggestProductData, 'categories_id', $request->categoryId);
             $suggestProductData = array_add($suggestProductData, 'price', $request->suggestPrice);
             $suggestProductData = array_add($suggestProductData, 'blueprints_id', $addBlueprint->id);
-            $suggestProductData = array_add($suggestProductData, 'attribute', $request->suggestDesc);
+            $suggestProductData = array_add($suggestProductData, 'attribute', json_encode($tojson));
             $this->suggestProductRepository->create($suggestProductData);
         }
 

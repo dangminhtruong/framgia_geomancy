@@ -30,3 +30,6 @@
 .breadcrumb-image-bg{
   background-image:url('/images/hero-header/02.jpg');
 }
+hr.style1{
+  border-top: 1px solid #8c8b8b;
+}
