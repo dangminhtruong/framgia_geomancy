@@ -128,21 +128,27 @@ class ProductController extends Controller
 
     public function save(UpdateProductRequest $request)
     {
-        if ($request->file('image')->isValid()) {
-            $path = $request->image->move(
-                'images/products',
-                $request->file('image')->getClientOriginalName()
-            );
-            if (!$path) {
-                return $this->formResponse->response($request, __('Upload ảnh thất bại'));
+        //dd($request->toArray());
+        if ($request->hasFile('image')) {
+            if ($request->file('image')->isValid()) {
+                $path = $request->image->move(
+                    'images/products',
+                    $request->file('image')->getClientOriginalName()
+                );
+                if (!$path) {
+                    return $this->formResponse->response($request, __('Upload ảnh thất bại'));
+                }
+                $imageName = $request->file('image')->getClientOriginalName();
             }
         }
 
         $data = $request->only(['name', 'price', 'stock', 'categories_id']);
         $data['slug'] = str_slug($request->name);
         $attribute = $request->except(['_token', 'name', 'price', 'stock', 'categories_id', 'image', 'id']);
-        $attribute['image'] = $request->file('image')->getClientOriginalName();
         $attribute = FramgiaHelper::formateAttribute($attribute);
+        if (isset($imageName)) {
+            $attribute['Image'] = $imageName;
+        }
         $data['attribute'] = json_encode($attribute);
         try {
             $createResult = $this->productRepository->updateById($request->id, $data);
@@ -150,7 +156,7 @@ class ProductController extends Controller
             return $this->formResponse->response($request, __('Có lỗi xảy ra, vui lòng thử lại'));
         }
 
-        return $this->flashResponse->success('product-show', __('Cập nhật sản phẩm thành công'));
+        return $this->flashResponse->successAndBack(__('Cập nhật sản phẩm thành công'));
 
     }
 }

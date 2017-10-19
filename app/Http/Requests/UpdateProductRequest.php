@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateProductRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::check() && Auth::user()->role == 1;
     }
 
     /**
@@ -29,7 +30,7 @@ class UpdateProductRequest extends FormRequest
             'price' => 'required|string|numeric',
             'stock' => 'required|string|numeric',
             'categories_id' => 'required|exists:categories,id',
-            'image' => 'required|image|mimes:jpeg,png,jpg'
+            'image' => 'image|mimes:jpeg,png,jpg'
         ];
     }
 

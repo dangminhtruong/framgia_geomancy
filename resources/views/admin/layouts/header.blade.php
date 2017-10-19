@@ -21,7 +21,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class=" profil-link">
                     <a href="login.html">
-                    <span class="profile-address">demo@gmail.com</span>
+                    <span class="profile-address">{{ Auth::user()->name }}</span>
                     <img src="{{ asset('images/profile.jpg') }}" class="img-circle" alt="">
                     </a>
                 </li>
