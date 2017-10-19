@@ -62,6 +62,11 @@ class BlueprintController extends Controller
         return view('blueprint.create_blueprint_done', compact('id'));
     }
 
+    public function getAddAttribute(Request $request)
+    {
+        return view('blueprint.sub_pages.add_more_attr')->render();
+    }
+
     public function getUpdateBlueprint($id)
     {
         $blueprintInfo = $this->blueprintRepository->getBlueprintInfo($id);

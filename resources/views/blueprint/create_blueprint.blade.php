@@ -76,38 +76,51 @@
                            <div class="checkbox-wrapper" id="blueprint-prd">
                            </div>
                            <div class="clearfix"></div>
-                           <div id="suggest-product"  class="collapse">
-                              <div class="col-xs-12 col-sm-4">
-                                 <div class="form-group">
-                                    <label>{{ __('CreateBlueprint.Suggest.Name') }}</label>
-                                    <input type="text" class="form-control" name="suggestName" />
+                           <!--------Suggest product---------------------------------------->
+                           <div class="col-xs-12 col-sm-12 col-md-12 collapse" id="suggest">
+                              <div class="mb-30"></div>
+                              <h4 class="section-title">Suggest product</h4>
+                              <div id="suggest-product"  class="">
+                                 <div class="col-xs-12 col-sm-4">
+                                    <div class="form-group">
+                                       <label>{{ __('CreateBlueprint.Suggest.Name') }}</label>
+                                       <input type="text" class="form-control" name="suggestName" />
+                                    </div>
                                  </div>
-                              </div>
-                              <div class="col-xs-12 col-sm-3">
-                                 <div class="form-group form-spin-group">
-                                    <label>{{ __('CreateBlueprint.Suggest.Price') }}</label>
-                                    <input type="text" class="form-control form-spin" name="suggestPrice" />
+                                 <div class="col-xs-12 col-sm-3">
+                                    <div class="form-group form-spin-group">
+                                       <label>{{ __('CreateBlueprint.Suggest.Price') }}</label>
+                                       <input type="text" class="form-control form-spin" name="suggestPrice" />
+                                    </div>
                                  </div>
-                              </div>
-                              <div class="col-xs-12 col-sm-5">
-                                 <div class="form-group">
-                                    <label>{{  __('CreateBlueprint.Suggest.Type') }}</label>
-                                    <select class="selectpicker show-tick form-control" name="categoryId" 
-                                       title="Select placeholder" data-selected-text-format="count > 6"
-                                       data-done-button="true" data-done-button-text="OK">
-                                       @foreach($categories as $category )
-                                       <option value="{!! $category->id !!}">{!! $category->name !!}</option>
-                                       @endforeach
-                                    </select>
+                                 <div class="col-xs-12 col-sm-5">
+                                    <div class="form-group">
+                                       <label>{{  __('CreateBlueprint.Suggest.Type') }}</label>
+                                       <select class="selectpicker show-tick form-control" name="categoryId" 
+                                          title="Select placeholder" data-selected-text-format="count > 6"
+                                          data-done-button="true" data-done-button-text="OK">
+                                          @foreach($categories as $category )
+                                          <option value="{!! $category->id !!}">{!! $category->name !!}</option>
+                                          @endforeach
+                                       </select>
+                                    </div>
                                  </div>
-                              </div>
-                              <div class="col-xs-12 col-sm-12">
-                                 <div class="form-group">
-                                    <label for="comment">{{ __('CreateBlueprint.Suggest.Description') }}:</label>
-                                    <textarea class="form-control" rows="5" id="comment" name="suggestDesc"></textarea>
+                                 <div class="col-xs-12 col-sm-12">
+                                    <div class="form-group">
+                                       <label for="comment">{{ __('CreateBlueprint.Suggest.Description') }}:</label>
+                                       <input type="hidden" name="atrribute[]" value="description" />
+                                       <textarea class="form-control" rows="5" id="comment" name="atrribute[]"></textarea>
+                                    </div>
                                  </div>
+                                 <!-----Add more attribute------>
+                                 <div class="col-xs-12 col-sm-12" id="add-more-attr">
+                                    <label for="comment">Add more attribute: </label>
+                                    <button type="button" class="btn btn-danger" id="btn-add-attr" value="0"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                 </div>
+                                 <!-----End ddd more attribute------>
                               </div>
                            </div>
+                           <!-----------End Suggest product-------------------------------->
                            <div class="col-xs-12 col-sm-12 col-md-12" id="img_gallery">
                               <div class="mb-30"></div>
                               <h4 class="section-title">{{ __('Gallery') }}</h4>
