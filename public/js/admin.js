@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $('#tableExample3').DataTable({
         dom: "<'row'<'col-sm-4 col-sm-offset-8'f>>tp",
-        order: [[ 3, 'desc' ], [ 4, 'desc' ]],
+        "aaSorting": [],
         "language": {
             "search": "Tìm trong trang",
             "emptyTable": "Không có dữ liệu"
@@ -32,6 +32,7 @@ $(document).ready(function() {
             $('#_product-table').html(result.data.view);
             $('#tableExample3').DataTable({
                 dom: "<'row'<'col-sm-4 col-sm-offset-8'f>>tp",
+                "aaSorting": [],
                 "language": {
                     "search": "Tìm trong trang",
                     "emptyTable": "Không có dữ liệu"
@@ -74,7 +75,7 @@ $(document).ready(function() {
             $('#_product-table').html(result.data.view);
             $('#tableExample3').DataTable({
                 dom: "<'row'<'col-sm-4 col-sm-offset-8'f>>tp",
-                order: [[ 3, 'desc' ], [ 4, 'desc' ]],
+                "aaSorting": [],
                 "language": {
                     "search": "Tìm trong trang",
                     "emptyTable": "Không có dữ liệu"
@@ -146,6 +147,7 @@ $(document).ready(function() {
             $('#_category-table').html(result.data.view);
             $('#tableExample3').DataTable({
                 dom: "<'row'<'col-sm-4 col-sm-offset-8'f>>tp",
+                "aaSorting": [],
                 "language": {
                     "search": "Tìm trong trang",
                     "emptyTable": "Không có dữ liệu"

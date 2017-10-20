@@ -10,6 +10,8 @@ class Product extends BaseEntity
 
     protected $fillable = [
         'categories_id',
+        'image',
+        'description',
         'name',
         'slug',
         'price',

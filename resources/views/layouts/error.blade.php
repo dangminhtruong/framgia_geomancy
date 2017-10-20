@@ -2,7 +2,7 @@
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">×</span>
     </button>
-    <p>
+    <p class="mr-right-15">
         <strong>
         @if (session('error_msg'))
             {{ session('error_msg') }}

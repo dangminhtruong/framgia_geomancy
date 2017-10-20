@@ -33,26 +33,20 @@
                                     <h4 class="m-t-none">{{ __('Thông tin sản phẩm') }}</h4>
                                     <div class="row pd-top-15">
                                         <div class="col-md-6 col-md-offset-3">
-                                            @if (isset($product->attribute->Image))
-                                                <img class="img-responsive auto-center" src="{{ asset('images/products/' . $product->attribute->Image) }}"/>
-                                            @else
-                                                <img class="img-responsive custom-width" src="{{ asset('images/default-image.png') }}"/>
-                                            @endif
+                                            <img class="img-responsive auto-center" src="{{ asset('images/products/' . $product->image) }}"/>
                                         </div>
                                     </div>
                                     <div class="row pd-top-15">
                                         @foreach ($product->attribute as $key => $value)
-                                            @if ($key != 'Image' && $key != 'Description')
-                                                <p class="col-md-5 pd-top-15 text-left">
-                                                    {{ str_replace('_', ' ', $key) }}
-                                                </p>
-                                                <p class="col-md-1 pd-top-15 text-left">
-                                                    :
-                                                </p>
-                                                <p class="col-md-6 pd-top-15 text-left">
-                                                    {{ $value }}
-                                                </p>
-                                            @endif
+                                            <p class="col-md-5 pd-top-15 text-left">
+                                                {{ str_replace('_', ' ', $key) }}
+                                            </p>
+                                            <p class="col-md-1 pd-top-15 text-left">
+                                                :
+                                            </p>
+                                            <p class="col-md-6 pd-top-15 text-left">
+                                                {{ $value }}
+                                            </p>
                                         @endforeach
                                         <p class="col-md-5 pd-top-15 text-left">
                                             {{ __('Mô tả') }}
@@ -62,8 +56,8 @@
                                         </p>
                                         <p class="txt-indent">
                                         <p class="col-md-6 pd-top-15 text-left">
-                                            @if (isset($product->attribute->Description))
-                                                {{ __($product->attribute->Description) }}
+                                            @if (isset($product->description))
+                                                {{ __($product->description) }}
                                             @else
                                                 {{ __('Không có mô tả') }}
                                             @endif

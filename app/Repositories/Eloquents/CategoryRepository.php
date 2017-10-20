@@ -32,7 +32,9 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
 
     public function getPageNo($pageNo, $rowPerPage = 30)
     {
-        return $this->model::skip(($pageNo - 1) * $rowPerPage)
+        return $this->model::orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
+            ->skip(($pageNo - 1) * $rowPerPage)
             ->take($rowPerPage)
             ->get();
     }
