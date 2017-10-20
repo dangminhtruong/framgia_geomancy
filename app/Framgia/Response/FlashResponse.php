@@ -26,4 +26,10 @@ class FlashResponse
         return redirect()->back()
             ->with('success_msg', $message);
     }
+
+    public function failAndBack($message)
+    {
+        return redirect()->back()
+            ->with('error_msg', $message);
+    }
 }

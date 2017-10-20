@@ -18,9 +18,12 @@ Route::get('/', function () {
 Route::post('auth/login', 'Auth\AuthController@login')->name('login');
 Route::get('auth/logout', 'Auth\AuthController@logout')->name('logout');
 
-Route::group(['prefix' => 'user', 'middleware' => 'customer.auth'], function () {
-    Route::get('profile', 'UserController@index')->name('profile');
-    Route::post('profile', 'UserController@save')->name('profile-update');
+Route::group(['prefix' => 'user'], function () {
+    Route::get('{userId}/profile', 'UserController@viewProfile')->name('other-profile');
+    Route::middleware(['customer.auth'])->group(function() {
+        Route::get('profile', 'UserController@index')->name('profile');
+        Route::post('profile', 'UserController@save')->name('profile-update');
+    });
 });
 
 

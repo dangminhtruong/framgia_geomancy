@@ -33,4 +33,12 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
             ->where('id', $userId)
             ->update($data);
     }
+
+    public function getProfileById($userId)
+    {
+        return $this->model()
+            ->with(['requests', 'blueprints', 'posts'])
+            ->where('id', $userId)
+            ->first();
+    }
 }
