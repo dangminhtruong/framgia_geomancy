@@ -41,6 +41,15 @@ class UserController extends Controller
             return $this->formResponse->response($request, 'Có lỗi xảy ra, vui lòng thử lại');
         }
         return $this->flashResponse->success('profile', 'Cập nhật thông tin cá nhân thành công');
+    }
 
+    public function viewProfile($userId)
+    {
+        $user = $this->userRepository->getProfileById($userId);
+        if ($user) {
+            return view('user.other_profile', compact('user'));
+        }
+
+        return $this->flashResponse->failAndBack('Không tìm thấy thông tin');
     }
 }
