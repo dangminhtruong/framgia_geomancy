@@ -51,6 +51,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
         Route::get('/', 'CategoryController@index')->name('category-show');
         Route::post('/', 'CategoryController@paginateCategory');
     });
+
+    Route::prefix('user')->group(function () {
+        Route::get('/', 'UserController@showUserList')->name('user-show');
+        Route::post('/', 'UserController@paginateUser');
+    });
 });
 
 Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function () {

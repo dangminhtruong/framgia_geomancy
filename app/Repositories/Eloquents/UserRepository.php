@@ -41,4 +41,52 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
             ->where('id', $userId)
             ->first();
     }
+
+    public function getLockAccountByPage($pageNo, $rowPerPage = 30)
+    {
+        return $this->model()
+            ->where([
+                ['status', 0],
+                ['role', '<>', 1]
+            ])
+            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
+            ->skip(($pageNo - 1) * $rowPerPage)
+            ->take($rowPerPage)
+            ->get();
+    }
+
+    public function countLockAccout()
+    {
+        return $this->model()
+        ->where([
+            ['status', 0],
+            ['role', '<>', 1]
+        ])
+        ->count();
+    }
+
+    public function getActiveAccountByPage($pageNo, $rowPerPage = 30)
+    {
+        return $this->model()
+            ->where([
+                ['status', 1],
+                ['role', '<>', 1]
+            ])
+            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
+            ->skip(($pageNo - 1) * $rowPerPage)
+            ->take($rowPerPage)
+            ->get();
+    }
+
+    public function countActiveAccount()
+    {
+        return $this->model()
+        ->where([
+            ['status', 1],
+            ['role', '<>', 1]
+        ])
+        ->count();
+    }
 }
