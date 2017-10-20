@@ -60,11 +60,12 @@ $factory->define(App\Entities\Product::class, function (Faker\Generator $faker) 
 
     return [
         'name' => $faker->sentence($nbWords = 2, $variableNbWords = true),
-        'image' => 'default-image.png',
+        'image' => '02.png',
         'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
         'slug' => $faker->slug,
         'price' => $faker->numberBetween($min = 100000, $max = 99000),
         'attribute' => json_encode($attribute),
+        'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
         'categories_id' => $category_random_id[1],
         'created_at' => $faker->dateTime($max = 'now', $timezone = date_default_timezone_get()),
     ];
@@ -87,6 +88,7 @@ $factory->define(App\Entities\Blueprint::class, function (Faker\Generator $faker
         'title' => $faker->sentence($nbWords = 5, $variableNbWords = true),
         'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
         'topics_id' => $topic_random_id[1],
+        'status' => 0,
         'created_at' => $faker->dateTime($max = 'now', $timezone = date_default_timezone_get()),
         'users_id' => $user_random_id[1]
     ];

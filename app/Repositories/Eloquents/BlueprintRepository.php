@@ -6,12 +6,13 @@ use App\Repositories\Contracts\BlueprintRepositoryInterface;
 use App\Repositories\Contracts\GalleryRepositoryInterface as GalleryRepository;
 use App\Repositories\Contracts\BlueprintDetailRepositoryInterface as BlueprintDetailRepository;
 use App\Repositories\Contracts\SuggestProductRepositoryInterface as SuggestProductRepository;
+use App\Repositories\Contracts\TopicRepositoryInterface as TopicRepository;
 use App\Framgia\Response\FlashResponse;
 use App\Framgia\Response\FormResponse;
 use App\Entities\Blueprint;
 use App\Entities\RequestBlueprint;
 use App\Framgia\Helpers\FramgiaHelper;
-use Auth, Hash;
+use Auth, Hash, DB;
 
 class BlueprintRepository extends AbstractRepository implements BlueprintRepositoryInterface
 {
@@ -21,13 +22,15 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
     private $formResponse;
     private $blueprintDetailRepository;
     private $suggestProductRepository;
+    private $topicRepository;
 
     function __construct(
         GalleryRepository $galleryRepository,
         FlashResponse $flashResponse,
         BlueprintDetailRepository $blueprintDetailRepository,
         FormResponse $formResponse,
-        SuggestProductRepository $suggestProductRepository
+        SuggestProductRepository $suggestProductRepository,
+        TopicRepository $topicRepository
     )
     {
         $this->model = $this->model();
@@ -36,6 +39,7 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
         $this->formResponse = $formResponse;
         $this->blueprintDetailRepository = $blueprintDetailRepository;
         $this->suggestProductRepository = $suggestProductRepository;
+        $this->topicRepository = $topicRepository;
     }
 
     public function model()
@@ -105,7 +109,7 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
             $galleryData = array_add($galleryData, 'image_name', $plusName . $files->getClientOriginalName());
             $galleryData = array_add($galleryData, 'blueprints_id', $addBlueprint->id);
             $galleryAdd = $this->galleryRepository->create($galleryData);
-            $files->move('images/gallery/', $plusName . $files->getClientOriginalName());
+            $files->move(config('path.upload_images_path'), $plusName . $files->getClientOriginalName());
         }
 
         return redirect()->route('getCreateDone', [$addBlueprint->id]);
@@ -176,7 +180,29 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
             $galleryData = array_add($galleryData, 'image_name', $files->getClientOriginalName());
             $galleryData = array_add($galleryData, 'blueprints_id', $blueprintId);
             $galleryAdd = $this->galleryRepository->create($galleryData);
-            $files->move('images/gallery/', $files->getClientOriginalName());
+            $files->move(config('path.upload_images_path'), $files->getClientOriginalName());
         }
+    }
+
+    public function getTopTopic()
+    {
+        $topTopic = $this->model::select('topics_id', DB::raw('count(*) as blueprints'))->
+        groupBy('topics_id')->orderBy('blueprints', 'desc')->skip(0)->take(6)->get();
+
+        try {
+            $topTenTopic = [];
+            foreach ($topTopic as $topic) {
+                $topicName = $this->topicRepository->findById($topic->topics_id)->name;
+                $topTenTopic[$topicName] = $topic->blueprints;
+            }
+            return $topTenTopic;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function getTopicImg($topicId)
+    {
+        return $this->topicRepository->getTopicImages($topicId);
     }
 }

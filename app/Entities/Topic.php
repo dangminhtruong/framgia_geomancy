@@ -20,4 +20,10 @@ class Topic extends BaseEntity
     {
         return $this->hasMany(Blueprint::class, 'topics_id');
     }
+
+    public function images()
+    {
+        return $this->hasManyThrough(Gallery::class, Blueprint::class, 
+            'topics_id', 'blueprints_id');
+    }
 }
