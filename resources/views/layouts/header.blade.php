@@ -159,7 +159,7 @@
                                 {{ Auth::user()->name }}
                             </a>
                         </li>
-                        @if (Auth::check())
+                        @if (Auth::user()->role == 1)
                         <li>
                             <a class="normal" href="{{ route('admin') }}">
                             <i class="fa fa-tachometer" aria-hidden="true"></i>

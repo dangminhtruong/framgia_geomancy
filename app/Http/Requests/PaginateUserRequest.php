@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class GetProductRequest extends FormRequest
+class PaginateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class GetProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'categories_id' => 'required|string|exists:categories,id',
+            'user_type' => 'required|string|in:1,2',
             'pageNo' => 'required|string|integer'
         ];
     }
@@ -38,9 +38,9 @@ class GetProductRequest extends FormRequest
     public function messages()
     {
         return [
-            'categories_id.required' => __('Danh mục không tồn tại'),
-            'categories_id.string' => __('Danh mục không tồn tại'),
-            'categories_id.exists' => __('Danh mục không tồn tại'),
+            'user_type.required' => __('Có lỗi xảy ra, vui lòng thử lại'),
+            'user_type.string' => __('Có lỗi xảy ra, vui lòng thử lại'),
+            'user_type.in' => __('Có lỗi xảy ra, vui lòng thử lại'),
 
             'pageNo.required' => __('Có lỗi xảy ra, vui lòng thử lại'),
             'pageNo.string' => __('Có lỗi xảy ra, vui lòng thử lại'),

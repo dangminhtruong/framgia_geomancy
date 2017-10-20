@@ -40,7 +40,9 @@ $(document).ready(function() {
                 "bPaginate": false
             });
             selectOption.prop('disabled', false);
-        }, null);
+        }, function() {
+            selectOption.prop('disabled', false);
+        });
     });
 
     //===== PAGINATE PRODUCT =====//
@@ -156,4 +158,81 @@ $(document).ready(function() {
             });
         }, null);
     })
+
+    //===== USER TYPE CHANGE =====//
+    $('#_user_category').on('change', function(e) {
+        e.preventDefault();
+
+        var user_type = $(this).val();
+        if (isNaN(parseInt(user_type))) {
+            toastr.warning('Có lỗi xảy ra, vui lòng thử lại');
+
+            return false;
+        }
+
+        var data = {
+            user_type: user_type,
+            pageNo: 1,
+            _token: $('meta[name="csrf-token"]').attr('content'),
+        }
+        var selectOption = $(this);
+        selectOption.prop('disabled', true);
+        $('#_user-table').html('<div class="text-center"><img src="' + SITE_URL + 'images/ajax-loader.svg"/></div>');
+        ajaxSubmit('admin/user', 'POST', data, function(result) {
+            $('#_user-table').html(result.data.view);
+            $('#tableExample3').DataTable({
+                dom: "<'row'<'col-sm-4 col-sm-offset-8'f>>tp",
+                "aaSorting": [],
+                "language": {
+                    "search": "Tìm trong trang",
+                    "emptyTable": "Không có dữ liệu"
+                },
+                "bPaginate": false
+            });
+            selectOption.prop('disabled', false);
+        }, function() {
+            selectOption.prop('disabled', false);
+        });
+    });
+
+    $('#_user-table').on('click', '.paginate_button a', function(e) {
+        e.preventDefault();
+
+        var user_type = $('#_user_category').val();
+        if (isNaN(parseInt(user_type))) {
+            toastr.warning('Có lỗi xảy ra, vui lòng thử lại');
+
+            return false;
+        }
+
+        var pageNo = $(this).data('page');
+        if (pageNo == '') {
+            return false;
+        }
+        if (isNaN(parseInt(pageNo))) {
+            toastr.warning('Có lỗi xảy ra, vui lòng thử lại');
+
+            return false;
+        }
+
+        var data = {
+            user_type: user_type,
+            pageNo: pageNo,
+            _token: $('meta[name="csrf-token"]').attr('content'),
+        }
+
+        $('#_user-table').html('<div class="text-center"><img src="' + SITE_URL + 'images/ajax-loader.svg"/></div>');
+        ajaxSubmit('admin/user', 'POST', data, function(result) {
+            $('#_user-table').html(result.data.view);
+            $('#tableExample3').DataTable({
+                dom: "<'row'<'col-sm-4 col-sm-offset-8'f>>tp",
+                "aaSorting": [],
+                "language": {
+                    "search": "Tìm trong trang",
+                    "emptyTable": "Không có dữ liệu"
+                },
+                "bPaginate": false
+            });
+        }, null);
+    });
 });
