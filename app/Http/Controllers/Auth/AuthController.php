@@ -35,6 +35,7 @@ class AuthController extends Controller
         }
 
         $user = $request->only('email', 'password');
+        $user['status'] = 1;
         if (Auth::attempt($user, $request->input('remember_me_checkbox'))) {
 
             return $this->flashResponse->success('home', __('LoginSuccess'));

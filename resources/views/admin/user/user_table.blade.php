@@ -78,7 +78,7 @@
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li><a href="#">{{ __('Cập nhật') }}</a></li>
                             @if ($user->status == 1)
-                                <li><a class="" data-product="{{ $user->id }}" href="javascript:void(0)">{{ __('Khóa tài khoản') }}</a></li>
+                                <li><a class="_lock_account" data-email="{{ $user->email }}" data-user="{{ $user->id }}" href="javascript:void(0)">{{ __('Khóa tài khoản') }}</a></li>
                             @else
                                 <li><a class="" data-product="{{ $user->id }}" href="javascript:void(0)">{{ __('Mở khóa tài khoản') }}</a></li>
                             @endif

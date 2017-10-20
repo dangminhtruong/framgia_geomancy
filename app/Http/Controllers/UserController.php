@@ -10,6 +10,9 @@ use App\Http\Requests\UpdateProfileRequest;
 use App\Framgia\Helpers\Paginator;
 use App\Http\Requests\PaginateUserRequest;
 use App\Framgia\Response\JsonResponse;
+use App\Http\Requests\LockAccountRequest;
+use App\Events\LockAccountEvent;
+use Illuminate\Support\Facades\DB;
 use Auth;
 
 class UserController extends Controller
@@ -93,5 +96,28 @@ class UserController extends Controller
             ])->render();
 
         return $this->jsonResponse->success('', ['view' => $view]);
+    }
+
+    public function lockAccount(LockAccountRequest $request)
+    {
+        DB::beginTransaction();
+        try {
+            $result = $this->userRepository->lockById($request->userId);
+        } catch(Exception $e) {
+            DB::rollback();
+
+            return $this->jsonResponse->queryError(__('Có lỗi xảy ra, vui lòng thử lại'));
+        }
+
+        if ($result) {
+            $user = $this->userRepository->findById($request->userId);
+            event(new LockAccountEvent($user->email, $request->reason));
+            DB::commit();
+
+            return $this->jsonResponse->success(__('Khóa tài khoản thành công'));
+        }
+        DB::rollback();
+
+        return $this->jsonResponse->fail(__('Có lỗi xảy ra, vui lòng thử lại'));
     }
 }

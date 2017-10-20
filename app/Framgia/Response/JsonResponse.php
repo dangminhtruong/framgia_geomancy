@@ -49,4 +49,10 @@ class JsonResponse
         return $this->setStatusCode(500)
             ->withMessage($message, $data);
     }
+
+    public function fail($message, $data = [])
+    {
+        return $this->setStatusCode(501)
+            ->withMessage($message, $data);
+    }
 }
