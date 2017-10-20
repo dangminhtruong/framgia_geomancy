@@ -20,7 +20,7 @@ class Order extends BaseEntity
      */
     public function user()
     {
-        return $this->belongsTo(\App\Entities\User::class, 'users_id');
+        return $this->belongsTo(User::class, 'users_id');
     }
 
     /**
@@ -28,6 +28,6 @@ class Order extends BaseEntity
      */
     public function details()
     {
-        return $this->hasMany(\App\Entities\OrderDetail::class);
+        return $this->hasMany(OrderDetail::class, 'orders_id');
     }
 }

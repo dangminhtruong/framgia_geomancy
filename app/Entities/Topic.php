@@ -18,6 +18,6 @@ class Topic extends BaseEntity
      */
     public function blueprints()
     {
-        return $this->hasMany(\App\Entities\Blueprint::class);
+        return $this->hasMany(Blueprint::class, 'topics_id');
     }
 }

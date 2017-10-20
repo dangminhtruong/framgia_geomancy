@@ -15,10 +15,14 @@ class CreateBlueprintNotificationsTable extends Migration
     {
         Schema::create('blueprint_notifications', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('votes');
-            $table->integer('user_id');
+            $table->integer('blueprints_id')->unsigned();
+            $table->foreign('blueprints_id')->references('id')->on('blueprints');
+            $table->integer('users_id')->unsigned();
+            $table->foreign('users_id')->references('id')->on('users');
+            $table->unique(['users_id', 'blueprints_id']);
             $table->string('message');
             $table->integer('view_flg');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

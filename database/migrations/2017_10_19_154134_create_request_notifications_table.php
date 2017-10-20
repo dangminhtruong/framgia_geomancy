@@ -15,10 +15,14 @@ class CreateRequestNotificationsTable extends Migration
     {
         Schema::create('request_notifications', function (Blueprint $table) {
            $table->increments('id');
-            $table->integer('votes');
-            $table->integer('request_id');
+            $table->integer('users_id')->unsigned();
+            $table->foreign('users_id')->references('id')->on('users');
+            $table->integer('request_id')->unsigned();
+            $table->foreign('request_id')->references('id')->on('request_blueprints');
+            $table->unique(['users_id', 'request_id']);
             $table->string('message');
             $table->integer('view_flg');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

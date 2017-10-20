@@ -18,6 +18,6 @@ class Gallery extends BaseEntity
      */
     public function blueprint()
     {
-        return $this->belongsTo(\App\Entities\Blueprint::class, 'blueprints_id');
+        return $this->belongsTo(Blueprint::class, 'blueprints_id');
     }
 }

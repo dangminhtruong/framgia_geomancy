@@ -21,7 +21,7 @@ class CreateProductTable extends Migration
             $table->integer('stock')->default(50);
             $table->jsonb('attribute');
             $table->string('image');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('del_flg')->default(0);
             $table->integer('categories_id')->unsigned();
