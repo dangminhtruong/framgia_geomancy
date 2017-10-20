@@ -87,10 +87,10 @@ class ProductController extends Controller
             return $this->formResponse->response($request, __('Upload ảnh thất bại'));
         }
 
-        $data = $request->only(['name', 'price', 'stock', 'categories_id']);
+        $data = $request->only(['name', 'price', 'stock', 'categories_id', 'description']);
         $data['slug'] = str_slug($request->name);
-        $attribute = $request->except(['_token', 'name', 'price', 'stock', 'categories_id', 'image']);
-        $attribute['image'] = $request->file('image')->getClientOriginalName();
+        $data['image'] = $request->file('image')->getClientOriginalName();
+        $attribute = $request->except(['_token', 'name', 'price', 'stock', 'categories_id', 'image', 'description']);
         $attribute = FramgiaHelper::formateAttribute($attribute);
         $data['attribute'] = json_encode($attribute);
         try {
@@ -128,7 +128,6 @@ class ProductController extends Controller
 
     public function save(UpdateProductRequest $request)
     {
-        //dd($request->toArray());
         if ($request->hasFile('image')) {
             if ($request->file('image')->isValid()) {
                 $path = $request->image->move(
@@ -142,13 +141,13 @@ class ProductController extends Controller
             }
         }
 
-        $data = $request->only(['name', 'price', 'stock', 'categories_id']);
-        $data['slug'] = str_slug($request->name);
-        $attribute = $request->except(['_token', 'name', 'price', 'stock', 'categories_id', 'image', 'id']);
-        $attribute = FramgiaHelper::formateAttribute($attribute);
+        $data = $request->only(['name', 'price', 'stock', 'categories_id', 'description']);
         if (isset($imageName)) {
-            $attribute['Image'] = $imageName;
+            $data['image'] = $request->file('image')->getClientOriginalName();
         }
+        $data['slug'] = str_slug($request->name);
+        $attribute = $request->except(['_token', 'name', 'price', 'stock', 'categories_id', 'image', 'id', 'description']);
+        $attribute = FramgiaHelper::formateAttribute($attribute);
         $data['attribute'] = json_encode($attribute);
         try {
             $createResult = $this->productRepository->updateById($request->id, $data);

@@ -25,7 +25,7 @@ class RegistrationRequest extends FormRequest
     public function rules()
     {
         return [
-            'r_name' => 'required|string|min:6|max: 10',
+            'r_name' => 'required|string|min:5|max: 10',
             'r_email' => 'required|string|email|max:100|unique:users,email',
             'r_password' => 'required|string|min:6|max:100|confirmed',
             'r_password_confirmation' => 'required'
@@ -43,7 +43,7 @@ class RegistrationRequest extends FormRequest
         return [
             'r_name.required' => __('Tên hiển thị không được để trống'),
             'r_name.string' => __('Tên hiển thị không được để trống'),
-            'r_name.min' => __('Tên hiển thị tối thiểu 6 ký tự'),
+            'r_name.min' => __('Tên hiển thị tối thiểu 5 ký tự'),
             'r_name.max' => __('Tên hiển thị tối đa 10 ký tự'),
 
             'r_email.required' => __('Email không được để trống'),

@@ -16,9 +16,9 @@
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}" title="{{ $category->description }}"
                                 @if ($category->id == $id)
-                                    selected="selected">
+                                    selected="selected"
                                 @endif
-                                {{ $category->name }}
+                                >{{ $category->name }}
                             </option>
                         @endforeach
                     @endif

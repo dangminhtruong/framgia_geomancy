@@ -43,11 +43,7 @@
                         <div class="form-group">
                             <label class="block-left">{{ __('Ảnh hiện tại') }}</label>
                             <div class="col-md-4 mgr-top-15">
-                            @if (isset($product->attribute->Image))
-                                <img class="img-responsive" src="{{ asset('images/products/' . $product->attribute->Image) }}"/>
-                            @else
-                                <p>{{ __('Không có ảnh') }}
-                            @endif
+                                <img class="img-responsive" src="{{ asset('images/products/' . $product->image) }}"/>
                             </div>
                         </div>
                         <div class="form-group col-md-offset-6">
@@ -71,7 +67,7 @@
                         <div class="col-md-12">
                             <div class=form-group>
                                 <label>{{ __('Mô tả') }}</label>
-                                <textarea name="description" class="form-control" rows="12" placeholder="{{ __('Mô tả sản phẩm...') }}">@if (isset($product->attribute->Description)){{ $product->attribute->Description }} @endif</textarea>
+                                <textarea name="description" class="form-control" rows="12" placeholder="{{ __('Mô tả sản phẩm...') }}">{{ $product->description }}</textarea>
                             </div>
                         </div>
                     </div>
