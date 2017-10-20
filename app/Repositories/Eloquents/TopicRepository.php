@@ -25,4 +25,16 @@ class TopicRepository extends AbstractRepository implements TopicRepositoryInter
         return $result;
     }
 
+    public function findById($id)
+    {
+        $result = $this->model::find($id);
+        return $result;
+    }
+
+    public function getTopicImages($topicId)
+    {
+        $result = $this->model::find($topicId)->images;
+        return $result;
+    }
+
 }
