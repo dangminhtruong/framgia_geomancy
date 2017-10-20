@@ -4,12 +4,9 @@ function ajaxSubmit(url, method, data, success_callback, error_callback)
         url: SITE_URL + url,
         type: method,
         data: data,
-        // beforeSend: function() {
-        //     // $('#load_scr').css('display', 'table');
-        // },
-        // complete: function() {
-        //     // $('#load_scr').css('display', 'none');
-        // },
+        complete: function() {
+            $('#load_scr').css('display', 'none');
+        },
         success: function(result) {
             if (success_callback != null) {
                 success_callback(result);
@@ -22,17 +19,15 @@ function ajaxSubmit(url, method, data, success_callback, error_callback)
         },
         statusCode: {
             403: function() {
-                //$('#load_scr').css('display', 'none');
                 toastr.warning('Có lỗi xảy ra, vui lòng thử lại');
                 return false;
             },
             422: function(result) {
-                var errors = result.responseJSON;
-                for ($i = 0; $i < errors.length; $i++)
+                var errors = Object.values(result.responseJSON);
+                for (let i = 0; i < errors.length; i++)
                 {
-                    toastr.error(errors[$i]);
+                    toastr.warning(errors[i]);
                 }
-                return false;
             }
         }
     });

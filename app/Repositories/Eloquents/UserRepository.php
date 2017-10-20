@@ -27,6 +27,13 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         return $this->model()->where('email', $email)->first();
     }
 
+    public function findById($userId)
+    {
+        return $this->model()
+            ->where('id', $userId)
+            ->first();
+    }
+
     public function updateById($userId, $data)
     {
         return $this->model()
@@ -73,8 +80,8 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
                 ['status', 1],
                 ['role', '<>', 1]
             ])
-            ->orderBy('created_at', 'desc')
             ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
             ->skip(($pageNo - 1) * $rowPerPage)
             ->take($rowPerPage)
             ->get();
@@ -88,5 +95,12 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
             ['role', '<>', 1]
         ])
         ->count();
+    }
+
+    public function lockById($userId)
+    {
+        return $this->model()
+            ->where('id', $userId)
+            ->update(['status' => 0]);
     }
 }
