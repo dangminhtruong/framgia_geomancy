@@ -18,6 +18,6 @@ class Type extends BaseEntity
      */
     public function posts()
     {
-        return $this->hasMany(\App\Entities\Post::class);
+        return $this->hasMany(Post::class, 'types_id');
     }
 }

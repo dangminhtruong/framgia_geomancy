@@ -40,7 +40,7 @@ class User extends Authenticatable
      */
     public function orders()
     {
-        return $this->hasMany(\App\Entities\Order::class);
+        return $this->hasMany(Order::class, 'users_id');
     }
 
     /**
@@ -48,7 +48,7 @@ class User extends Authenticatable
      */
     public function blueprints()
     {
-        return $this->hasMany(\App\Entities\Blueprint::class, 'users_id');
+        return $this->hasMany(Blueprint::class, 'users_id');
     }
 
     /**
@@ -56,7 +56,7 @@ class User extends Authenticatable
      */
     public function improves()
     {
-        return $this->hasMany(\App\Entities\ImproveBlueprint::class);
+        return $this->hasMany(ImproveBlueprint::class, 'users_id');
     }
 
     /**
@@ -64,7 +64,7 @@ class User extends Authenticatable
      */
     public function posts()
     {
-        return $this->hasMany(\App\Entities\Post::class, 'users_id');
+        return $this->hasMany(Post::class, 'users_id');
     }
 
     /**
@@ -72,7 +72,7 @@ class User extends Authenticatable
      */
     public function reviews()
     {
-        return $this->hasMany(\App\Entities\Review::class);
+        return $this->hasMany(Review::class, 'users_id');
     }
 
     /**
@@ -80,7 +80,7 @@ class User extends Authenticatable
      */
     public function requests()
     {
-        return $this->hasMany(\App\Entities\RequestBlueprint::class, 'users_id');
+        return $this->hasMany(RequestBlueprint::class, 'users_id');
     }
 
     /**

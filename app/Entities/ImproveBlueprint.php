@@ -21,7 +21,7 @@ class ImproveBlueprint extends BaseEntity
      */
     public function blueprint()
     {
-        return $this->belongsTo(\App\Entities\Blueprint::class, 'blueprints_id');
+        return $this->belongsTo(Blueprint::class, 'blueprints_id');
     }
 
     /**
@@ -29,7 +29,7 @@ class ImproveBlueprint extends BaseEntity
      */
     public function user()
     {
-        return $this->belongsTo(\App\Entities\User::class, 'users_id');
+        return $this->belongsTo(User::class, 'users_id');
     }
 
     /**
@@ -37,7 +37,7 @@ class ImproveBlueprint extends BaseEntity
      */
     public function details()
     {
-        return $this->hasMany(\App\Entities\ImproveDetail::class);
+        return $this->hasMany(ImproveDetail::class, 'improve_blueprints_id');
     }
 
     /**
@@ -45,6 +45,6 @@ class ImproveBlueprint extends BaseEntity
      */
     public function request()
     {
-        return $this->hasOne(\App\Entities\RequestBlueprint::class);
+        return $this->hasOne(RequestBlueprint::class, 'improve_blueprints_id');
     }
 }

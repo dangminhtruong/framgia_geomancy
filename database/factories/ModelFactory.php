@@ -60,6 +60,8 @@ $factory->define(App\Entities\Product::class, function (Faker\Generator $faker) 
 
     return [
         'name' => $faker->sentence($nbWords = 2, $variableNbWords = true),
+        'image' => 'default-image.png',
+        'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
         'slug' => $faker->slug,
         'price' => $faker->numberBetween($min = 100000, $max = 99000),
         'attribute' => json_encode($attribute),
@@ -181,7 +183,7 @@ $factory->define(App\Entities\Post::class, function (Faker\Generator $faker) {
     $user_random_id = array_rand($user, 2);
     return [
         'title' => $faker->sentence($nbWords = 5, $variableNbWords = true),
-        'body' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+        'body' => $faker->paragraph($nbSentences = 15, $variableNbSentences = true),
         'slug' => $faker->slug,
         'users_id' => $user_random_id[1],
         'types_id' => $type_random_id[1],

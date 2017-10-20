@@ -19,7 +19,7 @@ class ImproveDetail extends BaseEntity
      */
     public function improveBlueprint()
     {
-        return $this->belongsTo(\App\Entities\ImproveBlueprint::class, 'improve_blueprints_id');
+        return $this->belongsTo(ImproveBlueprint::class, 'improve_blueprints_id');
     }
 
     /**
@@ -27,6 +27,6 @@ class ImproveDetail extends BaseEntity
      */
     public function product()
     {
-        return $this->hasOne(\App\Entities\Product::class);
+        return $this->hasOne(Product::class, 'products_id');
     }
 }

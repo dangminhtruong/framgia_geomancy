@@ -3,7 +3,6 @@
 namespace App\Entities;
 
 use App\Entities\BaseEntity;
-use App\Entities;
 
 class Blueprint extends BaseEntity
 {
@@ -46,7 +45,7 @@ class Blueprint extends BaseEntity
      */
     public function suggests()
     {
-        return $this->hasMany(SuggestProduct::class);
+        return $this->hasMany(SuggestProduct::class, 'blueprints_id');
     }
 
     /**
@@ -54,7 +53,7 @@ class Blueprint extends BaseEntity
      */
     public function improves()
     {
-        return $this->hasMany(ImproveBlueprint::class);
+        return $this->hasMany(ImproveBlueprint::class, 'blueprints_id');
     }
 
     /**
