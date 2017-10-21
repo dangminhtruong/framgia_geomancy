@@ -197,7 +197,7 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
             }
             return $topTenTopic;
         } catch (Exception $e) {
-            return $e->getMessage();
+            return $this->formResponse->response($request, __('Có lỗi xảy ra, vui lòng thử lại'));;
         }
     }
 

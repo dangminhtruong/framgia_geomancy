@@ -80,5 +80,19 @@
   "Bild" : "BILD/CLONE",
   "Clone" : "Clone",
   "Bild" : "Place Bild",
-  "Not.Chager" : "You won't yet be charged"
+  "Not.Chager" : "You won't yet be charged",
+
+  "Intro.service" : "Something about ours service",
+  "Require fish tank blueprint" : "Require fish tank blueprint",
+  "Choice the worker" : "Choice the worker",
+  "Payments" : "Payments",
+  "Edit profile" : "Edit profile",
+  "Your bluerint" : "Your bluerint",
+  "Your blueprint request" : "Your blueprint request",
+  "Post" : "Post",
+  "STT" : "STT",
+  "Title" : "Title",
+  "Status" : "Status",
+  "Action" : "Action", 
+  "Update successfully" : "Update successfully"
 }

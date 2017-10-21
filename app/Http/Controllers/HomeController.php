@@ -21,7 +21,7 @@ class HomeController extends Controller
         $this->blueprintRepository = $blueprintRepository;
     }
 
-    public function getIndex()
+    public function index()
     {
         $topTopics = $this->blueprintRepository->getTopTopic();
         return view('welcome', compact('topTopics', 'topTopicImage'));

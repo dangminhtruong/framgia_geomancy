@@ -11,14 +11,14 @@
 |
 */
 
-Route::get('/','HomeController@getIndex')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::post('auth/login', 'Auth\AuthController@login')->name('login');
 Route::get('auth/logout', 'Auth\AuthController@logout')->name('logout');
 
 Route::group(['prefix' => 'user'], function () {
     Route::get('{userId}/profile', 'UserController@viewProfile')->name('other-profile');
-    Route::middleware(['customer.auth'])->group(function() {
+    Route::middleware(['customer.auth'])->group(function () {
         Route::get('profile', 'UserController@index')->name('profile');
         Route::post('profile', 'UserController@save')->name('profile-update');
     });
@@ -64,6 +64,12 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
             ->name('getRequestFishTanksBlueprint');
         Route::post('/', 'BlueprintController@postRequestFishTanksBlueprint')
             ->name('postRequestFishTanksBlueprint');
+        Route::group(['prefix' => 'edit'], function () {
+            Route::group(['prefix' => '{id}'], function () {
+                Route::get('/', 'BlueprintController@getEditRequest')->name('getEditRequest');
+                Route::post('/', 'BlueprintController@postEditRequest')->name('postEditRequest');
+            });
+        });
     });
 
     Route::group(['prefix' => 'create-blueprint'], function () {

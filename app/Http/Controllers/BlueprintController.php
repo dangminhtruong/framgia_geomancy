@@ -10,6 +10,8 @@ use App\Repositories\Contracts\BlueprintRepositoryInterface as BlueprintReposito
 use App\Repositories\Contracts\TopicRepositoryInterface as TopicRepository;
 use App\Repositories\Contracts\GalleryRepositoryInterface as GalleryRepository;
 use App\Repositories\Contracts\CategoryRepositoryInterface as CategoryRepository;
+use App\Repositories\Contracts\RequestBlueprintRepositoryInterface as RequestBlueprintRepository;
+
 use Hash, Auth;
 
 class BlueprintController extends Controller
@@ -19,13 +21,15 @@ class BlueprintController extends Controller
     private $galleryRepository;
     private $userRepository;
     private $categoryRepository;
+    private $requestBlueprintRepository;
 
     public function __construct(
         BlueprintRepository $blueprintRepository,
         TopicRepository $topicRepository,
         GalleryRepository $galleryRepository,
         UserRepository $userRepository,
-        CategoryRepository $categoryRepository
+        CategoryRepository $categoryRepository,
+        RequestBlueprintRepository $requestBlueprintRepository
     )
     {
         $this->blueprintRepository = $blueprintRepository;
@@ -33,6 +37,7 @@ class BlueprintController extends Controller
         $this->galleryRepository = $galleryRepository;
         $this->userRepository = $userRepository;
         $this->categoryRepository = $categoryRepository;
+        $this->requestBlueprintRepository = $requestBlueprintRepository;
     }
 
     public function getRequestFishTanksBlueprint()
@@ -111,5 +116,17 @@ class BlueprintController extends Controller
                 'blueprintProduct'
             )
         );
+    }
+
+    public function getEditRequest($id)
+    {
+        $requestBlueprint = $this->requestBlueprintRepository->findById($id);
+        return view('blueprint.edit_request_blueprint', compact('requestBlueprint'));
+    }
+
+    public function postEditRequest(Request $request, $id)
+    {
+        $this->requestBlueprintRepository->updateRequestBlueprint($id, $request);
+        return redirect()->back()->with('success_msg', __('Update successfully'));
     }
 }

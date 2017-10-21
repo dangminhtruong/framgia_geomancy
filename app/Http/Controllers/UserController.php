@@ -27,7 +27,8 @@ class UserController extends Controller
         JsonResponse $jsonResponse,
         FlashResponse $flashResponse,
         FormResponse $formResponse
-    ) {
+    )
+    {
         $this->userRepository = $userRepository;
         $this->jsonResponse = $jsonResponse;
         $this->flashResponse = $flashResponse;
@@ -36,7 +37,11 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('user.profile');
+        if (Auth::check()) {
+            $requestBlueprints = $this->userRepository->getUserRequestBlueprint(Auth::user()->id);
+        }
+
+        return view('user.profile', compact('requestBlueprints'));
     }
 
     public function save(UpdateProfileRequest $request)
@@ -46,7 +51,7 @@ class UserController extends Controller
                 Auth::id(),
                 $request->only(['name', 'phone', 'address'])
             );
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             return $this->formResponse->response($request, 'Có lỗi xảy ra, vui lòng thử lại');
         }
         return $this->flashResponse->success('profile', 'Cập nhật thông tin cá nhân thành công');
@@ -79,8 +84,7 @@ class UserController extends Controller
         if ($request->user_type == 2) {
             $users = $this->userRepository->getLockAccountByPage($request->pageNo);
             $totalUser = $this->userRepository->countLockAccout() ?: 0;
-        }
-        else {
+        } else {
             $users = $this->userRepository->getActiveAccountByPage($request->pageNo);
             $totalUser = $this->userRepository->countActiveAccount() ?: 0;
         }
@@ -103,7 +107,7 @@ class UserController extends Controller
         DB::beginTransaction();
         try {
             $result = $this->userRepository->lockById($request->userId);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             DB::rollback();
 
             return $this->jsonResponse->queryError(__('Có lỗi xảy ra, vui lòng thử lại'));
