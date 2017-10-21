@@ -46,7 +46,6 @@ $(document).ready(function() {
             "keyWord": keyWord
         };
         var success = function(result) {
-            console.log(result);
             if (result.length != 0) {
                 html = '';
                 for (i in result) {

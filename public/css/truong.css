@@ -33,3 +33,12 @@
 hr.style1{
   border-top: 1px solid #8c8b8b;
 }
+#user_name{
+  margin-top: 3vh;
+}
+.qoute{
+  width: 80vh;
+  height: 15vh;
+  overflow-x: hidden;  
+  overflow-y: hidden;
+}

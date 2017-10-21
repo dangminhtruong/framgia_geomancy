@@ -66,11 +66,11 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     public function countLockAccout()
     {
         return $this->model()
-        ->where([
-            ['status', 0],
-            ['role', '<>', 1]
-        ])
-        ->count();
+            ->where([
+                ['status', 0],
+                ['role', '<>', 1]
+            ])
+            ->count();
     }
 
     public function getActiveAccountByPage($pageNo, $rowPerPage = 30)
@@ -90,11 +90,16 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     public function countActiveAccount()
     {
         return $this->model()
-        ->where([
-            ['status', 1],
-            ['role', '<>', 1]
-        ])
-        ->count();
+            ->where([
+                ['status', 1],
+                ['role', '<>', 1]
+            ])
+            ->count();
+    }
+
+    public function getUserRequestBlueprint($id)
+    {
+        return $this->model()->find($id)->requests;
     }
 
     public function lockById($userId)
