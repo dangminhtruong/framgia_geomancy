@@ -127,7 +127,7 @@ $factory->define(App\Entities\Type::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Entities\SuggestProduct::class, function (Faker\Generator $faker) {
-    $blueprint = $blueprint = DB::table('blueprints')->pluck('id')->toArray();
+    $blueprint = DB::table('blueprints')->pluck('id')->toArray();
     $blueprint_random_id = array_rand($blueprint, 2);
     $get_category = DB::table('categories')->pluck('id')->toArray();
     $category_random_id = array_rand($get_category, 2);

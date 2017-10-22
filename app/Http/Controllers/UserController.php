@@ -37,11 +37,10 @@ class UserController extends Controller
 
     public function index()
     {
-        if (Auth::check()) {
-            $requestBlueprints = $this->userRepository->getUserRequestBlueprint(Auth::user()->id);
-        }
+        $blueprits = $this->userRepository->getUserBlueprint(Auth::user()->id);
+        $requestBlueprints = $this->userRepository->getUserRequestBlueprint(Auth::user()->id);
 
-        return view('user.profile', compact('requestBlueprints'));
+        return view('user.profile', compact('requestBlueprints', 'blueprits'));
     }
 
     public function save(UpdateProfileRequest $request)

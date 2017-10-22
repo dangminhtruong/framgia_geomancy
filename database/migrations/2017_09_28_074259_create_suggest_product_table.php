@@ -18,8 +18,8 @@ class CreateSuggestProductTable extends Migration
             $table->string('name', 100)->unique();
             $table->integer('price');
             $table->jsonb('attribute');
-            $table->integer('blueprints_id')->unsigned();
-            $table->foreign('blueprints_id')->references('id')->on('blueprints');
+            $table->text('description')->nullable();
+            $table->integer('blueprints_id')->nullable()->unsigned();
             $table->integer('categories_id')->unsigned();
             $table->foreign('categories_id')->references('id')->on('categories');
             $table->softDeletes();

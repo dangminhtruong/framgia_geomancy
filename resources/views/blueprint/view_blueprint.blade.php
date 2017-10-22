@@ -9,9 +9,12 @@
                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                   <h2>{!! $blueprintInfo->title !!}</h2>
                   <ul class="list-with-icon list-inline-block">
-                     <li><i class="ion-android-done text-primary"></i>{{ __('ViewBlueprint.ListWith1') }}</li>
-                     <li><i class="ion-android-done text-primary"></i>{{ __('ViewBlueprint.ListWith2') }}</li>
-                     <li><i class="ion-android-done text-primary"></i>{{ __('ViewBlueprint.ListWith3') }}</li>
+                     <li><i class="ion-android-done text-primary"></i>{{ __('ViewBlueprint.ListWith1') }}
+                     </li>
+                     <li><i class="ion-android-done text-primary"></i>{{ __('ViewBlueprint.ListWith2') }}
+                     </li>
+                     <li><i class="ion-android-done text-primary"></i>{{ __('ViewBlueprint.ListWith3') }}
+                     </li>
                   </ul>
                </div>
             </div>
@@ -49,7 +52,7 @@
          <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-8">
                <div class="content-wrapper">
-                  <div id="detail-content-sticky-nav-01" >
+                  <div id="detail-content-sticky-nav-01">
                      <h2 class="font-lg">Over view</h2>
                      <p class="lead">{!! $blueprintInfo->description !!}.</p>
                      <div class="bt mt-30 mb-30"></div>
@@ -61,19 +64,22 @@
                               <div class="col-xss-12 col-xs-12 col-sm-12 col-md-12">
                                  <div class="col-xs-4 col-sm-4">
                                     <div class="form-group">
-                                       <label>{{ __('CreateBlueprint.Suggest.Name') }}: </label><br/>{!! $product->name !!}
+                                       <label>{{ __('CreateBlueprint.Suggest.Name') }}
+                                       : </label><br/>{!! $product->name !!}
                                     </div>
                                  </div>
                                  <div class="col-xs- col-sm-4">
-                                    <div class="form-group form-spin-group"><label>{{ __('CreateBlueprint.Suggest.Quantity') }}</label>
-                                       <input type="text" class="form-control form-spin" value="{!! $product->pivot->quantity !!}" />
+                                    <div class="form-group form-spin-group">
+                                       <label>{{ __('CreateBlueprint.Suggest.Quantity') }}</label>
+                                       <input type="text" class="form-control form-spin"
+                                          value="{!! $product->pivot->quantity !!}"/>
                                     </div>
                                  </div>
                                  <div class="col-xs-4 col-sm-4">
                                     <div class="form-group form-spin-group">
                                        <label>{{ __('CreateBlueprint.Suggest.Type') }}</label>
                                        <select class="form-control" id="sel1">
-                                          <option>Lorem</option>
+                                          <option>{!! $product->category->name !!}</option>
                                        </select>
                                     </div>
                                  </div>
@@ -114,13 +120,15 @@
                      <div class="sidebar-booking-inner">
                         <div class="row gap-10" id="rangeDatePicker">
                            <div class="col-xss-12 col-xs-12 col-sm-12 btn-group">
-                              <button type="button" class="btn btn-info btn-block">{{ __('Clone') }}</button>
+                              <button type="button"
+                                 class="btn btn-info btn-block">{{ __('Clone') }}</button>
                            </div>
                         </div>
                         <div class="row gap-20">
                            <div class="col-xss-12 col-xs-12 col-sm-12">
                               <div class="mt-5">
-                                 <button type="button" class="btn btn-danger btn-block">{{ __('Bild') }}</button>
+                                 <button type="button"
+                                    class="btn btn-danger btn-block">{{ __('Bild') }}</button>
                               </div>
                            </div>
                         </div>
@@ -157,12 +165,15 @@
                         </div>
                         <div class="trip-guide-content">
                            <h3>Bangkok-Pattaya Safari Adventure</h3>
-                           <p>Game of as rest time eyes with of this it. Add was music merry any truth since going...</p>
+                           <p>Game of as rest time eyes with of this it. Add was music merry any truth
+                              since going...
+                           </p>
                         </div>
                         <div class="trip-guide-bottom">
                            <div class="trip-guide-person clearfix">
                               <div class="image">
-                                 <img src="{!! url('images/testimonial/01.jpg') !!}" class="img-circle" alt="images" />
+                                 <img src="{!! url('images/testimonial/01.jpg') !!}" class="img-circle"
+                                    alt="images"/>
                               </div>
                               <p class="name">By: <a href="#">Robert Kalvin</a></p>
                               <p>Local expert from Thailand</p>
@@ -170,7 +181,10 @@
                            <div class="trip-guide-meta row gap-10">
                               <div class="col-xs-6 col-sm-6">
                                  <div class="rating-item">
-                                    <input type="hidden" class="rating" data-filled="fa fa-star rating-rated" data-empty="fa fa-star-o" data-fractions="2" data-readonly value="4.5"/>
+                                    <input type="hidden" class="rating"
+                                       data-filled="fa fa-star rating-rated"
+                                       data-empty="fa fa-star-o" data-fractions="2" data-readonly
+                                       value="4.5"/>
                                  </div>
                               </div>
                               <div class="col-xs-6 col-sm-6 text-right">
@@ -183,16 +197,19 @@
                   <div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
                      <div class="trip-guide-item">
                         <div class="trip-guide-image">
-                           <img src="{!! url('images/trip/01.jpg') !!}" alt="images" />
+                           <img src="{!! url('images/trip/01.jpg') !!}" alt="images"/>
                         </div>
                         <div class="trip-guide-content">
                            <h3>Chiang Mai Sustainable Trails</h3>
-                           <p>Resolution devonshire pianoforte assistance an he particular middletons...</p>
+                           <p>Resolution devonshire pianoforte assistance an he particular
+                              middletons...
+                           </p>
                         </div>
                         <div class="trip-guide-bottom">
                            <div class="trip-guide-person clearfix">
                               <div class="image">
-                                 <img src="{!! url('images/testimonial/01.jpg') !!}" class="img-circle" alt="images" />
+                                 <img src="{!! url('images/testimonial/01.jpg') !!}" class="img-circle"
+                                    alt="images"/>
                               </div>
                               <p class="name">By: <a href="#">Robert Kalvin</a></p>
                               <p>Local expert from Thailand</p>
@@ -200,7 +217,10 @@
                            <div class="trip-guide-meta row gap-10">
                               <div class="col-xs-6 col-sm-6">
                                  <div class="rating-item">
-                                    <input type="hidden" class="rating" data-filled="fa fa-star rating-rated" data-empty="fa fa-star-o" data-fractions="2" data-readonly value="4.5"/>
+                                    <input type="hidden" class="rating"
+                                       data-filled="fa fa-star rating-rated"
+                                       data-empty="fa fa-star-o" data-fractions="2" data-readonly
+                                       value="4.5"/>
                                  </div>
                               </div>
                               <div class="col-xs-6 col-sm-6 text-right">
@@ -224,17 +244,20 @@
                   <div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
                      <div class="trip-guide-item">
                         <div class="trip-guide-image">
-                           <img src="{!! url('images/trip/01.jpg') !!}" alt="images" />
+                           <img src="{!! url('images/trip/01.jpg') !!}" alt="images"/>
                         </div>
                         <div class="trip-guide-content">
                            <!----DOAN NAY TRO DI EM TAM THOI CHUA I18N------>
                            <h3>Hong Kong Best Highlight Explore</h3>
-                           <p>Betrayed cheerful declared end and. Questions we additions is extremely incommode...</p>
+                           <p>Betrayed cheerful declared end and. Questions we additions is extremely
+                              incommode...
+                           </p>
                         </div>
                         <div class="trip-guide-bottom">
                            <div class="trip-guide-person clearfix">
                               <div class="image">
-                                 <img src="{!! url('images/testimonial/01.jpg') !!}" class="img-circle" alt="images" />
+                                 <img src="{!! url('images/testimonial/01.jpg') !!}" class="img-circle"
+                                    alt="images"/>
                               </div>
                               <p class="name">By: <a href="#">Robert Kalvin</a></p>
                               <p>Local expert from Thailand</p>
@@ -242,7 +265,10 @@
                            <div class="trip-guide-meta row gap-10">
                               <div class="col-xs-6 col-sm-6">
                                  <div class="rating-item">
-                                    <input type="hidden" class="rating" data-filled="fa fa-star rating-rated" data-empty="fa fa-star-o" data-fractions="2" data-readonly value="4.5"/>
+                                    <input type="hidden" class="rating"
+                                       data-filled="fa fa-star rating-rated"
+                                       data-empty="fa fa-star-o" data-fractions="2" data-readonly
+                                       value="4.5"/>
                                  </div>
                               </div>
                               <div class="col-xs-6 col-sm-6 text-right">
@@ -266,16 +292,19 @@
                   <div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
                      <div class="trip-guide-item">
                         <div class="trip-guide-image">
-                           <img src="{!! url('images/trip/01.jpg') !!}" alt="images" />
+                           <img src="{!! url('images/trip/01.jpg') !!}" alt="images"/>
                         </div>
                         <div class="trip-guide-content">
                            <h3>Bangkok-Pattaya Safari Adventure</h3>
-                           <p>Savings her pleased are several started females met. Short her not among being any...</p>
+                           <p>Savings her pleased are several started females met. Short her not among
+                              being any...
+                           </p>
                         </div>
                         <div class="trip-guide-bottom">
                            <div class="trip-guide-person clearfix">
                               <div class="image">
-                                 <img src="{!! url('images/testimonial/01.jpg') !!}" class="img-circle" alt="images" />
+                                 <img src="{!! url('images/testimonial/01.jpg') !!}" class="img-circle"
+                                    alt="images"/>
                               </div>
                               <p class="name">By: <a href="#">Robert Kalvin</a></p>
                               <p>Local expert from Thailand</p>
@@ -283,7 +312,10 @@
                            <div class="trip-guide-meta row gap-10">
                               <div class="col-xs-6 col-sm-6">
                                  <div class="rating-item">
-                                    <input type="hidden" class="rating" data-filled="fa fa-star rating-rated" data-empty="fa fa-star-o" data-fractions="2" data-readonly value="4.5"/>
+                                    <input type="hidden" class="rating"
+                                       data-filled="fa fa-star rating-rated"
+                                       data-empty="fa fa-star-o" data-fractions="2" data-readonly
+                                       value="4.5"/>
                                  </div>
                               </div>
                               <div class="col-xs-6 col-sm-6 text-right">
@@ -311,3 +343,4 @@
    </div>
 </div>
 @stop
+

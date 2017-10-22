@@ -33,4 +33,8 @@ class RequestBlueprintRepository extends AbstractRepository implements RequestBl
         return $requestBlueprint->save();
     }
 
+    public function delete($id)
+    {
+        return $this->model::find($id)->delete();
+    }
 }

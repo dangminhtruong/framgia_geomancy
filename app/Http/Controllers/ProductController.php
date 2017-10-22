@@ -69,6 +69,7 @@ class ProductController extends Controller
         return $this->productRepository->searchProduct($request);
     }
 
+
     public function create()
     {
         return view('admin.product.product_form');
@@ -158,5 +159,11 @@ class ProductController extends Controller
 
         return $this->flashResponse->successAndBack(__('Cập nhật sản phẩm thành công'));
 
+    }
+
+    public function searchProductById($id)
+    {
+        $product = $this->productRepository->findById($id);
+        return view('blueprint.sub_pages.blueprint_product_respon', compact('product'))->render();
     }
 }
