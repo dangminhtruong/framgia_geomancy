@@ -13,7 +13,7 @@
                 <span class="sub-nav-icon"><i class="stroke-arrow"></i></span>
                 </a>
                 <ul id="uielements" class="nav nav-second collapse">
-                    <li><a href="#">{{ __('Danh sách tài khoản') }}</a></li>
+                    <li><a href="{{ route('user-show') }}">{{ __('Danh sách tài khoản') }}</a></li>
                     <li><a href="#">{{ __('Tài khoản quản trị') }}</a></li>
                     <li><a href="#">{{ __('Thêm tài khoản') }}</a></li>
                     <li><a href="#">{{ __('Cập nhật tài khoản') }}</a></li>
