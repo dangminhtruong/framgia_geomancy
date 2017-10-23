@@ -17,7 +17,10 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\SendResetMail',
         ],
         'App\Events\LockAccountEvent' => [
-            'App\Listeners\SendNoticeMail',
+            'App\Listeners\SendAccountLockNoticeMail',
+        ],
+        'App\Events\UnlockAccountEvent' => [
+            'App\Listeners\SendAccountUnlockNoticeMail',
         ]
     ];
 

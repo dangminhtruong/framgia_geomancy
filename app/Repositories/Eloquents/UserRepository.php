@@ -56,8 +56,8 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
                 ['status', 0],
                 ['role', '<>', 1]
             ])
-            ->orderBy('created_at', 'desc')
             ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
             ->skip(($pageNo - 1) * $rowPerPage)
             ->take($rowPerPage)
             ->get();
@@ -113,5 +113,12 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     {
         $blueprint = $this->model()->find($id);
         return $blueprint->blueprints;
+    }
+
+    public function unlockById($userId)
+    {
+        return $this->model()
+            ->where('id', $userId)
+            ->update(['status' => 1]);
     }
 }

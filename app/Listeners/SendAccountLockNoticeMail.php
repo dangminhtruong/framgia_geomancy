@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\LockAccountMail;
 
-class SendNoticeMail
+class SendAccountLockNoticeMail
 {
     /**
      * Create the event listener.

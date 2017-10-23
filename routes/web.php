@@ -54,6 +54,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
         Route::get('/', 'UserController@showUserList')->name('user-show');
         Route::post('/', 'UserController@paginateUser');
         Route::post('lock', 'UserController@lockAccount');
+        Route::post('unlock', 'UserController@unlockAccount');
     });
 });
 
