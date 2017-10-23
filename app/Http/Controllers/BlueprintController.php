@@ -129,4 +129,16 @@ class BlueprintController extends Controller
         $this->requestBlueprintRepository->updateRequestBlueprint($id, $request);
         return redirect()->back()->with('success_msg', __('Update successfully'));
     }
+
+    public function deleteRequest($id)
+    {
+        $this->requestBlueprintRepository->delete($id);
+        return "deleted";
+    }
+
+    public function delete($id)
+    {
+        $blueprintDelete = $this->model::find($id);
+        return $blueprintDelete->delete();
+    }
 }

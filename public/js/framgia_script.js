@@ -54,19 +54,17 @@ $(document).ready(function() {
                     $('#search-drop-result').html(html);
                 };
                 $('.product-name').click(function() {
-                    var id = $(this).val();
-                    var name = $(this).text();
-                    var checkBox = '<div class="col-xss-12 col-xs-6 col-sm-6 col-md-6">' +
-                        '<div class="col-xs-6 col-sm-8"><div class="form-group">' +
-                        '<label>Product\'s name: </label>' + name + '</div> </div><div class="col-xs-6 col-sm-4">' +
-                        '<div class="form-group form-spin-group"><label>Quantity</label>' +
-                        '<input type="text" class="form-control form-spin" name="blueprint_product[' + id + ']" value="1" /> ' +
-                        '</div></div></div>';
-                    $('#blueprint-prd').append(checkBox);
+                    let id = $(this).val();
+                    let url = "/blueprint/search-product/" + id;
+                    let success = function(respon) {
+                        $('#blueprint-prd').append(respon);
+                    }
+                    let dataType = 'html';
+                    $.get(url, success, dataType);
                 });
             } else {
                 html = '';
-                html += '<li><button type="button" class="btn btn-link" data-toggle="collapse" data-target="#suggest">' +
+                html += '<li><button type="button" class="btn btn-link" data-toggle="modal" data-target="#suggestModalx">' +
                     'Not match ? Suggest product</a' +
                     '></li>';
                 $('#search-drop-result').html(html);
@@ -117,15 +115,73 @@ $(document).ready(function() {
     });
 });
 
-$(document).ready(function(){
-    $('#btn-add-attr').click(function(){
+$(document).ready(function() {
+    $('#btn-add-attr').click(function() {
         var id = $(this).val();
         var url = '/blueprint/create-blueprint/add-attribute/' + id;
-        var success = function(result){
+        var success = function(result) {
             $('#add-more-attr').before(result);
-            $('#btn-add-attr').attr('value', (id +1));
+            $('.remove-more-attr').click(function() {
+                $(this).parents(".wrap-attr").remove();
+            });
         };
         var dataType = 'html';
-        $.get(url,success,dataType);
+        $.get(url, success, dataType);
+    });
+});
+
+$(document).ready(function() {
+    $('.delete-request').click(function() {
+        var requestId = $(this).val();
+        var url = "/blueprint/request-blueprint/delete/" + requestId;
+        var success = function(result) {
+            $('#' + requestId).remove();
+        }
+        var dataType = 'text';
+        swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this blueprint request!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Poof! Your blueprint request has been deleted!", {
+                        icon: "success",
+                    });
+                    $.get(url, success, dataType);
+                } else {
+                    swal("Your blueprint request is safe!");
+                }
+            });
+    });
+});
+
+$(document).ready(function() {
+    $('#btn-add-suggest').click(function() {
+        let name = $('#suggestName').val();
+        let price = $('#suggestPrice').val();
+        let categoryId = $('#categoryId').val();
+        let descript = $('#suggestDescript').val();
+        let attri = $('input[name="atrribute[]"]').map(function() {
+            return this.value;
+        }).get();
+
+        let url = '/blueprint/suggest-product';
+        let data = {
+            "name": name,
+            "price": price,
+            "categoryId": categoryId,
+            "descript": descript,
+            "attri": attri
+        }
+        let success = function(result) {
+            $('#suggest-list').append(result);
+            $('#btn-suggest-reset').click();
+            $('#suggestModalx').modal('hide');
+        }
+        let dataType = 'html';
+        $.get(url, data, success, dataType);
     });
 });

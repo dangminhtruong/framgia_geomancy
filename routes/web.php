@@ -70,6 +70,7 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
                 Route::post('/', 'BlueprintController@postEditRequest')->name('postEditRequest');
             });
         });
+        Route::get('delete/{id}', 'BlueprintController@deleteRequest')->name('deleteRequest');
     });
 
     Route::group(['prefix' => 'create-blueprint'], function () {
@@ -80,7 +81,10 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
 
     Route::group(['prefix' => 'search-product'], function () {
         Route::get('/', 'ProductController@getSearchProduct')->name('getSearchProduct');
+        Route::get('/{id}', 'ProductController@searchProductById')->name('searchProductById');
     });
+
+    Route::get('suggest-product', 'SuggestProductController@suggetProduct')->name('suggetProduct');
 
     Route::group(['prefix' => 'create-success'], function () {
         Route::get('/{id}', 'BlueprintController@getCreateDone')->name('getCreateDone');

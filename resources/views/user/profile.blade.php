@@ -26,6 +26,20 @@
             </span>
          </p>
          <div id="home" class="tab-pane fade in active">
+            <p>
+            <ul class="user-meta">
+               <li>
+                  <i class="fa fa-question-circle" aria-hidden="true"></i>
+                  {{ __('Số yêu cầu') }}: {{ Auth::user()->requests->count() }}
+                  <span class="mh-5 text-muted">|</span>
+                  <i class="fa fa-file" aria-hidden="true"></i>
+                  {{ __('Số thiết kế') }}: {{ Auth::user()->blueprints->count() }}
+                  <span class="mh-5 text-muted">|</span>
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  {{ __('Số bài viết') }}: {{ Auth::user()->posts->count() }}
+               </li>
+            </ul>
+            </p>
             <form class="post-form-wrapper" method="POST" action="{{ route('profile-update') }}">
                {{ csrf_field() }}
                <div class="row gap-20">
@@ -82,20 +96,22 @@
             </form>
          </div>
          <div id="menu1" class="tab-pane fade">
-            <p>
-            <ul class="user-meta">
-               <li>
-                  <i class="fa fa-question-circle" aria-hidden="true"></i>
-                  {{ __('Số yêu cầu') }}: {{ Auth::user()->requests->count() }}
-                  <span class="mh-5 text-muted">|</span>
-                  <i class="fa fa-file" aria-hidden="true"></i>
-                  {{ __('Số thiết kế') }}: {{ Auth::user()->blueprints->count() }}
-                  <span class="mh-5 text-muted">|</span>
-                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                  {{ __('Số bài viết') }}: {{ Auth::user()->posts->count() }}
-               </li>
-            </ul>
-            </p>
+               @foreach($blueprits as $blueprint)
+                  <div class="col-md-12 col-sm-12" id="{!! $blueprint->id !!}">
+                  <div class="col-md-1">{!! $blueprint->id !!}</div>
+                  <div class="col-md-7 qoute">
+                     <p>
+                        {!! $blueprint->title !!}
+                     </p>
+                  </div>
+                  <div class="col-md-2">@if($blueprint->id != 0) {!! 'Pending' !!} @else {!! "Approve" !!} @endif</div>
+                  <div class="col-md-2">
+                     <a class="btn btn-sm btn-warning" href="{!! route('getViewBlueprint', [$blueprint->id]) !!}"><i class="fa fa-eye" aria-hidden="true"></i></a> 
+                     <a class="btn btn-sm btn-info" href="{!! route('getUpdateBlueprint', [$blueprint->id]) !!}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
+                     <button class="btn btn-sm btn-danger delete-request" value="{!! $blueprint->id !!}"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                  </div>
+               </div>
+               @endforeach
          </div>
          <div id="menu2" class="tab-pane fade">
             <div class="container-fluid">
@@ -106,7 +122,7 @@
                   <div class="col-md-2">{{ __('Action') }}</div>
                </div>
                @foreach($requestBlueprints as $requestBlueprint)
-               <div class="col-md-12 col-sm-12">
+               <div class="col-md-12 col-sm-12" id="{!! $requestBlueprint->id !!}">
                   <div class="col-md-1">{!! $requestBlueprint->id !!}</div>
                   <div class="col-md-7 qoute">
                      <p>
@@ -116,7 +132,7 @@
                   <div class="col-md-2">@if($requestBlueprint->id != 0) {!! 'Pending' !!} @else {!! "Approve" !!} @endif</div>
                   <div class="col-md-2">
                      <a class="btn btn-sm btn-info" href="{!! route('getEditRequest', [$requestBlueprint->id]) !!}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
-                     <button class="btn btn-sm btn-danger" value="{!! $requestBlueprint->id !!}"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                     <button class="btn btn-sm btn-danger delete-request" value="{!! $requestBlueprint->id !!}"><i class="fa fa-trash" aria-hidden="true"></i></button>
                   </div>
                </div>
                @endforeach

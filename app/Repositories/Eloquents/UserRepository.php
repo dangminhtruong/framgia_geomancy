@@ -108,4 +108,10 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
             ->where('id', $userId)
             ->update(['status' => 0]);
     }
+
+    public function getUserBlueprint($id)
+    {
+        $blueprint = $this->model()->find($id);
+        return $blueprint->blueprints;
+    }
 }

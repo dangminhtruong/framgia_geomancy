@@ -3,9 +3,11 @@
 namespace App\Entities;
 
 use App\Entities\BaseEntity;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class RequestBlueprint extends BaseEntity
 {
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
     protected $table = 'request_blueprints';
 
     protected $fillable = [

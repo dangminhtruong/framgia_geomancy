@@ -3,11 +3,13 @@
 namespace App\Entities;
 
 use App\Entities\BaseEntity;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Blueprint extends BaseEntity
 {
+    use SoftDeletes;
     protected $table = 'blueprints';
-
+    protected $dates = ['deleted_at'];
     protected $fillable = [
         'title',
         'description',
