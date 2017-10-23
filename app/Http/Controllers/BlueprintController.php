@@ -136,9 +136,13 @@ class BlueprintController extends Controller
         return "deleted";
     }
 
-    public function delete($id)
+    public function deleteBlueprint($id)
     {
-        $blueprintDelete = $this->model::find($id);
-        return $blueprintDelete->delete();
+        try {
+            $this->blueprintRepository->delete($id);
+            return "deleted";
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 }

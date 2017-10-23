@@ -112,7 +112,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     public function getUserBlueprint($id)
     {
         $blueprint = $this->model()->find($id);
-        return $blueprint->blueprints;
+        return $blueprint->blueprints()->where('status', '<>', 2)->get();
     }
 
     public function unlockById($userId)

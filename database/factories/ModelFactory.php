@@ -98,7 +98,7 @@ $factory->define(App\Entities\Gallery::class, function (Faker\Generator $faker) 
     $blueprint = DB::table('blueprints')->pluck('id')->toArray();
     $blueprint_random_id = array_rand($blueprint, 2);
     return [
-        'image_name' => $faker->imageUrl(400, 300),
+        'image_name' => 'heroes.jpg',
         'blueprints_id' => $blueprint_random_id[1],
         'created_at' => $faker->dateTime($max = 'now', $timezone = date_default_timezone_get()),
     ];
@@ -244,6 +244,7 @@ $factory->define(App\Entities\RequestBlueprint::class, function (Faker\Generator
     $user = DB::table('users')->pluck('id')->toArray();
     $user_random_id = array_rand($user, 2);
     return [
+        'title' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
         'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
         'improve_blueprints_id' => $improve_blueprint_random_id[1],
         'users_id' => $user_random_id[1],

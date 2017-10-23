@@ -64,6 +64,13 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
         $result = $this->model::save($data);
     }
 
+    public function delete($id)
+    {
+        $blueprintDelete = $this->model::find($id);
+        $blueprintDelete->status = 2;
+        return $blueprintDelete->save();
+    }
+
     public function createBlueprint($request)
     {
         $blueprintData = [];
@@ -173,25 +180,14 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
         }
     }
 
-    public function getTopTopic()
+    public function getNewestBueprint()
     {
-        $topTopic = $this->model::select('topics_id', DB::raw('count(*) as blueprints'))->
-        groupBy('topics_id')->orderBy('blueprints', 'desc')->skip(0)->take(6)->get();
-
-        try {
-            $topTenTopic = [];
-            foreach ($topTopic as $topic) {
-                $topicName = $this->topicRepository->findById($topic->topics_id)->name;
-                $topTenTopic[$topicName] = $topic->blueprints;
-            }
-            return $topTenTopic;
-        } catch (Exception $e) {
-            return $this->formResponse->response($request, __('Có lỗi xảy ra, vui lòng thử lại'));;
-        }
+        $topSixNewest = $this->model::orderBy('id', 'desc')->skip(0)->take(6)->get();
+        return $topSixNewest;
     }
 
-    public function getTopicImg($topicId)
+    public function countSummary()
     {
-        return $this->topicRepository->getTopicImages($topicId);
+        return $this->model::count();
     }
 }

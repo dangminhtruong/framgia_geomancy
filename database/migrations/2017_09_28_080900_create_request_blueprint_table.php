@@ -15,6 +15,7 @@ class CreateRequestBlueprintTable extends Migration
     {
         Schema::create('request_blueprints', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('title');
             $table->text('description');
             $table->tinyInteger('status')->default(0);
             $table->integer('improve_blueprints_id')->unsigned()->nullable();

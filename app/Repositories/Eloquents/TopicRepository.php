@@ -31,10 +31,21 @@ class TopicRepository extends AbstractRepository implements TopicRepositoryInter
         return $result;
     }
 
+    public function findIdWhereIn($condition)
+    {
+        $result = $this->model::whereIn('id', $condition)->get();
+        return $result;
+    }
+
     public function getTopicImages($topicId)
     {
         $result = $this->model::find($topicId)->images;
         return $result;
+    }
+
+    public function countSummary()
+    {
+        return $this->model::count();
     }
 
 }

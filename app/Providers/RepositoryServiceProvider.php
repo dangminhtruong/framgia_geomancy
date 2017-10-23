@@ -43,6 +43,10 @@ class RepositoryServiceProvider extends ServiceProvider
         'requestBlueprint' => [
             \App\Repositories\Contracts\RequestBlueprintRepositoryInterface::class,
             \App\Repositories\Eloquents\RequestBlueprintRepository::class
+        ],
+        'post' => [
+            \App\Repositories\Contracts\PostRepositoryInterface::class,
+            \App\Repositories\Eloquents\PostRepository::class
         ]
     ];
 

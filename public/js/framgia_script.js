@@ -54,12 +54,12 @@ $(document).ready(function() {
                     $('#search-drop-result').html(html);
                 };
                 $('.product-name').click(function() {
-                    let id = $(this).val();
-                    let url = "/blueprint/search-product/" + id;
-                    let success = function(respon) {
+                    var id = $(this).val();
+                    var url = "/blueprint/search-product/" + id;
+                    var success = function(respon) {
                         $('#blueprint-prd').append(respon);
                     }
-                    let dataType = 'html';
+                    var dataType = 'html';
                     $.get(url, success, dataType);
                 });
             } else {
@@ -96,22 +96,22 @@ $(document).ready(function() {
         }
         var dataType = 'text';
         swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this imaginary file!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
             .then((willDelete) => {
-                if (willDelete) {
-                    swal("Poof! Your imaginary file has been deleted!", {
-                        icon: "success",
-                    });
-                    $.get(url, data, success, dataType);
-                } else {
-                    swal("Your imaginary file is safe!");
-                }
-            });
+            if (willDelete) {
+                swal("Poof! Your imaginary file has been deleted!", {
+                    icon: "success",
+                });
+                $.get(url, data, success, dataType);
+            } else {
+                swal("Your imaginary file is safe!");
+    }
+    });
     });
 });
 
@@ -139,49 +139,84 @@ $(document).ready(function() {
         }
         var dataType = 'text';
         swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this blueprint request!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this blueprint request!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
             .then((willDelete) => {
-                if (willDelete) {
-                    swal("Poof! Your blueprint request has been deleted!", {
-                        icon: "success",
-                    });
-                    $.get(url, success, dataType);
-                } else {
-                    swal("Your blueprint request is safe!");
-                }
-            });
+            if (willDelete) {
+                swal("Poof! Your blueprint request has been deleted!", {
+                    icon: "success",
+                });
+                $.get(url, success, dataType);
+            } else {
+                swal("Your blueprint request is safe!");
+    }
+    });
     });
 });
 
 $(document).ready(function() {
     $('#btn-add-suggest').click(function() {
-        let name = $('#suggestName').val();
-        let price = $('#suggestPrice').val();
-        let categoryId = $('#categoryId').val();
-        let descript = $('#suggestDescript').val();
-        let attri = $('input[name="atrribute[]"]').map(function() {
+        var name = $('#suggestName').val();
+        var price = $('#suggestPrice').val();
+        var categoryId = $('#categoryId').val();
+        var descript = $('#suggestDescript').val();
+        var attri = $('input[name="atrribute[]"]').map(function() {
             return this.value;
         }).get();
 
-        let url = '/blueprint/suggest-product';
-        let data = {
+        var url = '/blueprint/suggest-product';
+        var data = {
             "name": name,
             "price": price,
             "categoryId": categoryId,
             "descript": descript,
             "attri": attri
         }
-        let success = function(result) {
+        var success = function(result) {
             $('#suggest-list').append(result);
-            $('#btn-suggest-reset').click();
+            $('#btn-suggest-reset').trigger('click');
             $('#suggestModalx').modal('hide');
+            $('.remove-more-attr').trigger("click");
         }
-        let dataType = 'html';
+        var dataType = 'html';
         $.get(url, data, success, dataType);
+    });
+});
+
+$(document).ready(function() {
+    $('.delete-blueprint').click(function() {
+        var id = $(this).val();
+        var url = '/blueprint/delete-blueprint/' + id;
+        var data = {
+            "blueprintId": id
+        }
+        var success = function(res) {
+            if (res === 'deleted') {
+                $('#blueprint' + id).remove();
+            }
+        }
+        var dataType = 'text';
+
+        swal({
+            title: "Are you sure?",
+            text: "Once devared, you will not be able to recover this blueprint!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+            if (willDelete) {
+                swal("Poof! Your blueprint has been deleted!", {
+                    icon: "success",
+                });
+                $.get(url, data, success, dataType);
+            } else {
+                swal("Your blueprint is safe!");
+    }
+    });
     });
 });

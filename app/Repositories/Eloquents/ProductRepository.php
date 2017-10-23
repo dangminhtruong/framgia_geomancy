@@ -60,4 +60,14 @@ class ProductRepository extends AbstractRepository implements ProductRepositoryI
             ->where('id', $productId)
             ->update($data);
     }
+
+    public function getTopNewestProduct()
+    {
+        return $this->model()->orderBy('id', 'desc')->skip(0)->take(6)->get();
+    }
+
+    public function countSummary()
+    {
+        return $this->model()->count();
+    }
 }

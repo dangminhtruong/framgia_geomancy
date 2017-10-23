@@ -9,7 +9,7 @@
             <div id="navbar" class="navbar-nav-wrapper">
                 <ul class="nav navbar-nav" id="responsive-menu">
                     <li>
-                        <a href="#">{{ __('Nav.Home') }}</a>
+                        <a href="{{ route('home') }}">{{ __('Nav.Home') }}</a>
                     </li>
                     <li>
                         <a href="#">{{ __('Nav.Product') }}</a>
@@ -133,12 +133,9 @@
                         <ul>
                             <li>
                                 <a href="#">{{ __('Nav.AllBlueprints') }}</a>
-                                <ul>
-                                    <li><a href="#">{{ __('Nav.FishTanks') }}</a></li>
-                                </ul>
                             </li>
-                            <li><a href="#">{{ __('Nav.CloneBlueprints') }}</a></li>
-                            <li><a href="#">{{ __('Nav.CreateBlueprints') }}</a></li>
+                            <li><a href="{!! route('getRequestFishTanksBlueprint') !!}">{{ __('User.Request.Blueprint') }}</a></li>
+                            <li><a href="{{ route('getCreateBlueprint') }}">{{ __('Nav.CreateBlueprints') }}</a></li>
                         </ul>
                     </li>
                 </ul>
