@@ -237,6 +237,7 @@ $(document).ready(function() {
         }, null);
     });
 
+    //===== LOCK ACCOUNT =====//
     $('#_user-table').on('click', '._lock_account', function(e) {
         e.preventDefault();
         var email = $(this).data('email');
@@ -272,5 +273,35 @@ $(document).ready(function() {
 
             return false;
         }, null);
-    })
+    });
+
+    //===== UNLOCK ACCOUNT =====//
+    $('#_user-table').on('click', '._unlock_account', function(e) {
+        e.preventDefault();
+        var email = $(this).data('email');
+        var confirmLock = confirm('Xác nhận mở khóa tài khoản: ' + email);
+        if (!confirmLock) {
+            toastr.info('Đã hủy thao tác');
+            return false;
+        }
+
+        var userId = $(this).data('user');
+        var data = {
+            userId: userId,
+            _token: $('meta[name="csrf-token"]').attr('content')
+        };
+
+        $('#load_scr').css('display', 'table');
+        ajaxSubmit('admin/user/unlock', 'POST', data, function(result) {
+            if (result.code == 200) {
+                $('#user' + userId).remove();
+                toastr.success(result.message);
+
+                return true;
+            }
+            toastr.warning(result.message);
+
+            return false;
+        }, null);
+    });
 });

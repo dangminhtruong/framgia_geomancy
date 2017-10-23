@@ -19,7 +19,7 @@ function ajaxSubmit(url, method, data, success_callback, error_callback)
         },
         statusCode: {
             403: function() {
-                toastr.warning('Có lỗi xảy ra, vui lòng thử lại');
+                toastr.warning('Tài khoản không được cấp quyền');
                 return false;
             },
             422: function(result) {

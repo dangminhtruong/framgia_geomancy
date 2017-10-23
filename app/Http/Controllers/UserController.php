@@ -11,7 +11,9 @@ use App\Framgia\Helpers\Paginator;
 use App\Http\Requests\PaginateUserRequest;
 use App\Framgia\Response\JsonResponse;
 use App\Http\Requests\LockAccountRequest;
+use App\Http\Requests\UnlockAccountRequest;
 use App\Events\LockAccountEvent;
+use App\Events\UnlockAccountEvent;
 use Illuminate\Support\Facades\DB;
 use Auth;
 
@@ -118,6 +120,29 @@ class UserController extends Controller
             DB::commit();
 
             return $this->jsonResponse->success(__('Khóa tài khoản thành công'));
+        }
+        DB::rollback();
+
+        return $this->jsonResponse->fail(__('Có lỗi xảy ra, vui lòng thử lại'));
+    }
+
+    public function unlockAccount(UnlockAccountRequest $request)
+    {
+        DB::beginTransaction();
+        try {
+            $result = $this->userRepository->unlockById($request->userId);
+        } catch (Exception $e) {
+            DB::rollback();
+
+            return $this->jsonResponse->queryError(__('Có lỗi xảy ra, vui lòng thử lại'));
+        }
+
+        if ($result) {
+            $user = $this->userRepository->findById($request->userId);
+            event(new UnlockAccountEvent($user->email));
+            DB::commit();
+
+            return $this->jsonResponse->success(__('Mở khóa tài khoản thành công'));
         }
         DB::rollback();
 
