@@ -12,6 +12,7 @@ use App\Http\Requests\PaginateUserRequest;
 use App\Framgia\Response\JsonResponse;
 use App\Http\Requests\LockAccountRequest;
 use App\Http\Requests\UnlockAccountRequest;
+use App\Http\Requests\SearchUserRequest;
 use App\Events\LockAccountEvent;
 use App\Events\UnlockAccountEvent;
 use Illuminate\Support\Facades\DB;
@@ -147,5 +148,29 @@ class UserController extends Controller
         DB::rollback();
 
         return $this->jsonResponse->fail(__('Có lỗi xảy ra, vui lòng thử lại'));
+    }
+
+    public function search(Request $request)
+    {
+        if ($request->type == config('app.lock_account')) {
+            $result = $this->userRepository->searchLockAccountByEmail($request->email);
+        } else {
+            $result = $this->userRepository->searchActiveAccountByEmail($request->email);
+        }
+        $users = [];
+        $paginate = '';
+        if (count($result)) {
+            $collection = $result->chunk(10);
+            $users = $collection[$request->page - 1];
+            $totalResult = $result->count();
+            $paginate = Paginator::paginate($config = [
+                'total_record' => $totalResult,
+                'current_page' => $request->page,
+                'link' => $request->url() . "?search=$request->email&type=$request->type&page={?}",
+            ]);
+
+            return view('admin.user.user', compact('users', 'paginate'));
+        }
+        return view('admin.user.user', compact('users', 'paginate'));
     }
 }

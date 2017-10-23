@@ -77,7 +77,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'vi',
 
     /*
     |--------------------------------------------------------------------------
@@ -232,4 +232,5 @@ return [
         'HTML' => Collective\Html\HtmlFacade::class,
     ],
 
+    'lock_account' => 2,
 ];

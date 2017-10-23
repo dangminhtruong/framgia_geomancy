@@ -121,4 +121,30 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
             ->where('id', $userId)
             ->update(['status' => 1]);
     }
+
+    public function searchLockAccountByEmail($email)
+    {
+        return $this->model()
+            ->where([
+                ['email', 'like', '%' . $email . '%'],
+                ['role', '<>', 1],
+                ['status', 0],
+            ])
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+    }
+
+    public function searchActiveAccountByEmail($email)
+    {
+        return $this->model()
+            ->where([
+                ['email', 'like', '%' . $email . '%'],
+                ['role', '<>', 1],
+                ['status', 1],
+            ])
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+    }
 }

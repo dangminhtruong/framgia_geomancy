@@ -55,6 +55,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
         Route::post('/', 'UserController@paginateUser');
         Route::post('lock', 'UserController@lockAccount');
         Route::post('unlock', 'UserController@unlockAccount');
+        Route::get('/search', 'UserController@search')->name('user-search');
     });
 });
 

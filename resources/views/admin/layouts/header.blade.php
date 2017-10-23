@@ -8,8 +8,8 @@
                     </a>
                 </div>
             </div>
-            <a class="navbar-brand" href="index.html">
-                {{ __("ADMIN") }}
+            <a class="navbar-brand" href="/">
+                {{ __("HOME") }}
             </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">

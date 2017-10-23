@@ -9,6 +9,11 @@ $(document).ready(function() {
         "bPaginate": false
     });
 
+    $(window).on('load', function() {
+        $('#_search_type').val($('#_user_category').val());
+    });
+
+
     //===== CATEGORY CHANGE =====//
     $('#_category').on('change', function(e){
         e.preventDefault();
@@ -180,6 +185,7 @@ $(document).ready(function() {
         $('#_user-table').html('<div class="text-center"><img src="' + SITE_URL + 'images/ajax-loader.svg"/></div>');
         ajaxSubmit('admin/user', 'POST', data, function(result) {
             $('#_user-table').html(result.data.view);
+            $('#_search_type').val($('#_user_category').val());
             $('#tableExample3').DataTable({
                 dom: "<'row'<'col-sm-4 col-sm-offset-8'f>>tp",
                 "aaSorting": [],
