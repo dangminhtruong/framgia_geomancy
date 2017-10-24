@@ -233,4 +233,6 @@ return [
     ],
 
     'lock_account' => 2,
+    'pending_request' => 2,
+    'approved_request' => 3,
 ];

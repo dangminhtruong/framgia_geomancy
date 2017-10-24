@@ -42,4 +42,25 @@ class RequestBlueprintRepository extends AbstractRepository implements RequestBl
     {
         return $this->model::count();
     }
+
+    public function getPendingRequest()
+    {
+        return $this->model::with(['user'])
+            ->where('status', 2)
+            ->get();
+    }
+
+    public function getApprovedRequest()
+    {
+        return $this->model::with(['user'])
+            ->where('status', 1)
+            ->get();
+    }
+
+    public function getNewRequest()
+    {
+        return $this->model::with(['user'])
+            ->where('status', 0)
+            ->get();
+    }
 }
