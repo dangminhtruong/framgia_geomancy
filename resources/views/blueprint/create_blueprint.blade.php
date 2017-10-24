@@ -29,6 +29,9 @@
                                     title="Select placeholder" data-selected-text-format="count > 6"
                                     data-done-button="true" data-done-button-text="OK">
                                 @foreach($categories as $category )
+                                @if($category->id == 1)
+                                    <option value="{!! $category->id !!}" selected>{!! $category->name !!}</option>
+                                @endif  
                                     <option value="{!! $category->id !!}">{!! $category->name !!}</option>
                                 @endforeach
                             </select>
@@ -90,8 +93,6 @@
                                         <div class="icon">
                                             <i class="ti-plus"></i>
                                         </div>
-                                        <h4>{{ __('CreateBlueprint.RemideSigup') }}. </h4>
-                                        <a href="#" class="btn">{{ __('SignUp') }}</a>
                                     </div>
                                     <h4 class="section-title">{{  __('CreateBlueprint.About') }}</h4>
                                     <p>{{ __('CreateBlueprint.About.pTag') }}</p>
@@ -171,8 +172,6 @@
                                     <div class="mb-25"></div>
                                     <button href="requested-create-done.html" class="btn btn-primary btn-wide">Submit
                                     </button>
-                                    <a href="#"
-                                       class="btn btn-primary btn-wide btn-border">{{ __('CreateBlueprint.SaveDraft') }}</a>
                                 </div>
                             </div>
                         </form>

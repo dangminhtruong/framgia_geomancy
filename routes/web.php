@@ -100,5 +100,14 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
         Route::get("remove-gallery/{id}", "BlueprintController@getRemoveGallery")->name('getRemoveGallery');
     });
 
+    Route::get('delete-blueprint/{id}', 'BlueprintController@deleteBlueprint')->name('deleteBlueprint');
+
     Route::get('view-blueprint/{id}', 'BlueprintController@getViewBlueprint')->name('getViewBlueprint');
+});
+
+Route::group(['prefix' => 'post'], function() {
+    Route::group(['prefix' => 'write'], function() {
+        Route::get('/', 'PostController@writePost')->name('writePost');
+        Route::post('/', 'PostController@postWritePost')->name('postWritePost');
+    });
 });

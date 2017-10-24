@@ -37,4 +37,9 @@ class RequestBlueprintRepository extends AbstractRepository implements RequestBl
     {
         return $this->model::find($id)->delete();
     }
+
+    public function countSummary()
+    {
+        return $this->model::count();
+    }
 }
