@@ -26,10 +26,9 @@
                 </a>
                 <ul id="forms" class="nav nav-second collapse">
                     <li><a href="#">{{ __('Thống kê') }}</a></li>
-                    <li><a href="#">{{ __('Thiết kế đã duyệt') }}</a></li>
-                    <li><a href="#">{{ __('Thiết kế chờ duyệt') }}</a></li>
-                    <li><a href="#">{{ __('Thiết kế không duyệt') }}</a></li>
-                    <li><a href="#">{{ __('Thêm thiết kế') }}</a></li>
+                    <li><a href="{{ route('request-blueprint', ['type' => 1]) }}">{{ __('Thiết kế mới') }}</a></li>
+                    <li><a href="{{ route('request-blueprint', ['type' => 3]) }}">{{ __('Thiết kế đã duyệt') }}</a></li>
+                    <li><a href="{{ route('request-blueprint', ['type' => 2]) }}">{{ __('Thiết kế chờ') }}</a></li>
                 </ul>
             </li>
             <li>

@@ -57,6 +57,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
         Route::post('unlock', 'UserController@unlockAccount');
         Route::get('/search', 'UserController@search')->name('user-search');
     });
+
+    Route::prefix('request')->group(function () {
+        Route::get('/{type}', 'RequestManagerController@index')->name('request-blueprint');
+        Route::post('/', 'RequestManagerController@viewRequestBlueprint');
+    });
 });
 
 Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function () {
