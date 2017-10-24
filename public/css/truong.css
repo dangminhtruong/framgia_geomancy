@@ -1,44 +1,66 @@
-.no-bg{
-	background-image:url('/images/hero-header/03.jpg');
-}
-.edit-gallery-img{
-	max-height: 20vh;
-}
-.img-btn{
-	margin: auto;
-}
-#img_gallery{
-	margin-bottom: 5vh;
+.no-bg {
+    background-image: url('/images/hero-header/03.jpg');
 }
 
-.galleryDetail{
-  display:inline-block;
-  position:relative;
-  width:auto;
-  vertical-align:top;
-  margin:5vh;
+.edit-gallery-img {
+    max-height: 20vh;
 }
-.btn-change-img{
-  position:absolute;
-  top:0;
-  right:0;
-  width:27px;
-  height:27px;
-  line-height:20px;
-  margin-right:1vh;
+
+.img-btn {
+    margin: auto;
 }
-.breadcrumb-image-bg{
-  background-image:url('/images/hero-header/02.jpg');
+
+#img_gallery {
+    margin-bottom: 5vh;
 }
-hr.style1{
-  border-top: 1px solid #8c8b8b;
+
+.galleryDetail {
+    display: inline-block;
+    position: relative;
+    width: auto;
+    vertical-align: top;
+    margin: 5vh;
 }
-#user_name{
-  margin-top: 3vh;
+
+.btn-change-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 27px;
+    height: 27px;
+    line-height: 20px;
+    margin-right: 1vh;
 }
-.qoute{
-  width: 80vh;
-  height: 15vh;
-  overflow-x: hidden;  
-  overflow-y: hidden;
+
+.breadcrumb-image-bg {
+    background-image: url('/images/hero-header/02.jpg');
 }
+
+hr.style1 {
+    border-top: 1px solid #8c8b8b;
+}
+
+#user_name {
+    margin-top: 3vh;
+}
+
+.qoute {
+    width: 80vh;
+    height: 15vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.tab-pane {
+    min-height: 50vh;
+}
+
+.blueprint-description {
+    max-height: 19vh;
+    overflow-y: hidden;
+}
+
+.breadcrumb-image-bg {
+    background-image: url('/images/hero-header/05.jpg');
+}
+

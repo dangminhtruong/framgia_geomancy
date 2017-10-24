@@ -126,7 +126,7 @@
                         <div class="col-md-1">{!! $requestBlueprint->id !!}</div>
                         <div class="col-md-7 qoute">
                            <p>
-                              {!! $requestBlueprint->description !!}
+                              {!! $requestBlueprint->title !!}
                            </p>
                         </div>
                         <div class="col-md-2">@if($requestBlueprint->id != 0) {!! __('Pending') !!} @else {!! __('Approve') !!} @endif</div>

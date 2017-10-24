@@ -4,6 +4,7 @@ namespace App\Entities;
 
 use App\Entities\BaseEntity;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 class RequestBlueprint extends BaseEntity
 {
     use SoftDeletes;
@@ -11,6 +12,7 @@ class RequestBlueprint extends BaseEntity
     protected $table = 'request_blueprints';
 
     protected $fillable = [
+        'title',
         'description',
         'status',
         'improve_blueprints_id',

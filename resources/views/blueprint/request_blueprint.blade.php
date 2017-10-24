@@ -17,16 +17,22 @@
       <form method="post" action="#">
          <input type="hidden" name="_token" value="{!! csrf_token() !!}">
          <div class="form-group">
+            <label for="example-date-input" class="col-2 col-form-label">{{ __('Title') }}</label>
+            <div class="col-10">
+               <textarea class="form-control" id="" name="request_blueprint_title" rows="2"
+                  required></textarea>
+            </div>
+         </div>
+         <div class="form-group">
             <label for="example-date-input" class="col-2 col-form-label">{{ __('Form.Descriptions') }}</label>
             <div class="col-10">
                <textarea class="form-control" id="DescriptionsTextArea" name="customer_description" rows="15"
                   required></textarea>
             </div>
          </div>
-
          <div class="form-group">
             <div class="col-md-2 row">
-               <button type="submit" class="btn btn-success">Submit</button>
+               <button type="submit" class="btn btn-warning">Submit</button>
             </div>
          </div>
    </div>
@@ -38,23 +44,23 @@
          </div>
          <div class="col-md-12 intro_service_detail">
             <i class="fa fa-check" aria-hidden="true"> </i>
-            Something about ours service.
+            {{ __('Something about ours service') }}.
          </div>
          <div class="col-md-12 intro_service_detail">
             <i class="fa fa-check " aria-hidden="true"></i>
-            Something about ours service.
+            {{ __('Something about ours service') }}.
          </div>
          <div class="col-md-12 intro_service_detail">
             <i class="fa fa-check" aria-hidden="true"></i>
-            Something about ours service.
+            {{ __('Something about ours service') }}.
          </div>
          <div class="col-md-12 intro_service_detail">
             <i class="fa fa-check" aria-hidden="true"></i>
-            Something about ours service.
+            {{ __('Something about ours service') }}.
          </div>
          <div class="col-md-12 intro_service_detail">
             <i class="fa fa-check" aria-hidden="true"></i>
-            Something about ours service.
+            {{ __('Something about ours service') }}.
          </div>
       </div>
       <div class="col-md-12">
@@ -62,22 +68,22 @@
             <b> {{ __('Request.Blueprint') }} </b>
          </div>
          <div class="col-md-12">
-            <img class="img-responsive" src="images/ico/ico01.png">
+            <img class="img-responsive" src="{!! url('images/ico/ico01.png') !!}">
          </div>
          <div class="col-md-12">
-            Require fish tank blueprint
+            {{ __('Require fish tank blueprint') }}
          </div>
          <div class="col-md-12">
-            <img class="img-responsive" src="images/ico/ico03.png">
+            <img class="img-responsive" src="{!! url('images/ico/ico03.png') !!}">
          </div>
          <div class="col-md-12">
-            Choice the worker
+            {{ __('Choice the suggest') }}
          </div>
          <div class="col-md-12">
-            <img class="img-responsive" src="images/ico/ico02.png">
+            <img class="img-responsive" src="{!! url('images/ico/ico02.png') !!}">
          </div>
          <div class="col-md-12">
-            Payments
+            {{ __('Payments') }}
          </div>
       </div>
    </div>
