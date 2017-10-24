@@ -98,10 +98,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">{{ __('Nav.AllBlueprint') }}</a>
-                                <ul>
-                                    <li><a href="#">{{ __('Nav.FishTanks') }}</a></li>
-                                </ul>
+                                <a href="{{route('listBlueprint')}}">{{ __('Nav.AllBlueprint') }}</a>
                             </li>
                         </ul>
                     </li>
@@ -145,9 +142,7 @@
                 <li class="dropdown avatar-box">
                     <a href="#" class="dropdown-toggle flex-tag" data-toggle="dropdown" role="button"
                         aria-expanded="false">
-                        <img class="avatar"
-                            src="{{ asset('images/profile.jpg') }}"
-                            class="thumb"/>
+                        <img class="avatar" src="{!! url('images/user.jpg') !!}"/>
                         <i class="fa fa-chevron-down arrow-down" aria-hidden="true"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">

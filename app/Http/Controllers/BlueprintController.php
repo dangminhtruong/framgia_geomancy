@@ -145,4 +145,10 @@ class BlueprintController extends Controller
             return $e->getMessage();
         }
     }
+
+    public function listBlueprint()
+    {
+        $listBlueprint = $this->blueprintRepository->listAllBlueprint();
+        return view('blueprint.list_blueprint', compact('listBlueprint'));
+    }
 }

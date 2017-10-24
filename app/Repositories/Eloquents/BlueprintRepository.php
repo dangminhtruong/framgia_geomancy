@@ -115,6 +115,7 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
     {
 
         $requestBlueprint = RequestBlueprint::create([
+            'title' => $request->request_blueprint_title,
             'users_id' => Auth::user()->id,
             'description' => $request->customer_description
         ]);
@@ -189,5 +190,10 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
     public function countSummary()
     {
         return $this->model::count();
+    }
+
+    public function listAllBlueprint()
+    {
+        return $this->model::with('user')->paginate(16);
     }
 }
