@@ -97,6 +97,14 @@
             </div>
             <div id="menu1" class="tab-pane fade">
                @foreach($blueprits as $blueprint)
+
+                  <div class="col-md-12 col-sm-12">
+                     <div class="col-md-1">{{ __('STT') }}</div>
+                     <div class="col-md-7 qoute">{{ __('Title') }}</div>
+                     <div class="col-md-2">{{ __('Status') }}</div>
+                     <div class="col-md-2">{{ __('Action') }}</div>
+                  </div>
+
                   <div class="col-md-12 col-sm-12" id="blueprint{!! $blueprint->id !!}">
                      <div class="col-md-1">{!! $blueprint->id !!}</div>
                      <div class="col-md-7 qoute">
@@ -140,13 +148,58 @@
             </div>
             <div id="menu3" class="tab-pane fade">
                <!-------TAM thoi chua I18n-------->
-               <h3>Menu 3</h3>
-               <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+               <div class="col-md-12 col-sm-12">
+                     <div class="col-md-1">{{ __('STT') }}</div>
+                     <div class="col-md-7 qoute">{{ __('Title') }}</div>
+                     <div class="col-md-2">{{ __('Status') }}</div>
+                     <div class="col-md-2">{{ __('Action') }}</div>
+               </div>
+                
+                   @foreach(Auth::user()->posts as $post)
+                      <div class="col-md-12 col-sm-12">
+                         <div class="col-md-1">{{ $post->id }}</div>
+                        <div class="col-md-6 qoute">{{ $post->title }}</div>
+                        <div class="col-md-2">
+                           @if($post->publish_flg == 0)
+                              <span id="publish{!! $post->id !!}">Unpublish</span><br/>
+                              <label class="switch">
+                                <input type="checkbox" class="pusblish_status" value="{!! $post->id !!}">
+                                <span class="slider round"></span>
+                              </label>
+                           @else
+                              <span id="publish{!! $post->id !!}">Published</span><br/>
+                              <label class="switch">
+                                <input type="checkbox" class="pusblish_status" checked value="{!! $post->id !!}">
+                                <span class="slider round"></span>
+                              </label>
+                           @endif
+                        </div>
+                        <div class="col-md-3">
+                           <button type="button" class="btn btn-info btn-xs" value="{{ $post->id }}">
+                              View
+                           </button>
+                           <button type="button" class="btn btn-warning btn-xs" value="{{ $post->id }}">
+                              Edit
+                           </button>
+                           <button type="button" class="btn btn-danger btn-xs" value="{{ $post->id }}">
+                              Delete
+                           </button>
+                        </div>
+                     </div>
+                  @endforeach()
+               
             </div>
             <div id="menu4" class="tab-pane fade">
                <!-------Tam thoi chua I18n-------->
-               <h3>Menu 3</h3>
-               <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+               <div class="col-md-2 col-xs-2">
+                  
+               </div>
+               <div class="col-md-8 col-xs-8">
+                 
+               </div>
+               <div class="col-md-2 col-xs-2">
+                  <button type="button" class="btn btn-link">Read</button>
+               </div>
             </div>
          </div>
       </div>
