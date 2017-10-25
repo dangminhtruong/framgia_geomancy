@@ -84,6 +84,14 @@ class User extends Authenticatable
     }
 
     /**
+     *  Get the request notifies belong to this user
+     */
+    public function requestNotifies()
+    {
+        return $this->hasMany(RequestNotification::class, 'users_id');
+    }
+
+    /**
      *  Convert json to array
      */
     public function setPasswordAttribute($value)
