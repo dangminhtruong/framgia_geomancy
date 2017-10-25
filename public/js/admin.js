@@ -355,7 +355,7 @@ $(document).ready(function() {
     });
 
     //===== APPROVE REQUEST =====//
-    $('#_approve_request').on('click', function(e) {
+    $('._approve_request').on('click', function(e) {
         e.preventDefault();
 
         var isTrue = confirm('Phê duyệt yêu cầu này?');
@@ -365,6 +365,6 @@ $(document).ready(function() {
 
             return false;
         }
-        $('#_approve_form').submit();
+        $('._approve_form').submit();
     })
 });

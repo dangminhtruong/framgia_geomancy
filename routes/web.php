@@ -63,6 +63,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
         Route::post('/', 'RequestManagerController@viewRequestBlueprint');
         Route::get('/detail/{requestId}', 'RequestManagerController@viewRequestDetail')->name('request-detail');
         Route::post('approve', 'RequestManagerController@approve')->name('request-approve');
+        Route::post('unapprove', 'RequestManagerController@unapprove')->name('request-unapprove');
     });
 });
 
@@ -108,6 +109,8 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
     });
 
     Route::get('delete-blueprint/{id}', 'BlueprintController@deleteBlueprint')->name('deleteBlueprint');
+
+    Route::get('fork-blueprint/{id}', 'ImproveBlueprintController@forkBLueprint')->name('forkBLueprint');
 
     Route::get('view-blueprint/{id}', 'BlueprintController@getViewBlueprint')->name('getViewBlueprint');
     Route::get('list-blueprint', 'BlueprintController@listBlueprint')->name('listBlueprint');

@@ -6,6 +6,7 @@
 /.idea
 /.vagrant
 /public/bowerrc
+/public/images/gallery
 Homestead.json
 Homestead.yaml
 npm-debug.log
