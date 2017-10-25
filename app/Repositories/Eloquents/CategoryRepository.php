@@ -3,15 +3,18 @@
 namespace App\Repositories\Eloquents;
 
 use App\Repositories\Contracts\CategoryRepositoryInterface;
+use App\Repositories\Contracts\ProductRepositoryInterface as ProductRepository;
 use App\Entities\Category;
 
 class CategoryRepository extends AbstractRepository implements CategoryRepositoryInterface
 {
     protected $model;
+    protected $productRepository;
 
-    function __construct()
+    function __construct(ProductRepository $productRepository)
     {
         $this->model = $this->model();
+        $this->productRepository = $productRepository;
     }
 
     public function model()
@@ -42,5 +45,10 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
     public function count()
     {
         return $this->model::count();
+    }
+
+    public function categoryProducts($cateId)
+    {
+        return $this->productRepository->categoryProduct($cateId);
     }
 }

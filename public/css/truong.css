@@ -64,3 +64,7 @@ hr.style1 {
     background-image: url('/images/hero-header/05.jpg');
 }
 
+.request-blueprint {
+    background-image: none;
+    background-color: white;
+}

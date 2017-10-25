@@ -70,4 +70,10 @@ class ProductRepository extends AbstractRepository implements ProductRepositoryI
     {
         return $this->model()->count();
     }
+
+    public function categoryProduct($cateId)
+    {
+        return $this->model()->select('id', 'name', 'price', 'image', 'description')
+            ->where('categories_id', $cateId)->paginate(16);
+    }
 }

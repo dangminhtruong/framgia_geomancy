@@ -2,7 +2,7 @@
 @section('content')
 <div class="hero img-bg-01">
 </div>
-<div class="container">
+<div class="container request-blueprint">
    <div class="col-md-8 form_request_bblueprint">
       @if(count($errors) > 0)
       <div class="col-md-12">
@@ -37,7 +37,7 @@
          </div>
    </div>
    </form>
-   <div class="col-md-4">
+   <div class="col-md-4 left-intro-request">
       <div class="col-md-12 intro_service">
          <div class="col-md-12 col-md-push-4">
             <i class="fa fa-trophy fa-3x" aria-hidden="true"></i>

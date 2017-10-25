@@ -151,4 +151,10 @@ class BlueprintController extends Controller
         $listBlueprint = $this->blueprintRepository->listAllBlueprint();
         return view('blueprint.list_blueprint', compact('listBlueprint'));
     }
+
+    public function listNewBlueprint()
+    {
+        $listNewBlueprint = $this->blueprintRepository->listWeekBlueprint();
+        return view('blueprint.list_new_blueprint', compact('listNewBlueprint'));
+    }
 }

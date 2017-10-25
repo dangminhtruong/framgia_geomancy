@@ -13,6 +13,7 @@ use App\Entities\Blueprint;
 use App\Entities\RequestBlueprint;
 use App\Framgia\Helpers\FramgiaHelper;
 use Auth, Hash, DB;
+use Carbon\Carbon;
 
 class BlueprintRepository extends AbstractRepository implements BlueprintRepositoryInterface
 {
@@ -195,5 +196,11 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
     public function listAllBlueprint()
     {
         return $this->model::with('user')->paginate(16);
+    }
+
+    public function listWeekBlueprint()
+    {
+        $month = Carbon::now()->month;
+        return $this->model::whereMonth('created_at', $month)->with('user')->paginate(16);
     }
 }
