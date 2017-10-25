@@ -20,7 +20,7 @@ class RequestNotification extends Model
      */
     public function user()
     {
-        return $this->hasOne(User::class, 'users_id');
+        return $this->belongsTo(User::class, 'users_id');
     }
 
     /**
@@ -28,6 +28,14 @@ class RequestNotification extends Model
      */
     public function request()
     {
-        return $this->hasOne(RequestBlueprint::class, 'request_id');
+        return $this->belongsTo(RequestBlueprint::class, 'request_id');
+    }
+
+    /**
+     * Format timestamp to diffForHuman
+     */
+    public function getCreatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->diffForHumans();
     }
 }

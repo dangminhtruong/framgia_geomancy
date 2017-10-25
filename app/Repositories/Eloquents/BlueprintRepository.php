@@ -203,4 +203,8 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
         $month = Carbon::now()->month;
         return $this->model::whereMonth('created_at', $month)->with('user')->paginate(16);
     }
+
+    public function allUserBlueprint(){
+        return $this->model::where('users_id', Auth::user()->id)->with('user')->paginate(16);
+    }
 }

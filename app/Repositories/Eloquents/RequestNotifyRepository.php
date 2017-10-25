@@ -15,6 +15,7 @@ class RequestNotifyRepository extends AbstractRepository implements RequestNotif
     public function findByRequestId($requestId)
     {
         return $this->model()
+            ->with(['requestNotifies'])
             ->where('request_id', $requestId)
             ->first();
     }
@@ -26,6 +27,17 @@ class RequestNotifyRepository extends AbstractRepository implements RequestNotif
                 'users_id' => $adminId,
                 'request_id' => $requestId,
                 'message' => __('Yêu cầu của bạn đã được phê duyệt'),
+                'view_flg' => 0,
+            ]);
+    }
+
+    public function sendUnapproveNotify($requestId, $adminId, $message)
+    {
+        return $this->model()
+            ->create([
+                'users_id' => $adminId,
+                'request_id' => $requestId,
+                'message' => $message,
                 'view_flg' => 0,
             ]);
     }

@@ -220,3 +220,19 @@ $(document).ready(function() {
     });
     });
 });
+
+
+$(document).ready(function(){
+    $('.pusblish_status').change(function(){
+        var id = $(this).val();
+        var url = '/post/change-publish/' + id;
+        var data = {
+            'postId' : id
+        }
+        var success = function(res){
+            $('#publish' + id).html(res);
+        }
+        var dataType = 'text';
+        $.get(url, data,success,dataType);
+    });
+});
