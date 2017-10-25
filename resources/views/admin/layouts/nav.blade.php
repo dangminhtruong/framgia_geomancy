@@ -21,14 +21,26 @@
             </li>
             <li>
                 <a href="#forms" data-toggle="collapse" aria-expanded="false">
+                {{ __('Yêu cầu thiết kế') }}
+                <span class="sub-nav-icon"><i class="stroke-arrow"></i></span>
+                </a>
+                <ul id="forms" class="nav nav-second collapse">
+                    <li><a href="#">{{ __('Thống kê') }}</a></li>
+                    <li><a href="{{ route('request-blueprint', ['type' => 1]) }}">{{ __('Yêu cầu mới') }}</a></li>
+                    <li><a href="{{ route('request-blueprint', ['type' => 3]) }}">{{ __('Yêu cầu đã duyệt') }}</a></li>
+                    <li><a href="{{ route('request-blueprint', ['type' => 2]) }}">{{ __('Yêu cầu chờ') }}</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#forms" data-toggle="collapse" aria-expanded="false">
                 {{ __('Bản thiết kế') }}
                 <span class="sub-nav-icon"><i class="stroke-arrow"></i></span>
                 </a>
                 <ul id="forms" class="nav nav-second collapse">
                     <li><a href="#">{{ __('Thống kê') }}</a></li>
-                    <li><a href="{{ route('request-blueprint', ['type' => 1]) }}">{{ __('Thiết kế mới') }}</a></li>
-                    <li><a href="{{ route('request-blueprint', ['type' => 3]) }}">{{ __('Thiết kế đã duyệt') }}</a></li>
-                    <li><a href="{{ route('request-blueprint', ['type' => 2]) }}">{{ __('Thiết kế chờ') }}</a></li>
+                    <li><a href="#">{{ __('Thiết kế mới') }}</a></li>
+                    <li><a href="#">{{ __('Thiết kế đã duyệt') }}</a></li>
+                    <li><a href="#">{{ __('Thiết kế chờ') }}</a></li>
                 </ul>
             </li>
             <li>

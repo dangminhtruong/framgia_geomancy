@@ -49,7 +49,7 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\Eloquents\PostRepository::class
         ],
         'requestNotify' => [
-            \App\Repositories\Contracts\RequestNotifyInterface::class,
+            \App\Repositories\Contracts\RequestNotifyRepositoryInterface::class,
             \App\Repositories\Eloquents\RequestNotifyRepository::class
         ]
     ];

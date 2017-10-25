@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\RequestBlueprintRepositoryInterface;
-use App\Repositories\Contracts\RequestNotifyInterface;
+use App\Repositories\Contracts\RequestNotifyRepositoryInterface;
 use App\Framgia\Response\FlashResponse;
 use App\Framgia\Response\FormResponse;
 use App\Framgia\Response\JsonResponse;
 use App\Http\Requests\PaginateBlueprintRequest;
 use App\Framgia\Helpers\Paginator;
+use App\Http\Requests\ApproveRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class RequestManagerController extends Controller
 {
@@ -21,7 +24,7 @@ class RequestManagerController extends Controller
 
     public function __construct(
         RequestBlueprintRepositoryInterface $requestRepository,
-        RequestNotifyInterface $requestNotifyRepository,
+        RequestNotifyRepositoryInterface $requestNotifyRepository,
         JsonResponse $jsonResponse,
         FlashResponse $flashResponse,
         FormResponse $formResponse
@@ -98,5 +101,57 @@ class RequestManagerController extends Controller
         ])->render();
 
         return $this->jsonResponse->success('', ['view' => $view]);
+    }
+
+    public function viewRequestDetail($requestId)
+    {
+        if ((int)$requestId < 1) {
+            $this->flashResponse->failAndBack(__('Không tìm thấy yêu cầu'));
+        }
+
+        $requestBlueprint = $this->requestRepository->findById($requestId);
+        if (!$requestBlueprint) {
+            $this->flashResponse->failAndBack(__('Không tìm thấy yêu cầu'));
+        }
+
+        return view('admin.request_manager.detail', compact('requestBlueprint'));
+    }
+
+    public function approve(ApproveRequest $request)
+    {
+        DB::beginTransaction();
+        try {
+            $this->requestRepository->approve($request->requestId);
+        } catch (Exception $e) {
+            DB::rollback();
+
+            return $this->flashResponse->failAndBack(__('Có lỗi xảy ra, yêu cầu chưa được duyệt'));
+        }
+
+        $requestNotify = $this->requestNotifyRepository->findByRequestId($request->requestId);
+        if ($requestNotify) {
+            try {
+                $requestNotify->message = $requestNotify->message . '/' . __('Yêu cầu của bạn đã được phê duyệt');
+                $requestNotify->view_flg = 0;
+                $requestNotify->save();
+            } catch (Exception $e) {
+                DB::rollback();
+                $this->flashResponse->failAndBack(__('Có lỗi xảy ra, không thể gửi thông báo'));
+            }
+            DB::commit();
+
+            return $this->flashResponse->successAndBack(__('Phê duyệt thành công'));
+        }
+
+        try {
+            $this->requestNotifyRepository->sendSuccessNotify($request->requestId, Auth::user()->id);
+        } catch (Exception $e) {
+            DB::rollback();
+
+            return $this->flashResponse->failAndBack(__('Có lỗi xảy ra, yêu cầu chưa được duyệt'));
+        }
+        DB::commit();
+
+        return $this->flashResponse->successAndBack(__('Phê duyệt thành công'));
     }
 }

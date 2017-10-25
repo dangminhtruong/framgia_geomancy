@@ -16,9 +16,9 @@
                 <td class="text-center pd-top-15">{{ $request->created_at }}</td>
                 <td class="text-center pd-top-15">{{ $request->updated_at }}</td>
                 <td class="text-center">
-                    <button type="button" class="btn btn-info btn-sm">
+                    <a href="{{ route('request-detail', ['requestId' => $request->id]) }}" type="button" class="btn btn-info btn-sm">
                         {{ __('Chi tiết') }}
-                    </button>
+                    </a>
                 </td>
             </tr>
         @endforeach
