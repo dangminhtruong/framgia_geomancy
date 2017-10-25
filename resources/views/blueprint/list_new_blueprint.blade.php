@@ -27,7 +27,7 @@
             <div class="trip-guide-wrapper">
                <div class="GridLex-gap-20 GridLex-gap-15-mdd GridLex-gap-10-xs">
                   <div class="GridLex-grid-noGutter-equalHeight GridLex-grid-center">
-                     @foreach($listBlueprint as $blueprint)
+                     @foreach($listNewBlueprint as $blueprint)
                         <div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
                            <div class="trip-guide-item">
                               <div class="trip-guide-image">
@@ -77,15 +77,15 @@
                <div class="pager-innner">
                   <div class="clearfix">
                      <p>{{ __('Showing blueprint ') }}
-                        <b> {{ $listBlueprint->firstItem() }} </b>
+                        <b> {{ $listNewBlueprint->firstItem() }} </b>
                         {{ __('to blueprint') }}
-                        <b> {{ $listBlueprint->lastItem() }} </b>
+                        <b> {{ $listNewBlueprint->lastItem() }} </b>
                         {{ __('of') }}
-                        <b> {{ $listBlueprint->total() }} </b>
+                        <b> {{ $listNewBlueprint->total() }} </b>
                      </p>
                   </div>
                   <div class="clearfix">
-                     {!! $listBlueprint->links() !!}
+                     {!! $listNewBlueprint->links() !!}
                   </div>
                </div>
             </div>

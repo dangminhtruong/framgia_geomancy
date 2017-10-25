@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\Contracts\CategoryRepositoryInterface ;
+use App\Repositories\Contracts\CategoryRepositoryInterface;
 use App\Framgia\Response\FlashResponse;
 use App\Framgia\Response\FormResponse;
 use App\Framgia\Response\JsonResponse;
@@ -22,7 +22,8 @@ class CategoryController extends Controller
         JsonResponse $jsonResponse,
         FlashResponse $flashResponse,
         FormResponse $formResponse
-    ) {
+    )
+    {
         $this->categoryRepository = $categoryRepository;
         $this->jsonResponse = $jsonResponse;
         $this->flashResponse = $flashResponse;
@@ -56,5 +57,11 @@ class CategoryController extends Controller
             ])->render();
 
         return $this->jsonResponse->success('', ['view' => $view]);
+    }
+
+    public function listProductByCategory($id)
+    {
+        $cateProduct = $this->categoryRepository->categoryProducts($id);
+        return view('product.cate_list_product', compact('cateProduct'));
     }
 }

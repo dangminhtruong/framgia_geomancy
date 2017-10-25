@@ -14,88 +14,18 @@
                     <li>
                         <a href="#">{{ __('Nav.Product') }}</a>
                         <ul>
-                            <li>
-                                <a href="#">{{ __('Nav.Fishes') }}</a>
-                                <ul>
-                                    <li><a href="#">{{ __('Nav.NewArrival') }}</a></li>
-                                    <li><a href="#">{{ __('Nav.TrendingItems') }}</a></li>
-                                    <li><a href="#">{{ __('Nav.AllItems') }}</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">{{ __('Nav.FishsFood') }}</a>
-                                <ul>
-                                    <li><a href="#">{{ __('Nav.NewArrival') }}</a></li>
-                                    <li><a href="#">{{ __('Nav.TrendingItems') }}</a></li>
-                                    <li><a href="#">{{ __('Nav.AllItems') }}</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">{{ __('Nav.FishTanks') }}</a>
-                                <ul>
-                                    <li><a href="#">{{ __('Nav.NewArrival') }}</a></li>
-                                    <li><a href="#">{{ __('Nav.TrendingItems') }}</a></li>
-                                    <li><a href="#">{{ __('Nav.AllItems') }}</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">{{ __('Nav.SandGravel') }}</a>
-                                <ul>
-                                    <li><a href="#">{{ __('Nav.NewArrival') }}</a></li>
-                                    <li><a href="#">{{ __('Nav.TrendingItems') }}</a></li>
-                                    <li><a href="#">{{ __('Nav.AllItems') }}</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">{{ __('Nav.3DLanscape') }}</a>
-                                <ul>
-                                    <li><a href="#">{{ __('Nav.NewArrival') }}</a></li>
-                                    <li><a href="#">{{ __('Nav.TrendingItems') }}</a></li>
-                                    <li><a href="#">{{ __('Nav.AllItems') }}</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">{{ __('Nav.Plants') }}</a>
-                                <ul>
-                                    <li><a href="#">{{ __('Nav.NewArrival') }}</a></li>
-                                    <li><a href="#">{{ __('Nav.TrendingItems') }}</a></li>
-                                    <li><a href="#">{{ __('Nav.AllItems') }}</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">{{ __('Nav.Filters') }}</a>
-                                <ul>
-                                    <li><a href="#">{{ __('Nav.NewArrival') }}</a></li>
-                                    <li><a href="#">{{ __('Nav.TrendingItems') }}</a></li>
-                                    <li><a href="#">{{ __('Nav.AllItems') }}</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">{{ __('Nav.AquariumLight') }}</a>
-                                <ul>
-                                    <li><a href="#">{{ __('Nav.NewArrival') }}</a></li>
-                                    <li><a href="#">{{ __('Nav.TrendingItems') }}</a></li>
-                                    <li><a href="#">{{ __('Nav.AllItems') }}</a></li>
-                                </ul>
-                            </li>
+                            @foreach($productTypes as $type)
+                                <li>
+                                    <a href="{{ route('listProductByCategory', [$type->id]) }}">{{ $type->name }}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </li>
                     <li>
                         <a href="#">{{ __('Nav.Blueprints') }}</a>
                         <ul>
                             <li>
-                                <a href="#">{{ __('Nav.NewBlueprints') }}</a>
-                                <ul>
-                                    <li>
-                                        <a href="#">{{ __('Nav.FishTanks') }}</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">{{ __('Nav.TrendingBlueprints') }}</a>
-                                <ul>
-                                    <li><a href="#">{{ __('Nav.FishTanks') }}</a></li>
-                                </ul>
+                                <a href="{{ route('listNewBlueprint') }}">{{ __('Nav.NewBlueprints') }}</a>
                             </li>
                             <li>
                                 <a href="{{route('listBlueprint')}}">{{ __('Nav.AllBlueprint') }}</a>
@@ -139,50 +69,50 @@
             </div>
             <div class="nav-mini-wrapper">
                 @if(Auth::user())
-                <li class="dropdown avatar-box">
-                    <a href="#" class="dropdown-toggle flex-tag" data-toggle="dropdown" role="button"
-                        aria-expanded="false">
-                        <img class="avatar" src="{!! url('images/user.jpg') !!}"/>
-                        <i class="fa fa-chevron-down arrow-down" aria-hidden="true"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-right">
-                        <li>
-                            <a class="normal" href="javascript:void(0)">
-                                {{ Auth::user()->name }}
-                            </a>
+                    <li class="dropdown avatar-box">
+                        <a href="#" class="dropdown-toggle flex-tag" data-toggle="dropdown" role="button"
+                           aria-expanded="false">
+                            <img class="avatar" src="{!! url('images/user.jpg') !!}"/>
+                            <i class="fa fa-chevron-down arrow-down" aria-hidden="true"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li>
+                                <a class="normal" href="javascript:void(0)">
+                                    {{ Auth::user()->name }}
+                                </a>
+                            </li>
+                            @if (Auth::user()->role == 1)
+                                <li>
+                                    <a class="normal" href="{{ route('admin') }}">
+                                        <i class="fa fa-tachometer" aria-hidden="true"></i>
+                                        {{ __('Trang quản trị') }}
+                                    </a>
+                                </li>
+                            @endif
+                            <li>
+                                <a href="{{ route('profile') }}" class="normal">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    {{ __('Thông tin cá nhân') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('logout') }}" class="normal">
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                    {{ __('Form.Logout') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <ul class="nav-mini">
+                        <li><a data-toggle="modal" href="#registerModal"><i class="icon-user-follow"
+                                                                            data-toggle="tooltip"
+                                                                            data-placement="bottom" title="sign up"></i></a>
                         </li>
-                        @if (Auth::user()->role == 1)
-                        <li>
-                            <a class="normal" href="{{ route('admin') }}">
-                            <i class="fa fa-tachometer" aria-hidden="true"></i>
-                                {{ __('Trang quản trị') }}
-                            </a>
-                        </li>
-                        @endif
-                        <li>
-                            <a href="{{ route('profile') }}" class="normal">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                            {{ __('Thông tin cá nhân') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('logout') }}" class="normal">
-                            <i class="fa fa-sign-out" aria-hidden="true"></i>
-                            {{ __('Form.Logout') }}
-                            </a>
+                        <li><a data-toggle="modal" href="#loginModal"><i class="icon-login" data-toggle="tooltip"
+                                                                         data-placement="bottom" title="login"></i> </a>
                         </li>
                     </ul>
-                </li>
-                @else
-                <ul class="nav-mini">
-                    <li><a data-toggle="modal" href="#registerModal"><i class="icon-user-follow"
-                        data-toggle="tooltip"
-                        data-placement="bottom" title="sign up"></i></a>
-                    </li>
-                    <li><a data-toggle="modal" href="#loginModal"><i class="icon-login" data-toggle="tooltip"
-                        data-placement="bottom" title="login"></i> </a>
-                    </li>
-                </ul>
                 @endif
             </div>
         </div>

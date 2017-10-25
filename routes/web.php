@@ -111,11 +111,14 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
 
     Route::get('view-blueprint/{id}', 'BlueprintController@getViewBlueprint')->name('getViewBlueprint');
     Route::get('list-blueprint', 'BlueprintController@listBlueprint')->name('listBlueprint');
+    Route::get('list-new-blueprint', 'BlueprintController@listNewBlueprint')->name('listNewBlueprint');
 });
 
-Route::group(['prefix' => 'post'], function() {
-    Route::group(['prefix' => 'write'], function() {
+Route::group(['prefix' => 'post'], function () {
+    Route::group(['prefix' => 'write'], function () {
         Route::get('/', 'PostController@writePost')->name('writePost');
         Route::post('/', 'PostController@postWritePost')->name('postWritePost');
     });
 });
+
+Route::get('list-by-category/{id}', 'CategoryController@listProductByCategory')->name('listProductByCategory');

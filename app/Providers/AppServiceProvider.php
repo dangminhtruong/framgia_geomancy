@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Entities\Category;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('layouts.header', function ($views) {
+            $categories = Category::select('id', 'name')->get();
+            $views->with('productTypes', $categories);
+        });
     }
 
     /**
