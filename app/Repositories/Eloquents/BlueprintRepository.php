@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Repositories\Eloquents;
-
 use App\Repositories\Contracts\BlueprintRepositoryInterface;
 use App\Repositories\Contracts\GalleryRepositoryInterface as GalleryRepository;
 use App\Repositories\Contracts\BlueprintDetailRepositoryInterface as BlueprintDetailRepository;
@@ -14,7 +12,6 @@ use App\Entities\RequestBlueprint;
 use App\Framgia\Helpers\FramgiaHelper;
 use Auth, Hash, DB;
 use Carbon\Carbon;
-
 class BlueprintRepository extends AbstractRepository implements BlueprintRepositoryInterface
 {
     protected $model;
@@ -24,7 +21,6 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
     private $blueprintDetailRepository;
     private $suggestProductRepository;
     private $topicRepository;
-
     function __construct(
         GalleryRepository $galleryRepository,
         FlashResponse $flashResponse,
@@ -42,36 +38,30 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
         $this->suggestProductRepository = $suggestProductRepository;
         $this->topicRepository = $topicRepository;
     }
-
     public function model()
     {
         return Blueprint::class;
     }
-
     public function getAllTopics()
     {
         $result = $this->model::all();
         return $result;
     }
-
     public function create($data)
     {
         $result = $this->model::create($data);
         return $result;
     }
-
     public function update()
     {
         $result = $this->model::save($data);
     }
-
     public function delete($id)
     {
         $blueprintDelete = $this->model::find($id);
         $blueprintDelete->status = 2;
         return $blueprintDelete->save();
     }
-
     public function createBlueprint($request)
     {
         $blueprintData = [];
@@ -81,8 +71,6 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
         $blueprintData = array_add($blueprintData, 'publish_flg', 1);
         $blueprintData = array_add($blueprintData, 'users_id', Auth::user()->id);
         $addBlueprint = $this->create($blueprintData);
-
-
         if ($request->blueprint_product) {
             foreach ($request->blueprint_product as $id => $quatity) {
                 $blueprintDetailData = [];
@@ -92,14 +80,11 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
                 $this->blueprintDetailRepository->create($blueprintDetailData);
             }
         }
-
         $this->suggestProductRepository->updateAfterCreate($addBlueprint->id);
-
         if (!$request->hasFile('img')) {
             return $this->flashResponse->success('getCreateBlueprint',
                 __('Create blueprint successfull !'));
         }
-
         foreach ($request->file('img') as $files) {
             $plusName = ($this->galleryRepository->countImages($addBlueprint->id) + 1) . '_';
             $galleryData = [];
@@ -108,45 +93,36 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
             $galleryAdd = $this->galleryRepository->create($galleryData);
             $files->move(config('path.upload_images_path'), $plusName . $files->getClientOriginalName());
         }
-
         return redirect()->route('getCreateDone', [$addBlueprint->id]);
     }
-
     public function createRequestBlueprint($request)
     {
-
         $requestBlueprint = RequestBlueprint::create([
             'title' => $request->request_blueprint_title,
             'users_id' => Auth::user()->id,
             'description' => $request->customer_description
         ]);
-
         return $this->flashResponse->success(
             'getRequestFishTanksBlueprint',
             __('Request blueprint successfull !')
         );
     }
-
     public function getBlueprintInfo($blueprintId)
     {
         return $this->model::find($blueprintId);
     }
-
     public function findBlueprintTopic($blueprintId)
     {
         return $this->model::find($blueprintId);
     }
-
     public function getBlueprintProduct($blueprintId)
     {
         return $this->model::find($blueprintId)->product;
     }
-
     public function getBlueprintImage($blueprintId)
     {
         return $this->model::find($blueprintId)->gallery;
     }
-
     public function updateBlueprint($request, $blueprintId)
     {
         $blueprintUpdate = $this->model::find($blueprintId);
@@ -155,7 +131,6 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
         $blueprintUpdate->topics_id = $request->topic_id;
         $blueprintUpdate->publish_flg = 1;
         $blueprintUpdate->save();
-
         if ($request->blueprint_product) {
             foreach ($request->blueprint_product as $id => $quatity) {
                 $blueprintDetailData = [];
@@ -165,14 +140,12 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
                 $this->blueprintDetailRepository->create($blueprintDetailData);
             }
         }
-
         if (!$request->hasFile('img')) {
             return $this->flashResponse->success(
                 'getCreateBlueprint',
                 __('Create blueprint successfull !')
             );
         }
-
         foreach ($request->file('img') as $files) {
             $galleryData = [];
             $galleryData = array_add($galleryData, 'image_name', $files->getClientOriginalName());
@@ -181,30 +154,30 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
             $files->move(config('path.upload_images_path'), $files->getClientOriginalName());
         }
     }
-
     public function getNewestBueprint()
     {
         $topSixNewest = $this->model::orderBy('id', 'desc')->skip(0)->take(6)->get();
         return $topSixNewest;
     }
-
     public function countSummary()
     {
         return $this->model::count();
     }
-
     public function listAllBlueprint()
     {
         return $this->model::with('user')->paginate(16);
     }
-
     public function listWeekBlueprint()
     {
         $month = Carbon::now()->month;
         return $this->model::whereMonth('created_at', $month)->with('user')->paginate(16);
     }
-
-    public function allUserBlueprint(){
+    public function allUserBlueprint()
+    {
         return $this->model::where('users_id', Auth::user()->id)->with('user')->paginate(16);
+    }
+    public function findById($id)
+    {
+        return $this->model::find($id);
     }
 }

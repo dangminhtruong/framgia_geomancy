@@ -1,10 +1,7 @@
 <?php
-
 namespace App\Providers;
-
 use App;
 use Illuminate\Support\ServiceProvider;
-
 class RepositoryServiceProvider extends ServiceProvider
 {
     protected $repositories = [
@@ -51,17 +48,22 @@ class RepositoryServiceProvider extends ServiceProvider
         'requestNotify' => [
             \App\Repositories\Contracts\RequestNotifyRepositoryInterface::class,
             \App\Repositories\Eloquents\RequestNotifyRepository::class
+        ],
+        'improveBlueprint' => [
+            \App\Repositories\Contracts\ImproveBlueprintRepositoryInterface::class,
+            \App\Repositories\Eloquents\ImproveBlueprintRepository::class
+        ],
+        'improveDetail' => [
+            \App\Repositories\Contracts\ImproveDetailRepositoryInterface::class,
+            \App\Repositories\Eloquents\ImproveDetailRepository::class
         ]
     ];
-
     public function boot()
     {
         //
     }
-
     public function register()
     {
-
         foreach ($this->repositories as $repository) {
             $this->app->singleton(
                 $repository[0],

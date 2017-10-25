@@ -222,17 +222,32 @@ $(document).ready(function() {
 });
 
 
-$(document).ready(function(){
-    $('.pusblish_status').change(function(){
+$(document).ready(function() {
+    $('.pusblish_status').change(function() {
         var id = $(this).val();
         var url = '/post/change-publish/' + id;
         var data = {
-            'postId' : id
+            'postId': id
         }
-        var success = function(res){
+        var success = function(res) {
             $('#publish' + id).html(res);
         }
         var dataType = 'text';
-        $.get(url, data,success,dataType);
+        $.get(url, data, success, dataType);
+    });
+});
+
+$(document).ready(function() {
+    $('.btn-fork').click(function() {
+        var blueprintId = $(this).val();
+        var url = '/blueprint/fork-blueprint/' + blueprintId;
+        var data = {
+            'id': blueprintId
+        }
+        var success = function(res) {
+            console.log(res);
+        }
+        var dataType = "text";
+        $.get(url, data, success, dataType);
     });
 });

@@ -97,7 +97,6 @@
             </div>
             <div id="menu1" class="tab-pane fade">
                @foreach($blueprits as $blueprint)
-
                   <div class="col-md-12 col-sm-12">
                      <div class="col-md-1">{{ __('STT') }}</div>
                      <div class="col-md-7 qoute">{{ __('Title') }}</div>
@@ -186,20 +185,22 @@
                            </button>
                         </div>
                      </div>
-                  @endforeach()
+                  @endforeach
                
             </div>
             <div id="menu4" class="tab-pane fade">
                <!-------Tam thoi chua I18n-------->
-               <div class="col-md-2 col-xs-2">
-                  
-               </div>
-               <div class="col-md-8 col-xs-8">
-                 
-               </div>
-               <div class="col-md-2 col-xs-2">
-                  <button type="button" class="btn btn-link">Read</button>
-               </div>
+               @foreach(Auth::user()->requestNotifies as $notifi)
+                     <div class="col-md-9 col-sm-9 col-md-push-3">
+                        @if($notifi->view_flg == 0)
+                           <b>{{ $notifi->message }}</b> 
+                           <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        @else
+                           {{ $notifi->message }} 
+                           <i class="fa fa-envelope-open-o" aria-hidden="true"></i>
+                        @endif
+                     </div>
+               @endforeach 
             </div>
          </div>
       </div>

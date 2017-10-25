@@ -121,7 +121,7 @@
                         <div class="row gap-10" id="rangeDatePicker">
                            <div class="col-xss-12 col-xs-12 col-sm-12 btn-group">
                               <button type="button"
-                                 class="btn btn-info btn-block">{{ __('Clone') }}</button>
+                                 class="btn btn-info btn-block btn-fork" value="{{ $blueprintInfo->id }}">{{ __('Clone') }}</button>
                            </div>
                         </div>
                         <div class="row gap-20">
@@ -343,4 +343,3 @@
    </div>
 </div>
 @stop
-
