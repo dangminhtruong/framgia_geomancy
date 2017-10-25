@@ -63,4 +63,10 @@ class RequestBlueprintRepository extends AbstractRepository implements RequestBl
             ->where('status', 0)
             ->get();
     }
+
+    public function approve($requestId)
+    {
+        return $this->model::where('id', $requestId)
+            ->update(['status' => 1]);
+    }
 }

@@ -353,4 +353,18 @@ $(document).ready(function() {
             });
         }, null);
     });
+
+    //===== APPROVE REQUEST =====//
+    $('#_approve_request').on('click', function(e) {
+        e.preventDefault();
+
+        var isTrue = confirm('Phê duyệt yêu cầu này?');
+
+        if (!isTrue) {
+            toastr.info('Đã hủy thao tác');
+
+            return false;
+        }
+        $('#_approve_form').submit();
+    })
 });

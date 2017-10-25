@@ -2867,3 +2867,6 @@ fieldset[disabled] .form-control {
 .custom-width {max-width: 250px !important;}
 .block-left {text-align: left;display: block;}
 .mgr-top-15 {margin-top: 15px;}
+.mx-width {max-width: 100%; display: inline-block;}
+.label-new {background-color: #3071a9;}
+.label {font-size: 12.5px;}

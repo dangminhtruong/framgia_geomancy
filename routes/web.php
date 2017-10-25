@@ -61,6 +61,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
     Route::prefix('request')->group(function () {
         Route::get('/{type}', 'RequestManagerController@index')->name('request-blueprint');
         Route::post('/', 'RequestManagerController@viewRequestBlueprint');
+        Route::get('/detail/{requestId}', 'RequestManagerController@viewRequestDetail')->name('request-detail');
+        Route::post('approve', 'RequestManagerController@approve')->name('request-approve');
     });
 });
 
