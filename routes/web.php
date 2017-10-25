@@ -36,26 +36,26 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
     })->name('admin');
 
     Route::prefix('product')->group(function () {
-        Route::get('/', 'ProductController@index')->name('product-show');
-        Route::post('/', 'ProductController@paginateProductByCategory');
-        Route::get('create', 'ProductController@create')->name('product-create');
-        Route::post('create', 'ProductController@store')->name('product-store');
-        Route::post('delete', 'ProductController@delete')->name('product-delete');
-        Route::get('update/{productId}', 'ProductController@update')->name('product-update');
-        Route::post('update', 'ProductController@save')->name('product-save');
+        Route::get('/', 'ProductManagerController@index')->name('product-show');
+        Route::post('/', 'ProductManagerController@paginateProductByCategory');
+        Route::get('create', 'ProductManagerController@create')->name('product-create');
+        Route::post('create', 'ProductManagerController@store')->name('product-store');
+        Route::post('delete', 'ProductManagerController@delete')->name('product-delete');
+        Route::get('update/{productId}', 'ProductManagerController@update')->name('product-update');
+        Route::post('update', 'ProductManagerController@save')->name('product-save');
     });
 
     Route::prefix('category')->group(function () {
-        Route::get('/', 'CategoryController@index')->name('category-show');
-        Route::post('/', 'CategoryController@paginateCategory');
+        Route::get('/', 'CategoryManagerController@index')->name('category-show');
+        Route::post('/', 'CategoryManagerController@paginateCategory');
     });
 
     Route::prefix('user')->group(function () {
-        Route::get('/', 'UserController@showUserList')->name('user-show');
-        Route::post('/', 'UserController@paginateUser');
-        Route::post('lock', 'UserController@lockAccount');
-        Route::post('unlock', 'UserController@unlockAccount');
-        Route::get('/search', 'UserController@search')->name('user-search');
+        Route::get('/', 'UserManagerController@showUserList')->name('user-show');
+        Route::post('/', 'UserManagerController@paginateUser');
+        Route::post('lock', 'UserManagerController@lockAccount');
+        Route::post('unlock', 'UserManagerController@unlockAccount');
+        Route::get('/search', 'UserManagerController@search')->name('user-search');
     });
 
     Route::prefix('request')->group(function () {
@@ -63,6 +63,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
         Route::post('/', 'RequestManagerController@viewRequestBlueprint');
         Route::get('/detail/{requestId}', 'RequestManagerController@viewRequestDetail')->name('request-detail');
         Route::post('approve', 'RequestManagerController@approve')->name('request-approve');
+        Route::post('unapprove', 'RequestManagerController@unapprove')->name('request-unapprove');
     });
 });
 
@@ -111,6 +112,7 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
 
     Route::get('view-blueprint/{id}', 'BlueprintController@getViewBlueprint')->name('getViewBlueprint');
     Route::get('list-blueprint', 'BlueprintController@listBlueprint')->name('listBlueprint');
+    Route::get('list-my-blueprint', 'BlueprintController@listMyBlueprint')->name('listMyBlueprint');
     Route::get('list-new-blueprint', 'BlueprintController@listNewBlueprint')->name('listNewBlueprint');
 });
 
@@ -119,6 +121,8 @@ Route::group(['prefix' => 'post'], function () {
         Route::get('/', 'PostController@writePost')->name('writePost');
         Route::post('/', 'PostController@postWritePost')->name('postWritePost');
     });
+    Route::get('list-user-post', 'PostController@listUserPost')->name('listUserPost');
+    Route::get('change-publish/{id}', 'PostController@changePushlish')->name('changePushlish');
 });
 
 Route::get('list-by-category/{id}', 'CategoryController@listProductByCategory')->name('listProductByCategory');

@@ -15,6 +15,9 @@
         {{ HTML::style('css/stroke-icons/style.css') }}
         {{ HTML::style('css/admin.css') }}
         {{ HTML::style('css/custom.css') }}
+        {{ HTML::script('bowerrc/PACE/pace.min.js') }}
+        {{ HTML::script('bowerrc/jquery/dist/jquery.min.js') }}
+        {{ HTML::script('bowerrc/jquery-migrate-3.0.1/index.js') }}
         <script>
             var SITE_URL = 'http://localhost:8000/';
         </script>
@@ -25,7 +28,11 @@
     <body>
         <div class="wrapper">
             @include('admin.layouts.header')
-            @include('admin.layouts.nav')
+            @if (isset($nav))
+                @include('admin.layouts.nav', ['nav' => $nav])
+            @else
+                @include('admin.layouts.nav')
+            @endif
             <section class="content">
                 @yield('content')
             </section>
@@ -37,9 +44,6 @@
         @if (session('success_msg')))
             @include('layouts.success')
         @endif
-        {{ HTML::script('bowerrc/PACE/pace.min.js') }}
-        {{ HTML::script('bowerrc/jquery/dist/jquery.min.js') }}
-        {{ HTML::script('bowerrc/jquery-migrate-3.0.1/index.js') }}
         {{ HTML::script('bowerrc/bootstrap/dist/js/bootstrap.min.js') }}
         {{ HTML::script('bowerrc/toastr/toastr.min.js') }}
         @yield('script')
