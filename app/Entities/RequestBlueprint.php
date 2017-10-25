@@ -36,6 +36,15 @@ class RequestBlueprint extends BaseEntity
     }
 
     /**
+     *  Get the notifies of this request
+     */
+    public function requestNotifies()
+    {
+        return $this->hasMany(RequestNotification::class, 'request_id')
+            ->orderBy('created_at', 'desc');
+    }
+
+    /**
      * Format timestamp to d-m-Y
      */
     public function getCreatedAtAttribute($value)
