@@ -19,7 +19,6 @@ class CreateRequestNotificationsTable extends Migration
             $table->foreign('users_id')->references('id')->on('users');
             $table->integer('request_id')->unsigned();
             $table->foreign('request_id')->references('id')->on('request_blueprints');
-            $table->unique(['users_id', 'request_id']);
             $table->string('message');
             $table->integer('view_flg');
             $table->softDeletes();
