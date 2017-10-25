@@ -11,6 +11,7 @@ use App\Framgia\Response\JsonResponse;
 use App\Http\Requests\PaginateBlueprintRequest;
 use App\Framgia\Helpers\Paginator;
 use App\Http\Requests\ApproveRequest;
+use App\Http\Requests\UnapproveRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -128,21 +129,6 @@ class RequestManagerController extends Controller
             return $this->flashResponse->failAndBack(__('Có lỗi xảy ra, yêu cầu chưa được duyệt'));
         }
 
-        $requestNotify = $this->requestNotifyRepository->findByRequestId($request->requestId);
-        if ($requestNotify) {
-            try {
-                $requestNotify->message = $requestNotify->message . '/' . __('Yêu cầu của bạn đã được phê duyệt');
-                $requestNotify->view_flg = 0;
-                $requestNotify->save();
-            } catch (Exception $e) {
-                DB::rollback();
-                $this->flashResponse->failAndBack(__('Có lỗi xảy ra, không thể gửi thông báo'));
-            }
-            DB::commit();
-
-            return $this->flashResponse->successAndBack(__('Phê duyệt thành công'));
-        }
-
         try {
             $this->requestNotifyRepository->sendSuccessNotify($request->requestId, Auth::user()->id);
         } catch (Exception $e) {
@@ -153,5 +139,44 @@ class RequestManagerController extends Controller
         DB::commit();
 
         return $this->flashResponse->successAndBack(__('Phê duyệt thành công'));
+    }
+
+    public function unapprove(UnapproveRequest $request)
+    {
+        $requestBlueprint = $this->requestRepository->findById($request->request_Id);
+        if ($requestBlueprint->status != config('app.pending_request')) {
+            DB::beginTransaction();
+            try {
+                $requestBlueprint->status = config('app.pending_request');
+                $requestBlueprint->save();
+            } catch (Exception $e) {
+                DB::rollback();
+
+                return $this->flashResponse->failAndBack(__('Có lỗi xảy ra, vui lòng thử lại'));
+            }
+            try {
+                $this->requestNotifyRepository->sendUnapproveNotify(
+                    $request->request_Id,
+                    Auth::user()->id,
+                    $request->message
+                );
+            } catch (Exception $e) {
+                DB::rollback();
+
+                return $this->flashResponse->failAndBack(__('Có lỗi xảy ra, vui lòng thử lại'));
+            }
+            DB::commit();
+        } else {
+            try {
+                $this->requestNotifyRepository->sendUnapproveNotify(
+                    $request->request_Id,
+                    Auth::user()->id,
+                    $request->message
+                );
+            } catch (Exception $e) {
+                return $this->flashResponse->failAndBack(__('Có lỗi xảy ra, vui lòng thử lại'));
+            }
+        }
+        return $this->flashResponse->successAndBack(__('Yêu cầu cập nhật thành công'));
     }
 }

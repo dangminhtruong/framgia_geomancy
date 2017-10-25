@@ -59,7 +59,7 @@
                         <a href="#">{{ __('Nav.MyBlueprints') }}</a>
                         <ul>
                             <li>
-                                <a href="#">{{ __('Nav.AllBlueprints') }}</a>
+                                <a href="{!! route('listMyBlueprint') !!}">{{ __('Nav.AllBlueprints') }}</a>
                             </li>
                             <li><a href="{!! route('getRequestFishTanksBlueprint') !!}">{{ __('User.Request.Blueprint') }}</a></li>
                             <li><a href="{{ route('getCreateBlueprint') }}">{{ __('Nav.CreateBlueprints') }}</a></li>
