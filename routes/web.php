@@ -110,6 +110,8 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
 
     Route::get('delete-blueprint/{id}', 'BlueprintController@deleteBlueprint')->name('deleteBlueprint');
 
+    Route::get('fork-blueprint/{id}', 'ImproveBlueprintController@forkBLueprint')->name('forkBLueprint');
+
     Route::get('view-blueprint/{id}', 'BlueprintController@getViewBlueprint')->name('getViewBlueprint');
     Route::get('list-blueprint', 'BlueprintController@listBlueprint')->name('listBlueprint');
     Route::get('list-my-blueprint', 'BlueprintController@listMyBlueprint')->name('listMyBlueprint');
