@@ -52,4 +52,3 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
         return $this->productRepository->categoryProduct($cateId);
     }
 }
- 
