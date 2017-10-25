@@ -1,4 +1,4 @@
-@extends('admin.layouts.app', ['nav' => $nav])
+@extends('admin.layouts.app')
 @section('style')
     {{ HTML::style('bowerrc/datatables/media/css/dataTables.bootstrap.min.css') }}
 @endsection

@@ -28,11 +28,7 @@
     <body>
         <div class="wrapper">
             @include('admin.layouts.header')
-            @if (isset($nav))
-                @include('admin.layouts.nav', ['nav' => $nav])
-            @else
-                @include('admin.layouts.nav')
-            @endif
+            @include('admin.layouts.nav')
             <section class="content">
                 @yield('content')
             </section>

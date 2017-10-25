@@ -43,7 +43,6 @@ class RequestManagerController extends Controller
         $paginate = '';
         $type = (in_array($type, ['2', '3'])) ? $type : 1;
         $title = __('Yêu cầu mới');
-        $nav['request']['list' . $type] = 1;
 
         if ($type == config('app.pending_request')) {
             $collection = $this->requestRepository->getPendingRequest();
@@ -64,9 +63,7 @@ class RequestManagerController extends Controller
             ]);
         }
 
-        return view('admin.request_manager.index', compact(
-            'requestBlueprints', 'paginate', 'title', 'nav')
-        );
+        return view('admin.request_manager.index', compact('requestBlueprints', 'paginate', 'title'));
     }
 
     public function viewRequestBlueprint(PaginateBlueprintRequest $request)

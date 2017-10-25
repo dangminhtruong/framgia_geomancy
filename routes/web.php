@@ -36,26 +36,26 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
     })->name('admin');
 
     Route::prefix('product')->group(function () {
-        Route::get('/', 'ProductManagerController@index')->name('product-show');
-        Route::post('/', 'ProductManagerController@paginateProductByCategory');
-        Route::get('create', 'ProductManagerController@create')->name('product-create');
-        Route::post('create', 'ProductManagerController@store')->name('product-store');
-        Route::post('delete', 'ProductManagerController@delete')->name('product-delete');
-        Route::get('update/{productId}', 'ProductManagerController@update')->name('product-update');
-        Route::post('update', 'ProductManagerController@save')->name('product-save');
+        Route::get('/', 'ProductController@index')->name('product-show');
+        Route::post('/', 'ProductController@paginateProductByCategory');
+        Route::get('create', 'ProductController@create')->name('product-create');
+        Route::post('create', 'ProductController@store')->name('product-store');
+        Route::post('delete', 'ProductController@delete')->name('product-delete');
+        Route::get('update/{productId}', 'ProductController@update')->name('product-update');
+        Route::post('update', 'ProductController@save')->name('product-save');
     });
 
     Route::prefix('category')->group(function () {
-        Route::get('/', 'CategoryManagerController@index')->name('category-show');
-        Route::post('/', 'CategoryManagerController@paginateCategory');
+        Route::get('/', 'CategoryController@index')->name('category-show');
+        Route::post('/', 'CategoryController@paginateCategory');
     });
 
     Route::prefix('user')->group(function () {
-        Route::get('/', 'UserManagerController@showUserList')->name('user-show');
-        Route::post('/', 'UserManagerController@paginateUser');
-        Route::post('lock', 'UserManagerController@lockAccount');
-        Route::post('unlock', 'UserManagerController@unlockAccount');
-        Route::get('/search', 'UserManagerController@search')->name('user-search');
+        Route::get('/', 'UserController@showUserList')->name('user-show');
+        Route::post('/', 'UserController@paginateUser');
+        Route::post('lock', 'UserController@lockAccount');
+        Route::post('unlock', 'UserController@unlockAccount');
+        Route::get('/search', 'UserController@search')->name('user-search');
     });
 
     Route::prefix('request')->group(function () {
@@ -109,6 +109,8 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
     });
 
     Route::get('delete-blueprint/{id}', 'BlueprintController@deleteBlueprint')->name('deleteBlueprint');
+
+    Route::get('fork-blueprint/{id}', 'ImproveBlueprintController@forkBLueprint')->name('forkBLueprint');
 
     Route::get('view-blueprint/{id}', 'BlueprintController@getViewBlueprint')->name('getViewBlueprint');
     Route::get('list-blueprint', 'BlueprintController@listBlueprint')->name('listBlueprint');
