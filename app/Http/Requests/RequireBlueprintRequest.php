@@ -24,14 +24,16 @@ class RequireBlueprintRequest extends FormRequest
     public function rules()
     {
         return [
-            'customer_description' => 'required'
+            'customer_description' => 'required',
+            'request_blueprint_title' => 'required|max:100'
         ];
     }
 
     public function messages()
     {
         return [
-            'customer_description.required' => __('Form.FillOutDesc')
+            'customer_description.required' => __('Form.FillOutDesc'),
+            'request_blueprint_title.max' => __('Your title is too long. Just 100 character, plzz..')
         ];
     }
 }

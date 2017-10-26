@@ -213,4 +213,9 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
     {
         return $this->model::find($id);
     }
+
+    public function getRelative($topicId)
+    {
+        return $this->model::where('topics_id', $topicId)->take(4)->get();
+    }
 }
