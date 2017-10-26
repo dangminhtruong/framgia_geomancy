@@ -128,7 +128,7 @@ class BlueprintController extends Controller
 
     public function postEditRequest(RequireBlueprintRequest $request, $id)
     {
-        $this->requestBlueprintRepository->updateRequestBlueprint($id, $request);
+        $this->requestBlueprintRepository->updateRequestBlueprint($request, $id);
         return redirect()->back()->with('success_msg', __('Update successfully'));
     }
 
