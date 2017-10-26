@@ -29,46 +29,9 @@
                     @endif
                 </td>
                 <td class="text-center">
-                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#{{ $user->id }}">
+                    <a href="{{ route('user-profile', ['userId' => $user->id])}}" class="btn btn-success btn-sm">
                         {{ __('Chi tiết') }}
-                    </button>
-                    <div class="modal fade" id="{{ $user->id }}" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header text-center">
-                                    <h4 class="modal-title">{{ $user->name }}</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <h4 class="m-t-none">{{ __('Thông tin cá nhân') }}</h4>
-                                    <div class="row pd-top-15">
-                                        <p class="col-md-5 pd-top-15 text-left">
-                                            {{ __('Địa chỉ') }}
-                                        </p>
-                                        <p class="col-md-1 pd-top-15 text-left">
-                                            :
-                                        </p>
-                                        <p class="col-md-6 pd-top-15 text-left">
-                                            {{ $user->address }}
-                                        </p>
-                                    </div>
-                                    <div class="row pd-top-15">
-                                        <p class="col-md-5 pd-top-15 text-left">
-                                            {{ __('Điện thoại') }}
-                                        </p>
-                                        <p class="col-md-1 pd-top-15 text-left">
-                                            :
-                                        </p>
-                                        <p class="col-md-6 pd-top-15 text-left">
-                                            {{ $user->phone }}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('Đóng') }}</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </a>
                 </td>
                 <td class="text-center">
                     <div class="btn-group">
