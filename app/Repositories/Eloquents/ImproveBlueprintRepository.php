@@ -111,4 +111,11 @@ class ImproveBlueprintRepository extends AbstractRepository implements ImproveBl
             }
         }
     }
+
+    public function delForkedBlueprint($id){
+        $delImprove = $this->model::find($id);
+        $delImprove->status = 2;
+        $delImprove->save();
+        return __('deleted');
+    }
 }

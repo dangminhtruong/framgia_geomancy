@@ -1,4 +1,13 @@
 $('.file').hide();
+$(document).on('click', '.browse', function() {
+    var file = $(this).parent().parent().parent().find('.file');
+    file.trigger('click');
+});
+
+$(document).on('change', '.file', function() {
+    $(this).parent().find('.form-control').val($(this).val().replace(/fakepath\\/i, ''));
+});
+
 $(document).ready(function() {
     $('.gallery1').slick({
         dots: true,
@@ -169,6 +178,7 @@ $(document).ready(function() {
             $('#suggest-list').append(result);
             $('#btn-suggest-reset').trigger('click');
             $('#suggestModalx').modal('hide');
+            swal("Success!", "Suggested product!", "success");
             $('.remove-more-attr').trigger("click");
         }
         var dataType = 'html';
@@ -235,5 +245,41 @@ $(document).ready(function() {
         }
         var dataType = "text";
         $.get(url, data, success, dataType);
+    });
+
+    $('.btn-message').click(function(){
+        var message_id = $(this).val();
+        var url = '/blueprint/update-message/' + message_id;
+        var success = function(res){
+            $('#btn-mess' + message_id ).html('Seen message');
+        }
+        var dataType = 'text';
+        $.get(url, success, dataType);
+    });
+
+    $('.delete-improve-blueprint').click(function(){
+        var improve_id = $(this).val();
+        var url = '/blueprint/del-improve/' + improve_id;
+        var success = function(res){
+            $('#improveBlueprint' + improve_id).remove();
+        }
+        var dataType;
+         swal({
+                title: "Are you sure?",
+                text: "Once devared, you will not be able to recover this forked blueprint!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Poof! Your forked blueprint has been deleted!", {
+                        icon: "success",
+                    });
+                    $.get(url,success,dataType);
+                } else {
+                    swal("Your blueprint is safe!");
+                }
+            });
     });
 });

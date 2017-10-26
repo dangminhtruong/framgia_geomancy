@@ -25,7 +25,7 @@ class RequestBlueprintRepository extends AbstractRepository implements RequestBl
         return $result;
     }
 
-    public function updateRequestBlueprint($id, $request)
+    public function updateRequestBlueprint($request, $id)
     {
         $requestBlueprint = $this->model::find($id);
         $requestBlueprint->title = $request->request_blueprint_title;
