@@ -110,8 +110,11 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
 
     Route::get('delete-blueprint/{id}', 'BlueprintController@deleteBlueprint')->name('deleteBlueprint');
 
+    Route::get('fork-blueprint/{id}', 'ImproveBlueprintController@forkBLueprint')->name('forkBLueprint');
+
     Route::get('view-blueprint/{id}', 'BlueprintController@getViewBlueprint')->name('getViewBlueprint');
     Route::get('list-blueprint', 'BlueprintController@listBlueprint')->name('listBlueprint');
+    Route::get('list-my-blueprint', 'BlueprintController@listMyBlueprint')->name('listMyBlueprint');
     Route::get('list-new-blueprint', 'BlueprintController@listNewBlueprint')->name('listNewBlueprint');
 });
 
@@ -120,6 +123,8 @@ Route::group(['prefix' => 'post'], function () {
         Route::get('/', 'PostController@writePost')->name('writePost');
         Route::post('/', 'PostController@postWritePost')->name('postWritePost');
     });
+    Route::get('list-user-post', 'PostController@listUserPost')->name('listUserPost');
+    Route::get('change-publish/{id}', 'PostController@changePushlish')->name('changePushlish');
 });
 
 Route::get('list-by-category/{id}', 'CategoryController@listProductByCategory')->name('listProductByCategory');

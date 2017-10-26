@@ -24,4 +24,9 @@ class BlueprintDetailRepository extends AbstractRepository implements BlueprintD
         $result = $this->model::create($data);
         return $result;
     }
+
+    public function findById($id)
+    {
+        return $this->model::find($id);
+    }
 }
