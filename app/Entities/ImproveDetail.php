@@ -27,6 +27,6 @@ class ImproveDetail extends BaseEntity
      */
     public function product()
     {
-        return $this->hasOne(Product::class, 'products_id');
+        return $this->belongsTo(Product::class, 'products_id');
     }
 }
