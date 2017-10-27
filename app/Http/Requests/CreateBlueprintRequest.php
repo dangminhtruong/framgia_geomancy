@@ -34,7 +34,8 @@ class CreateBlueprintRequest extends FormRequest
         return [
             'blueprint_name.required' => __('Form.FillOutTitle'),
             'blueprint_name.unique' => __('Form.Duplicate'),
-            'img.mimes' => __('Form.ImageType')
+            'img.mimes' => __('Form.ImageType'),
+            'img.image' => __('Your upload files ins\'t a images file')
         ];
     }
 }

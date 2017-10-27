@@ -20,7 +20,7 @@ class SuggestProductController extends Controller
         $data = [
             'name' => $request->name,
             'price' => $request->price,
-            'attribute' => $this->suggestProductRepository->transToJson($request->attri),
+            'attribute' => ($request->attri) ? $this->suggestProductRepository->transToJson($request->attri) : null,
             'description' => $request->descript,
             'blueprints_id' => Auth::user()->id,
             'categories_id' => $request->categoryId

@@ -5,7 +5,7 @@
          data-keyboard="false" data-replace="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title text-center">Suggest Product</h4>
+            <h4 class="modal-title text-center">{{ __('Suggest product') }}</h4>
         </div>
         <form method="" action="#">
             <div class="modal-body">
@@ -25,13 +25,10 @@
                     <div class="col-xs-12 col-sm-5">
                         <div class="form-group">
                             <label>{{  __('CreateBlueprint.Suggest.Type') }}</label>
-                            <select class="selectpicker show-tick form-control" name="categoryId" id="categoryId"
+                            <select class="form-control" name="categoryId" id="categoryId"
                                     title="Select placeholder" data-selected-text-format="count > 6"
                                     data-done-button="true" data-done-button-text="OK">
                                 @foreach($categories as $category )
-                                @if($category->id == 1)
-                                    <option value="{!! $category->id !!}" selected>{!! $category->name !!}</option>
-                                @endif  
                                     <option value="{!! $category->id !!}">{!! $category->name !!}</option>
                                 @endforeach
                             </select>
@@ -40,7 +37,7 @@
                     <div class="col-xs-12 col-sm-12">
                         <div class="form-group">
                             <label for="comment">{{ __('CreateBlueprint.Suggest.Description') }}:</label>
-                            <textarea class="form-control" rows="5" name="suggest_desc" id="suggestDescript"></textarea>
+                            <textarea class="form-control" rows="5" name="suggest_desc" id="suggestDescript">{{ old('suggest_desc') }}</textarea>
                         </div>
                     </div>
                     <!-----Add more attribute------>
@@ -67,7 +64,7 @@
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                         <h2>{{ __('CreateBlueprint.MainTitle') }}</h2>
-                        <p>{{ __('CreateBlueprint.Title.pTag')  }}}.</p>
+                        <p>{{ __('CreateBlueprint.Title.pTag')  }}.</p>
                     </div>
                 </div>
             </div>
@@ -100,7 +97,8 @@
                                         <div class="col-xs-12 col-sm-12">
                                             <div class="form-group form-group-lg">
                                                 <label>{{ __('CreateBlueprint.Name') }}:</label>
-                                                <input type="text" class="form-control" name="blueprint_name" required/>
+                                                <input type="text" class="form-control" name="blueprint_name" value="{{ old('blueprint_name') }}" required/>
+                                                <p class="text-danger help-block error-text">{{ $errors->first('blueprint_name') }}</p>
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -115,7 +113,7 @@
                                             <div class="form-group">
                                                 <label>{{ __('CreateBlueprint.Description') }}:</label>
                                                 <textarea class="form-control" rows="15" name="blueprint_desc"
-                                                          required></textarea>
+                                                          required>{{ old('blueprint_desc') }}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -141,7 +139,7 @@
                                         <!--------Suggest product---------------------------------------->
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="mb-30"></div>
-                                            <h4 class="section-title">Suggest product</h4>
+                                            <h4 class="section-title">{{ __('Suggest product') }}</h4>
                                             <div id="suggest-list">
                                             </div>
                                         </div>
@@ -162,6 +160,7 @@
                                     </span>
                                                 </div>
                                             </div>
+                                            <p class="text-danger help-block error-text">{{ $errors->first('img.*') }}</p>
                                             <button type="button" class="btn btn-danger" id="add_more_img">
                                                 {{ __('CreateBlueprint.AddImg') }}
                                             </button>
