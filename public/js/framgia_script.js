@@ -244,7 +244,11 @@ $(document).ready(function() {
             'id': blueprintId
         }
         var success = function(res) {
-            //Dang lam do
+            if (res === 'forked') {
+                swal("Forked !", "Now it your blueprint!", "success");
+            } else {
+                swal("You already fork it");
+            }
         }
         var dataType = "text";
         $.get(url, data, success, dataType);

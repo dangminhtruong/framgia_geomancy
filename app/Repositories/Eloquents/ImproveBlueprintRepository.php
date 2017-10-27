@@ -37,7 +37,7 @@ class ImproveBlueprintRepository extends AbstractRepository implements ImproveBl
     {
         return $this->model::create($data);
     }
-    
+
     public function fork($id)
     {
         if ($this->checkForked($id) == false) {
@@ -76,6 +76,39 @@ class ImproveBlueprintRepository extends AbstractRepository implements ImproveBl
 
         if ($check > 0) {
             return true;
+        }
+    }
+
+    public function forkBlueprintInfo($id)
+    {
+        $result = $this->model::find($id);
+        return $result;
+    }
+
+    public function updateImprove($request, $id)
+    {
+        $update = $this->model::find($id);
+        $update->description = $request->blueprint_desc;
+        return $update->save();
+    }
+
+    public function editForkedBlueprint($request, $id)
+    {
+        self::updateImprove($request, $id);
+        if ($request->improve_product) {
+            foreach ($request->improve_product as $product_id => $number) {
+                $this->improveDetailRepository->updateQuantity($product_id, $number, $id);
+            }
+        }
+        if ($request->blueprint_product) {
+            foreach ($request->blueprint_product as $key => $value) {
+                $data = [
+                    "quantity" => $value,
+                    "improve_blueprints_id" => $id,
+                    "products_id" => $key
+                ];
+                $this->improveDetailRepository->create($data);
+            }
         }
     }
 }

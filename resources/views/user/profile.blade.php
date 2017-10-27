@@ -10,6 +10,7 @@
       <ul class="nav nav-tabs">
          <li class="active"><a data-toggle="tab" href="#home">{{ __('Edit profile') }}</a></li>
          <li><a data-toggle="tab" href="#menu1">{{ __('Your bluerint') }}</a></li>
+         <li><a data-toggle="tab" href="#menu5">{{ __('Your forked bluerint') }}</a></li>
          <li><a data-toggle="tab" href="#menu2">{{ __('Your blueprint request') }}</a></li>
          <li><a data-toggle="tab" href="#menu3">{{ __('Post') }}</a></li>
          <li><a data-toggle="tab" href="#menu4">{{ __('notifications') }}</a></li>
@@ -96,13 +97,13 @@
             </form>
          </div>
          <div id="menu1" class="tab-pane fade">
-            @foreach($blueprits as $blueprint)
             <div class="col-md-12 col-sm-12">
                <div class="col-md-1">{{ __('STT') }}</div>
                <div class="col-md-7 qoute">{{ __('Title') }}</div>
                <div class="col-md-2">{{ __('Status') }}</div>
                <div class="col-md-2">{{ __('Action') }}</div>
             </div>
+            @foreach($blueprits as $blueprint)
             <div class="col-md-12 col-sm-12" id="blueprint{!! $blueprint->id !!}">
                <div class="col-md-1">{!! $blueprint->id !!}</div>
                <div class="col-md-7 qoute">
@@ -110,7 +111,7 @@
                      {!! $blueprint->title !!}
                   </p>
                </div>
-               <div class="col-md-2">@if($blueprint->id != 0) {!! __('Pending') !!} @else {!! __('Approve') !!} @endif</div>
+               <div class="col-md-2">@if($blueprint->publish_flg) {!! __('Pending') !!} @else {!! __('Approve') !!} @endif</div>
                <div class="col-md-2">
                   <a class="btn btn-sm btn-warning" href="{!! route('getViewBlueprint', [$blueprint->id]) !!}"><i class="fa fa-eye" aria-hidden="true"></i></a>
                   <a class="btn btn-sm btn-info" href="{!! route('getUpdateBlueprint', [$blueprint->id]) !!}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
@@ -196,6 +197,30 @@
                @endif
             </div>
             @endforeach 
+         </div>
+        <div id="menu5" class="tab-pane fade">
+            @foreach(Auth::user()->improves as $forkedBlueprint)
+            <div class="col-md-12 col-sm-12">
+               <div class="col-md-1">{{ __('STT') }}</div>
+               <div class="col-md-7 qoute">{{ __('Title') }}</div>
+               <div class="col-md-2">{{ __('Status') }}</div>
+               <div class="col-md-2">{{ __('Action') }}</div>
+            </div>
+            <div class="col-md-12 col-sm-12" id="blueprint{!! $forkedBlueprint->id !!}">
+               <div class="col-md-1">{!! $forkedBlueprint->id !!}</div>
+               <div class="col-md-7 qoute">
+                  <p>
+                     {!! $forkedBlueprint->blueprint->title !!}
+                  </p>
+               </div>
+               <div class="col-md-2">@if($forkedBlueprint->id != 0) {!! __('Pending') !!} @else {!! __('Approve') !!} @endif</div>
+               <div class="col-md-2">
+                  <a class="btn btn-sm btn-warning" href="{!! route('viewForkedBlueprint', [$forkedBlueprint->id]) !!}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                  <a class="btn btn-sm btn-info" href="{!! route('viewEditForkedBlueprint', [$forkedBlueprint->id]) !!}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                  <button class="btn btn-sm btn-danger delete-blueprint" value="{!! $forkedBlueprint->id !!}"><i class="fa fa-trash" aria-hidden="true"></i></button>
+               </div>
+            </div>
+            @endforeach
          </div>
       </div>
    </div>

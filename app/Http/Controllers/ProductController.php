@@ -26,11 +26,17 @@ class ProductController extends Controller
         JsonResponse $jsonResponse,
         FlashResponse $flashResponse,
         FormResponse $formResponse
-    ) {
+    )
+    {
         $this->productRepository = $productRepository;
         $this->jsonResponse = $jsonResponse;
         $this->flashResponse = $flashResponse;
         $this->formResponse = $formResponse;
+    }
+
+    public function getSearchProduct(Request $request)
+    {
+        return $this->productRepository->searchProduct($request);
     }
 
     public function searchProductById($id)

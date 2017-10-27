@@ -60,7 +60,13 @@ class Product extends BaseEntity
         return number_format($value);
     }
 
-    public function blueprint(){
+    public function blueprint()
+    {
         return $this->belongsToMany('App\Entities\Blueprint');
+    }
+
+    public function improveDetail()
+    {
+        return $this->hasMany('App\Entities\ImproveDetail', 'products_id');
     }
 }

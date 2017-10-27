@@ -116,6 +116,13 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
     Route::get('list-blueprint', 'BlueprintController@listBlueprint')->name('listBlueprint');
     Route::get('list-my-blueprint', 'BlueprintController@listMyBlueprint')->name('listMyBlueprint');
     Route::get('list-new-blueprint', 'BlueprintController@listNewBlueprint')->name('listNewBlueprint');
+    Route::get('view-fork-blueprint/{id}', 'ImproveBlueprintController@viewForkedBlueprint')->name('viewForkedBlueprint');
+    Route::group(['prefix' => 'edit-fork-blueprint'], function () {
+        Route::group(['prefix' => '{id}'], function () {
+            Route::get('/', 'ImproveBlueprintController@viewEditForkedBlueprint')->name('viewEditForkedBlueprint');
+            Route::post('/', 'ImproveBlueprintController@postEditForkedBlueprint')->name('postEditForkedBlueprint');
+        });
+    });
 });
 
 Route::group(['prefix' => 'post'], function () {
