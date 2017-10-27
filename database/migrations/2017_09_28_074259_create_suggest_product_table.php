@@ -17,7 +17,7 @@ class CreateSuggestProductTable extends Migration
             $table->increments('id');
             $table->string('name', 100)->unique();
             $table->integer('price');
-            $table->jsonb('attribute');
+            $table->jsonb('attribute')->nullable();
             $table->text('description')->nullable();
             $table->integer('blueprints_id')->nullable()->unsigned();
             $table->integer('categories_id')->unsigned();

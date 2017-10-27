@@ -108,12 +108,14 @@ class BlueprintController extends Controller
         $blueprintInfo = $this->blueprintRepository->getBlueprintInfo($id);
         $gallery = $this->blueprintRepository->getBlueprintImage($id);
         $blueprintProduct = $this->blueprintRepository->getBlueprintProduct($id);
+        $relative = $this->blueprintRepository->getRelative($blueprintInfo->topic->id);
 
         return view("blueprint.view_blueprint",
             compact(
                 'blueprintInfo',
                 'gallery',
-                'blueprintProduct'
+                'blueprintProduct',
+                'relative'
             )
         );
     }
@@ -124,9 +126,9 @@ class BlueprintController extends Controller
         return view('blueprint.edit_request_blueprint', compact('requestBlueprint'));
     }
 
-    public function postEditRequest(Request $request, $id)
+    public function postEditRequest(RequireBlueprintRequest $request, $id)
     {
-        $this->requestBlueprintRepository->updateRequestBlueprint($id, $request);
+        $this->requestBlueprintRepository->updateRequestBlueprint($request, $id);
         return redirect()->back()->with('success_msg', __('Update successfully'));
     }
 

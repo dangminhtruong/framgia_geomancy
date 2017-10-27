@@ -1,21 +1,4 @@
 $('.file').hide();
-$(document).ready(function() {
-    $('.gallery1').slick({
-        dots: true,
-        infinite: true,
-        speed: 500,
-        fade: true,
-        cssEase: 'linear'
-    });
-});
-$(document).ready(function() {
-    if (document.getElementById("DescriptionsTextArea") != undefined) {
-        CKEDITOR.replace('DescriptionsTextArea', {
-            height: 800
-        });
-    }
-});
-
 $(document).on('click', '.browse', function() {
     var file = $(this).parent().parent().parent().find('.file');
     file.trigger('click');
@@ -26,6 +9,31 @@ $(document).on('change', '.file', function() {
 });
 
 $(document).ready(function() {
+    $('.gallery1').slick({
+        dots: true,
+        infinite: true,
+        speed: 500,
+        fade: true,
+        cssEase: 'linear'
+    });
+
+    if (document.getElementById("DescriptionsTextArea") != undefined) {
+        CKEDITOR.replace('DescriptionsTextArea', {
+            height: 800
+        });
+    }
+
+    if (document.getElementById("edit_description") != undefined) {
+        CKEDITOR.replace('edit_description', {
+            height: 800
+        });
+    }
+
+    var file = $(this).parent().parent().parent().find('.file');
+    file.trigger('click');
+
+    $(this).parent().find('.form-control').val($(this).val().replace(/fakepath\\/i, ''));
+
     $('#add_more_img').click(function() {
         $('#add_more_img').before('<div class="form-group">' +
             '<input type="file" name="img[]" class="file">' +
@@ -36,9 +44,7 @@ $(document).ready(function() {
             '<i class="glyphicon glyphicon-search"></i> Browse</button></span></div></div>');
         $('.file').hide();
     });
-});
 
-$(document).ready(function() {
     $('#search_product').keyup(function() {
         var url = "/blueprint/search-product";
         var keyWord = $('#search_product').val();
@@ -73,9 +79,7 @@ $(document).ready(function() {
         var dataType = 'json';
         $.get(url, data, success, dataType);
     });
-});
 
-$(document).ready(function() {
     $('.btn-change-img').click(function() {
 
         var id = $(this).val();
@@ -96,26 +100,24 @@ $(document).ready(function() {
         }
         var dataType = 'text';
         swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this imaginary file!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
             .then((willDelete) => {
-            if (willDelete) {
-                swal("Poof! Your imaginary file has been deleted!", {
-                    icon: "success",
-                });
-                $.get(url, data, success, dataType);
-            } else {
-                swal("Your imaginary file is safe!");
-    }
+                if (willDelete) {
+                    swal("Poof! Your imaginary file has been deleted!", {
+                        icon: "success",
+                    });
+                    $.get(url, data, success, dataType);
+                } else {
+                    swal("Your imaginary file is safe!");
+                }
+            });
     });
-    });
-});
 
-$(document).ready(function() {
     $('#btn-add-attr').click(function() {
         var id = $(this).val();
         var url = '/blueprint/create-blueprint/add-attribute/' + id;
@@ -128,9 +130,7 @@ $(document).ready(function() {
         var dataType = 'html';
         $.get(url, success, dataType);
     });
-});
 
-$(document).ready(function() {
     $('.delete-request').click(function() {
         var requestId = $(this).val();
         var url = "/blueprint/request-blueprint/delete/" + requestId;
@@ -139,26 +139,24 @@ $(document).ready(function() {
         }
         var dataType = 'text';
         swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this blueprint request!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this blueprint request!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
             .then((willDelete) => {
-            if (willDelete) {
-                swal("Poof! Your blueprint request has been deleted!", {
-                    icon: "success",
-                });
-                $.get(url, success, dataType);
-            } else {
-                swal("Your blueprint request is safe!");
-    }
+                if (willDelete) {
+                    swal("Poof! Your blueprint request has been deleted!", {
+                        icon: "success",
+                    });
+                    $.get(url, success, dataType);
+                } else {
+                    swal("Your blueprint request is safe!");
+                }
+            });
     });
-    });
-});
 
-$(document).ready(function() {
     $('#btn-add-suggest').click(function() {
         var name = $('#suggestName').val();
         var price = $('#suggestPrice').val();
@@ -180,14 +178,13 @@ $(document).ready(function() {
             $('#suggest-list').append(result);
             $('#btn-suggest-reset').trigger('click');
             $('#suggestModalx').modal('hide');
+            swal("Success!", "Suggested product!", "success");
             $('.remove-more-attr').trigger("click");
         }
         var dataType = 'html';
         $.get(url, data, success, dataType);
     });
-});
 
-$(document).ready(function() {
     $('.delete-blueprint').click(function() {
         var id = $(this).val();
         var url = '/blueprint/delete-blueprint/' + id;
@@ -202,26 +199,24 @@ $(document).ready(function() {
         var dataType = 'text';
 
         swal({
-            title: "Are you sure?",
-            text: "Once devared, you will not be able to recover this blueprint!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
+                title: "Are you sure?",
+                text: "Once devared, you will not be able to recover this blueprint!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
             .then((willDelete) => {
-            if (willDelete) {
-                swal("Poof! Your blueprint has been deleted!", {
-                    icon: "success",
-                });
-                $.get(url, data, success, dataType);
-            } else {
-                swal("Your blueprint is safe!");
-    }
+                if (willDelete) {
+                    swal("Poof! Your blueprint has been deleted!", {
+                        icon: "success",
+                    });
+                    $.get(url, data, success, dataType);
+                } else {
+                    swal("Your blueprint is safe!");
+                }
+            });
     });
-    });
-});
 
-$(document).ready(function() {
     $('.pusblish_status').change(function() {
         var id = $(this).val();
         var url = '/post/change-publish/' + id;
@@ -234,9 +229,7 @@ $(document).ready(function() {
         var dataType = 'text';
         $.get(url, data, success, dataType);
     });
-});
 
-$(document).ready(function() {
     $('.btn-fork').click(function() {
         var blueprintId = $(this).val();
         var url = '/blueprint/fork-blueprint/' + blueprintId;
@@ -252,5 +245,41 @@ $(document).ready(function() {
         }
         var dataType = "text";
         $.get(url, data, success, dataType);
+    });
+
+    $('.btn-message').click(function(){
+        var message_id = $(this).val();
+        var url = '/blueprint/update-message/' + message_id;
+        var success = function(res){
+            $('#btn-mess' + message_id ).html('Seen message');
+        }
+        var dataType = 'text';
+        $.get(url, success, dataType);
+    });
+
+    $('.delete-improve-blueprint').click(function(){
+        var improve_id = $(this).val();
+        var url = '/blueprint/del-improve/' + improve_id;
+        var success = function(res){
+            $('#improveBlueprint' + improve_id).remove();
+        }
+        var dataType;
+         swal({
+                title: "Are you sure?",
+                text: "Once devared, you will not be able to recover this forked blueprint!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Poof! Your forked blueprint has been deleted!", {
+                        icon: "success",
+                    });
+                    $.get(url,success,dataType);
+                } else {
+                    swal("Your blueprint is safe!");
+                }
+            });
     });
 });

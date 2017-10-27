@@ -182,4 +182,8 @@ class RequestManagerController extends Controller
         }
         return $this->flashResponse->successAndBack(__('Yêu cầu cập nhật thành công'));
     }
+
+    public function updateMessageStatus($messageId){
+        return $this->requestNotifyRepository->updateMessageStatus($messageId);
+    }
 }
