@@ -192,5 +192,7 @@
   "Require fish tank blueprint": "Yêu cầu thiết kế",
   "Choice the suggest": "Chọn bản thiết kế ưng ý",
   "Your forked bluerint": "Thiết kế đã sao chép",
-  "Suggest product": "Sản phẩm đề xuất"
+  "Suggest product": "Sản phẩm đề xuất",
+  "CreateBlueprint.About.pTag": "Tạo một bản thiết kế của riêng bạn và chia sẽ với mọi người. Chúng tôi sẽ góp ý và giúp bạn hoàn thiện. Chúc vui vẻ...",
+  "CreateBlueprint.Title.pTag" : "Sẻ chia ý tưởng"
 }

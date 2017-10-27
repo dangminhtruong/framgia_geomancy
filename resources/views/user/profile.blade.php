@@ -13,7 +13,7 @@
             <li><a data-toggle="tab" href="#menu5">{{ __('Your forked bluerint') }}</a></li>
             <li><a data-toggle="tab" href="#menu2">{{ __('Your blueprint request') }}</a></li>
             <li><a data-toggle="tab" href="#menu3">{{ __('Post') }}</a></li>
-            <li><a data-toggle="tab" href="#menu4">{{ __('notifications') }}</a></li>
+            <li><a data-toggle="tab" href="#menu4">{{ __('Notifications') }}</a></li>
          </ul>
          <div class="tab-content">
             <h3 id="user_name">{!! Auth::user()->name !!}</h3>
@@ -183,17 +183,23 @@
                         </button>
                      </div>
                   </div>
-               @endforeach()
+               @endforeach
             </div>
             <div id="menu4" class="tab-pane fade">
                @foreach(Auth::user()->requestNotifies as $notifi)
                   <div class="col-md-9 col-sm-9 col-md-push-3">
-                     @if($notifi->view_flg == 0)
-                        <b>{{ $notifi->message }}</b>
+                     @if(!$notifi->view_flg)
+                        <button class="btn btn-link btn-message" id="btn-mess{{ $notifi->id }}" data-toggle="collapse" data-target="#message{{ $notifi->id }}" value="{{ $notifi->id }}">
+                           <b>{{ __('You have an unseen messgae') }}</b>
+                        </button>
                         <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        <p id="message{{ $notifi->id }}" class="collapse">{{ $notifi->message }}</p>
                      @else
-                        {{ $notifi->message }}
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#message{{ $notifi->id }}" value="{{ $notifi->id }}">
+                           {{ __('Seen message') }}
+                        </button>
                         <i class="fa fa-envelope-open-o" aria-hidden="true"></i>
+                        <p id="message{{ $notifi->id }}" class="collapse">{{ $notifi->message }}</p>
                      @endif
                   </div>
                @endforeach
@@ -205,8 +211,8 @@
                   <div class="col-md-2">{{ __('Status') }}</div>
                   <div class="col-md-2">{{ __('Action') }}</div>
                </div>
-               @foreach(Auth::user()->improves as $forkedBlueprint)
-                  <div class="col-md-12 col-sm-12" id="blueprint{!! $forkedBlueprint->id !!}">
+               @foreach(Auth::user()->improves->where('status', '!=', 2) as $forkedBlueprint)
+                  <div class="col-md-12 col-sm-12" id="improveBlueprint{!! $forkedBlueprint->id !!}">
                      <div class="col-md-1">{!! $forkedBlueprint->id !!}</div>
                      <div class="col-md-7 qoute">
                         <p>
@@ -217,7 +223,7 @@
                      <div class="col-md-2">
                         <a class="btn btn-sm btn-warning" href="{!! route('viewForkedBlueprint', [$forkedBlueprint->id]) !!}"><i class="fa fa-eye" aria-hidden="true"></i></a>
                         <a class="btn btn-sm btn-info" href="{!! route('viewEditForkedBlueprint', [$forkedBlueprint->id]) !!}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                        <button class="btn btn-sm btn-danger delete-blueprint" value="{!! $forkedBlueprint->id !!}"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <button class="btn btn-sm btn-danger delete-improve-blueprint" value="{!! $forkedBlueprint->id !!}"><i class="fa fa-trash" aria-hidden="true"></i></button>
                      </div>
                   </div>
                @endforeach

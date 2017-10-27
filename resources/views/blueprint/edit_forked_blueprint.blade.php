@@ -4,7 +4,7 @@
         data-keyboard="false" data-replace="true">
       <div class="modal-header">
          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-         <h4 class="modal-title text-center">{{ __('Suggest Product')  }}}</h4>
+         <h4 class="modal-title text-center">{{ __('Suggest Product')  }}</h4>
       </div>
       <form method="" action="#">
          <div class="modal-body">
@@ -50,8 +50,8 @@
             </div>
          </div>
          <div class="modal-footer text-center">
-            <button type="button" class="btn btn-success" id="btn-add-suggest">{{ __('Suggest')  }}}</button>
-            <button type="reset" class="btn btn-warning" id="btn-suggest-reset">{{ __('Reset')  }}}</button>
+            <button type="button" class="btn btn-success" id="btn-add-suggest">{{ __('Suggest')  }}</button>
+            <button type="reset" class="btn btn-warning" id="btn-suggest-reset">{{ __('Reset')  }}</button>
             <button type="button" data-dismiss="modal" class="btn btn-primary btn-border">{{ __('Close')  }}</button>
          </div>
       </form>
@@ -63,7 +63,7 @@
             <div class="row">
                <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                   <h2>{{ __('CreateBlueprint.MainTitle') }}</h2>
-                  <p>{{ __('CreateBlueprint.Title.pTag')  }}}.</p>
+                  <p>{{ __('CreateBlueprint.Title.pTag')  }}.</p>
                </div>
             </div>
          </div>
@@ -169,7 +169,7 @@
                               <div class="clearfix"></div>
                               <div class="col-xs-12 col-sm-12 col-md-12">
                                  <div class="mb-30"></div>
-                                 <h4 class="section-title">{{ __('Suggest product') }}}</h4>
+                                 <h4 class="section-title">{{ __('Suggest product') }}</h4>
                                  <div id="suggest-list">
                                  </div>
                               </div>
@@ -182,7 +182,7 @@
                                             id="gallery{!! $image->id !!}">
                                           <button type="button"
                                                   class="btn btn-xs btn-default btn-change-img"
-                                                  value="{!! $image->id !!}"><i
+                                                  disabled><i
                                                      class="fa fa-2x fa-trash-o" aria-hidden="true"></i>
                                           </button>
                                           <img src="{!! url('/images/gallery', [$image->image_name]) !!}"
@@ -198,7 +198,7 @@
                         </div>
                         <div class="mb-50">
                            <div class="mb-25"></div>
-                           <button href="requested-create-done.html" class="btn btn-primary btn-wide">{{ __('Submit')  }}}
+                           <button href="requested-create-done.html" class="btn btn-primary btn-wide">{{ __('Submit')  }}
                            </button>
                         </div>
                      </div>

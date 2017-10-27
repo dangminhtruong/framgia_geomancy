@@ -202,8 +202,6 @@
                                     <div class="mb-25"></div>
                                     <button href="requested-create-done.html" class="btn btn-primary btn-wide">Submit
                                     </button>
-                                    <a href="#"
-                                       class="btn btn-primary btn-wide btn-border">{{ __('CreateBlueprint.SaveDraft') }}</a>
                                 </div>
                             </div>
                         </form>
