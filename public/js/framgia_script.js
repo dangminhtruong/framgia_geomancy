@@ -278,7 +278,7 @@ $(document).ready(function() {
                     });
                     $.get(url,success,dataType);
                 } else {
-                    swal("Your blueprint is safe!");
+                    swal("Your blueprint is safe !");
                 }
             });
     });
