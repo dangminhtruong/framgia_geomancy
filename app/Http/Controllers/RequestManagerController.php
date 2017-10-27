@@ -29,7 +29,8 @@ class RequestManagerController extends Controller
         JsonResponse $jsonResponse,
         FlashResponse $flashResponse,
         FormResponse $formResponse
-    ) {
+    )
+    {
         $this->requestRepository = $requestRepository;
         $this->requestNotifyRepository = $requestNotifyRepository;
         $this->jsonResponse = $jsonResponse;
@@ -65,7 +66,7 @@ class RequestManagerController extends Controller
         }
 
         return view('admin.request_manager.index', compact(
-            'requestBlueprints', 'paginate', 'title', 'nav')
+                'requestBlueprints', 'paginate', 'title', 'nav')
         );
     }
 
@@ -99,10 +100,10 @@ class RequestManagerController extends Controller
         }
 
         $view = view('admin.request_manager.request_table')
-        ->with([
-            'requestBlueprints' => $requestBlueprints,
-            'paginate' => $paginate,
-        ])->render();
+            ->with([
+                'requestBlueprints' => $requestBlueprints,
+                'paginate' => $paginate,
+            ])->render();
 
         return $this->jsonResponse->success('', ['view' => $view]);
     }
@@ -181,5 +182,10 @@ class RequestManagerController extends Controller
             }
         }
         return $this->flashResponse->successAndBack(__('Yêu cầu cập nhật thành công'));
+    }
+
+    public function updateMessageStatus($messageId)
+    {
+        return $this->requestNotifyRepository->updateMessageStatus($messageId);
     }
 }
