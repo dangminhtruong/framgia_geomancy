@@ -14,6 +14,7 @@ use App\Entities\RequestBlueprint;
 use App\Framgia\Helpers\FramgiaHelper;
 use Auth, Hash, DB;
 use Carbon\Carbon;
+use App\Events\CreateBluePrintDone;
 
 class BlueprintRepository extends AbstractRepository implements BlueprintRepositoryInterface
 {
@@ -96,8 +97,8 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
         $this->suggestProductRepository->updateAfterCreate($addBlueprint->id);
 
         if (!$request->hasFile('img')) {
-            return $this->flashResponse->success('getCreateBlueprint',
-                __('Create blueprint successfull !'));
+            event(new CreateBluePrintDone($addBlueprint));
+            return redirect()->route('getCreateDone', [$addBlueprint->id]);
         }
 
         foreach ($request->file('img') as $files) {
@@ -108,7 +109,7 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
             $galleryAdd = $this->galleryRepository->create($galleryData);
             $files->move(config('path.upload_images_path'), $plusName . $files->getClientOriginalName());
         }
-
+        event(new CreateBluePrintDone($addBlueprint));
         return redirect()->route('getCreateDone', [$addBlueprint->id]);
     }
 
@@ -218,4 +219,5 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
     {
         return $this->model::where('topics_id', $topicId)->take(4)->get();
     }
+
 }

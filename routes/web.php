@@ -56,6 +56,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
         Route::post('lock', 'UserManagerController@lockAccount');
         Route::post('unlock', 'UserManagerController@unlockAccount');
         Route::get('/search', 'UserManagerController@search')->name('user-search');
+        Route::get('profile/{userId}', 'UserManagerController@viewProfile')->name('user-profile');
     });
 
     Route::prefix('request')->group(function () {
@@ -65,6 +66,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
         Route::post('approve', 'RequestManagerController@approve')->name('request-approve');
         Route::post('unapprove', 'RequestManagerController@unapprove')->name('request-unapprove');
     });
+
 });
 
 Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function () {
@@ -123,6 +125,8 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
             Route::post('/', 'ImproveBlueprintController@postEditForkedBlueprint')->name('postEditForkedBlueprint');
         });
     });
+    Route::get('del-improve/{improve_id}', 'ImproveBlueprintController@delForkedBlueprint')->name('delForkedBlueprint');
+    Route::get('update-message/{messageId}', 'RequestManagerController@updateMessageStatus')->name('updateMessageStatus');
 });
 
 Route::group(['prefix' => 'post'], function () {

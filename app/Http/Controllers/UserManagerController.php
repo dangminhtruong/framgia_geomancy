@@ -143,4 +143,14 @@ class UserManagerController extends Controller
         }
         return view('admin.user.user', compact('users', 'paginate', 'nav'));
     }
+
+    public function viewProfile($userId)
+    {
+        $user = $this->userRepository->getProfileById($userId);
+        if ($user) {
+            return view('admin.user.profile', compact('user'));
+        }
+
+        return $this->flashResponse->failAndBack(__('Không tìm thấy thông tin người dùng'));
+    }
 }

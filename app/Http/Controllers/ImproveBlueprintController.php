@@ -50,4 +50,9 @@ class ImproveBlueprintController extends Controller
         return $this->improveBlueprintRepository->editForkedBlueprint($request, $id);
     }
 
+    public function delForkedBlueprint($id)
+    {
+        return $this->improveBlueprintRepository->delForkedBlueprint($id);
+    }
+
 }

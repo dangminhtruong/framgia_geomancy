@@ -41,4 +41,16 @@ class RequestNotifyRepository extends AbstractRepository implements RequestNotif
                 'view_flg' => 0,
             ]);
     }
+
+    public function updateMessageStatus($messageId)
+    {
+        $messages = $this->model()->find($messageId);
+        if (!$messages->view_flg) {
+            $messages->view_flg = 1;
+            $messages->save();
+
+            return __('Seen');
+        }
+        return __('Unseen');
+    }
 }
