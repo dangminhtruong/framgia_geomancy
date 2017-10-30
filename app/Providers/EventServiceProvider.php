@@ -21,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\UnlockAccountEvent' => [
             'App\Listeners\SendAccountUnlockNoticeMail',
+        ],
+        'App\Events\CreateBluePrintDone' => [
+            'App\Listeners\sendMailAfterCreateBlueprint',
         ]
     ];
 

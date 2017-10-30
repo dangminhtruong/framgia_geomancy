@@ -66,6 +66,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
         Route::post('approve', 'RequestManagerController@approve')->name('request-approve');
         Route::post('unapprove', 'RequestManagerController@unapprove')->name('request-unapprove');
     });
+
 });
 
 Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function () {
@@ -124,6 +125,8 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
             Route::post('/', 'ImproveBlueprintController@postEditForkedBlueprint')->name('postEditForkedBlueprint');
         });
     });
+    Route::get('del-improve/{improve_id}', 'ImproveBlueprintController@delForkedBlueprint')->name('delForkedBlueprint');
+    Route::get('update-message/{messageId}', 'RequestManagerController@updateMessageStatus')->name('updateMessageStatus');
 });
 
 Route::group(['prefix' => 'post'], function () {

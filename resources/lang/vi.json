@@ -192,5 +192,15 @@
   "Require fish tank blueprint": "Yêu cầu thiết kế",
   "Choice the suggest": "Chọn bản thiết kế ưng ý",
   "Your forked bluerint": "Thiết kế đã sao chép",
-  "Suggest product": "Sản phẩm đề xuất"
+  "Suggest product": "Sản phẩm đề xuất",
+  "CreateBlueprint.About.pTag": "Tạo một bản thiết kế của riêng bạn và chia sẽ với mọi người. Chúng tôi sẽ góp ý và giúp bạn hoàn thiện. Chúc vui vẻ...",
+  "CreateBlueprint.Title.pTag": "Sẻ chia ý tưởng",
+  "We send this email cause you just created and share your blueprint": "Chúng tôi gửi cho bạn email này vì bạn vừa tạo và chia sẽ một bản thiết kế",
+  "Dear mr": "Xin chào bạn",
+  "Many thanks": "Cám ơn bạn rất nhiều",
+  "To review click": "Để xem lại bản thiết kế hãy nhấn vào",
+  "From": "Gửi từ",
+  "here": "đây",
+  "Can't send thanks email to": "Không thể gửi email cám ơn tới tài khoản",
+  "to review": "để xem lại"
 }
