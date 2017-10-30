@@ -67,6 +67,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
         Route::post('unapprove', 'RequestManagerController@unapprove')->name('request-unapprove');
     });
 
+    Route::prefix('blueprint')->group(function() {
+        Route::get('/{type}', 'BlueprintManagerController@index')->name('blueprint');
+        Route::post('/', 'BlueprintManagerController@viewBlueprint');
+    });
 });
 
 Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function () {

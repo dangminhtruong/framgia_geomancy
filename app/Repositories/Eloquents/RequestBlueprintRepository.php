@@ -48,6 +48,8 @@ class RequestBlueprintRepository extends AbstractRepository implements RequestBl
     {
         return $this->model::with(['user'])
             ->where('status', 2)
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
             ->get();
     }
 
@@ -55,6 +57,8 @@ class RequestBlueprintRepository extends AbstractRepository implements RequestBl
     {
         return $this->model::with(['user'])
             ->where('status', 1)
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
             ->get();
     }
 
@@ -62,6 +66,8 @@ class RequestBlueprintRepository extends AbstractRepository implements RequestBl
     {
         return $this->model::with(['user'])
             ->where('status', 0)
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
             ->get();
     }
 
