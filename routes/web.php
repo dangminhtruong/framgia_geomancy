@@ -56,6 +56,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
         Route::post('lock', 'UserManagerController@lockAccount');
         Route::post('unlock', 'UserManagerController@unlockAccount');
         Route::get('/search', 'UserManagerController@search')->name('user-search');
+        Route::get('profile/{userId}', 'UserManagerController@viewProfile')->name('user-profile');
     });
 
     Route::prefix('request')->group(function () {
