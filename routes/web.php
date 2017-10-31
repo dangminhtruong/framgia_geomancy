@@ -70,6 +70,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
     Route::prefix('blueprint')->group(function() {
         Route::get('/{type}', 'BlueprintManagerController@index')->name('blueprint');
         Route::post('/', 'BlueprintManagerController@viewBlueprint');
+        Route::get('/detail/{blueprintId}', 'BlueprintManagerController@viewBlueprintDetail')
+            ->name('blueprint-detail');
     });
 });
 
