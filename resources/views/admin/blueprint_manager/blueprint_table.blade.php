@@ -16,7 +16,7 @@
                 <td class="text-center pd-top-15">{{ $blueprint->created_at }}</td>
                 <td class="text-center pd-top-15">{{ $blueprint->updated_at }}</td>
                 <td class="text-center">
-                    <a href="#" type="button" class="btn btn-info btn-sm">
+                    <a href="{{ route('blueprint-detail', ['blueprintId' => $blueprint->id]) }}" type="button" class="btn btn-info btn-sm">
                         {{ __('Chi tiết') }}
                     </a>
                 </td>

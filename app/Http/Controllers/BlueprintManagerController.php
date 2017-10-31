@@ -101,4 +101,14 @@ class BlueprintManagerController extends Controller
 
         return $this->jsonResponse->success('', ['view' => $view]);
     }
+
+    public function viewBlueprintDetail($blueprintId)
+    {
+        $blueprint = $this->blueprintRepository->findByIdWithRelation($blueprintId);
+        if (!$blueprint) {
+            return $this->flashResponse->failAndBack('Bản thiết kế không tồn tại');
+        }
+
+        return view('admin.blueprint_manager.detail', compact('blueprint'));
+    }
 }

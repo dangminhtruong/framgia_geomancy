@@ -2867,9 +2867,14 @@ fieldset[disabled] .form-control {
 .custom-width {max-width: 250px !important;}
 .block-left {text-align: left;display: block;}
 .mgr-top-15 {margin-top: 15px;}
+.mgr-left-10 {margin-left: 10px;}
 .mx-width {max-width: 100%; display: inline-block;}
 .label-new {background-color: #3071a9;}
 .label {font-size: 12.5px;}
 .margin-right-20 {margin-right: 20px;}
 .break-word {word-wrap: break-word;}
 .custom-v-margin {margin: 20px 0 20px 0;}
+.w-text {color: white !important;}
+.bx-wrapper img {margin: 0 auto !important;}
+.bx-wrapper {margin: 0 auto 60px !important;}
+.modal {z-index: 999999 !important;}

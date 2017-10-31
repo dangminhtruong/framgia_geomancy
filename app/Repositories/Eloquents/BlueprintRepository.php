@@ -246,4 +246,10 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
             ->orderBy('created_at', 'desc')
             ->get();
     }
+
+    public function findByIdWithRelation($blueprintId)
+    {
+        return $this->model::with(['details', 'suggests', 'gallery', 'user'])
+            ->find($blueprintId);
+    }
 }
