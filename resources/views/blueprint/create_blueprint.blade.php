@@ -14,12 +14,14 @@
                         <div class="form-group">
                             <label>{{ __('CreateBlueprint.Suggest.Name') }}</label>
                             <input type="text" class="form-control" name="suggestName" id="suggestName"/>
+                            <p class="text-danger help-block suggest-text error-text" id="sugget_name_danger"></p>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-3">
                         <div class="form-group form-spin-group">
                             <label>{{ __('CreateBlueprint.Suggest.Price') }}</label>
                             <input type="number" class="form-control form-spin" name="suggestPrice" id="suggestPrice"/>
+                            <p class="text-danger help-block suggest-text error-text" id="sugget_price_danger"></p>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-5">
@@ -42,7 +44,8 @@
                     </div>
                     <!-----Add more attribute------>
                     <div class="col-xs-12 col-sm-12" id="add-more-attr">
-                        <label for="comment">Add more attribute: </label>
+                        <p class="text-danger help-block suggest-text error-text" id="sugget_attribute_danger"></p>
+                        <label for="comment">{{  __('Add more attribute') }}: </label>
                         <button type="button" class="btn btn-danger" id="btn-add-attr" value="0"><i class="fa fa-plus"
                                                                                                     aria-hidden="true"></i>
                         </button>

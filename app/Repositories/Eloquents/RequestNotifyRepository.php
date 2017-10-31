@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquents;
 
 use App\Repositories\Contracts\RequestNotifyRepositoryInterface;
 use App\Entities\RequestNotification;
+use Auth;
 
 class RequestNotifyRepository extends AbstractRepository implements RequestNotifyRepositoryInterface
 {
@@ -52,5 +53,16 @@ class RequestNotifyRepository extends AbstractRepository implements RequestNotif
             return __('Seen');
         }
         return __('Unseen');
+    }
+
+    public function newMessage($message, $requestId)
+    {
+        return $this->model()
+            ->create([
+                'users_id' => Auth::user()->id,
+                'request_id' => $requestId,
+                'message' => $message,
+                'view_flg' => 0,
+            ]);
     }
 }

@@ -25,7 +25,15 @@ class SuggestProductController extends Controller
             'blueprints_id' => Auth::user()->id,
             'categories_id' => $request->categoryId
         ];
+        if ($this->suggestProductRepository->checkNameIfExist($request->name) != 0) {
+            return "existed";
+        }
         $suggestProduct = $this->suggestProductRepository->create($data);
         return view('blueprint.sub_pages.blueprint_suggest_respon', compact('suggestProduct'));
+    }
+
+    public function removeSuggest($id)
+    {
+        return $this->suggestProductRepository->removeSuggest($id);
     }
 }

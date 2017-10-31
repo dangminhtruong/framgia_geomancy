@@ -264,4 +264,9 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
         return $this->model::where('id', $blueprintId)
             ->first()->status;
     }
+    
+    public function removeProduct($productId)
+    {
+        return $this->blueprintDetailRepository->removeProduct($productId);
+    }
 }
