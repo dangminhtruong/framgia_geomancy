@@ -420,4 +420,18 @@ $(document).ready(function() {
         adaptiveHeight: true,
         slideWidth: 650
     });
+
+    //===== APPROVE BLUEPRINT =====//
+    $('._approve_blueprint').on('click', function(e) {
+        e.preventDefault();
+
+        var isTrue = confirm('Phê duyệt thiết kế này?');
+
+        if (!isTrue) {
+            toastr.info('Đã hủy thao tác');
+
+            return false;
+        }
+        $('._approve_form').submit();
+    })
 });

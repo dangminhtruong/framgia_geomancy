@@ -67,17 +67,17 @@
             <div class="panel panel-filled">
                 <div class="panel-body">
                     <div class="pull-right">
-                        <button id="_approve_request" type="submit" class="btn btn-w-md btn-danger" data-toggle="modal" data-target="#myModal">
+                        <button id="" type="submit" class="btn btn-w-md btn-danger" data-toggle="modal" data-target="#myModal">
                             {{ __("Yêu cầu sửa đổi") }}
                         </button>
                     </div>
-                    <form class="pull-right margin-right-20 _approve_form" method="POST" action="{{ route('request-approve') }}">
+                    <form class="pull-right margin-right-20 _approve_form" method="POST" action="{{ route('blueprint-approve') }}">
                         {{ csrf_field() }}
-                        <input type="hidden" name="requestId" value="{{ $blueprint->id }}">
-                        <button type="submit" class="btn btn-w-md btn-success _approve_request">
-                            {{ __("Phê duyệt yêu cầu") }}
+                        <input type="hidden" name="blueprintId" value="{{ $blueprint->id }}">
+                        <button type="submit" class="btn btn-w-md btn-success _approve_blueprint">
+                            {{ __("Phê duyệt thiết kế") }}
                         </button>
-                        <p class="help-block">{{ $errors->first('requestId') }}</p>
+                        <p class="help-block">{{ $errors->first('blueprintId') }}</p>
                     </form>
                 </div>
             </div>
@@ -126,12 +126,15 @@
                 @endforeach
             </div>
         </div>
-        {{--  <div class="col-md-12">
+        <div class="col-md-12">
             <div class="panel">
                 <div class="panel-body">
                     <h4>{{ __("Tin nhắn") }}</h4>
+                    @if ($blueprint->notifies->count() == 0)
+                    <p>{{ __('Không có tin nhắn nào') }}
+                    @else
                     <div class="v-timeline vertical-container">
-                        @foreach ($blueprint->requestNotifies as $notify)
+                        @foreach ($blueprint->notifies as $notify)
                             <div class="vertical-timeline-block">
                                 <div class="vertical-timeline-icon">
                                     <i class="fa fa-commenting-o" aria-hidden="true"></i>
@@ -148,26 +151,27 @@
                             </div>
                         @endforeach
                     </div>
+                    @endif
                 </div>
             </div>
-        </div>  --}}
+        </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-filled">
                 <div class="panel-body">
                     <div class="pull-right">
-                        <button id="_approve_request" type="submit" class="btn btn-w-md btn-danger" data-toggle="modal" data-target="#myModal">
+                        <button id="" type="submit" class="btn btn-w-md btn-danger" data-toggle="modal" data-target="#myModal">
                             {{ __("Yêu cầu sửa đổi") }}
                         </button>
                     </div>
-                    <form class="pull-right margin-right-20 _approve_form" method="POST" action="{{ route('request-approve') }}">
+                    <form class="pull-right margin-right-20 _approve_form" method="POST" action="{{ route('blueprint-approve') }}">
                         {{ csrf_field() }}
-                        <input type="hidden" name="requestId" value="{{ $blueprint->id }}">
-                        <button type="submit" class="btn btn-w-md btn-success _approve_request">
-                            {{ __("Phê duyệt yêu cầu") }}
+                        <input type="hidden" name="blueprintId" value="{{ $blueprint->id }}">
+                        <button type="submit" class="btn btn-w-md btn-success _approve_blueprint">
+                            {{ __("Phê duyệt thiết kế") }}
                         </button>
-                        <p class="help-block">{{ $errors->first('requestId') }}</p>
+                        <p class="help-block">{{ $errors->first('blueprintId') }}</p>
                     </form>
                 </div>
             </div>
