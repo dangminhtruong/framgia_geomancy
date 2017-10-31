@@ -73,6 +73,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
         Route::get('/detail/{blueprintId}', 'BlueprintManagerController@viewBlueprintDetail')
             ->name('blueprint-detail');
         Route::post('approve', 'BlueprintManagerController@approve')->name('blueprint-approve');
+        Route::post('unapprove', 'BlueprintManagerController@unapprove')->name('blueprint-unapprove');
     });
 });
 

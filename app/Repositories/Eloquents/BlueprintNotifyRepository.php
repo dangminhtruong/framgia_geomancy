@@ -22,4 +22,15 @@ class BlueprintNotifyRepository extends AbstractRepository implements BlueprintN
                 'view_flg' => 0,
             ]);
     }
+
+    public function sendUnapproveNotify($blueprintId, $adminId, $message)
+    {
+        return $this->model()
+            ->create([
+                'users_id' => $adminId,
+                'blueprints_id' => $blueprintId,
+                'message' => $message,
+                'view_flg' => 0,
+            ]);
+    }
 }

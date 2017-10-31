@@ -67,7 +67,7 @@
             <div class="panel panel-filled">
                 <div class="panel-body">
                     <div class="pull-right">
-                        <button id="" type="submit" class="btn btn-w-md btn-danger" data-toggle="modal" data-target="#myModal">
+                        <button type="submit" class="btn btn-w-md btn-danger" data-toggle="modal" data-target="#myModal">
                             {{ __("Yêu cầu sửa đổi") }}
                         </button>
                     </div>
@@ -120,11 +120,16 @@
             @endforeach
         </div>
         <div class="col-md-12">
+            <h4>{{ __('Ảnh đính kèm') }}</h4>
+            @if ($blueprint->gallery->count() == 0)
+            <p>{{ __('Không có ảnh nào') }}
+            @else
             <div class="bxslider">
                 @foreach($blueprint->gallery as $image)
                     <div><img src="{!! url('images/gallery', [$image->image_name]) !!}"></div>
                 @endforeach
             </div>
+            @endif
         </div>
         <div class="col-md-12">
             <div class="panel">
@@ -184,20 +189,20 @@
             <div class="modal-header text-center">
                 <h4 class="modal-title">{{ __('Yêu cầu cập nhật') }}</h4>
             </div>
-            <form method="POST" action="{{ route('request-unapprove') }}">
+            <form method="POST" action="{{ route('blueprint-unapprove') }}">
                 {{ csrf_field() }}
-                <input type="hidden" name="request_Id" value="{{ $blueprint->id }}">
+                <input type="hidden" name="blueprint_Id" value="{{ $blueprint->id }}">
                 <div class="modal-body">
                     <h4 class="m-t-none">{{ __('Lý do') }}</h4>
                     <div class="row">
-                        <textarea name="message" class="form-control" rows="5" placeholder="{{ __('Lý dó') }}..."></textarea>
+                        <textarea name="message" class="form-control" rows="5" placeholder="{{ __('Lý do') }}...">{{ old('message') }}</textarea>
                         <p class="help-block">{{ $errors->first('message') }}</p>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-accent">{{ __('Gửi') }}</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __("Đóng") }}</button>
-                    <p class="help-block">{{ $errors->first('request_Id') }}</p>
+                    <p class="help-block">{{ $errors->first('blueprint_Id') }}</p>
                 </div>
             </form>
         </div>

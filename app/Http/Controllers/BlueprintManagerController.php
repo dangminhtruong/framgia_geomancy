@@ -10,6 +10,7 @@ use App\Framgia\Response\FormResponse;
 use App\Framgia\Response\JsonResponse;
 use App\Http\Requests\PaginateBlueprint;
 use App\Http\Requests\ApproveBlueprintRequest;
+use App\Http\Requests\UnapproveBlueprint;
 use App\Framgia\Helpers\Paginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -140,7 +141,45 @@ class BlueprintManagerController extends Controller
 
             return $this->flashResponse->successAndBack(__('Phê duyệt thành công'));
         }
-
         return $this->flashResponse->failAndBack(__('Thiết kế đã được duyệt trước đó'));
+    }
+
+    public function unapprove(UnapproveBlueprint $request)
+    {
+        $blueprint = $this->blueprintRepository->findById($request->blueprint_Id);
+        if ($blueprint->status != config('app.pending_request')) {
+            DB::beginTransaction();
+            try {
+                $blueprint->status = config('app.pending_request');
+                $blueprint->save();
+            } catch (Exception $e) {
+                DB::rollback();
+
+                return $this->flashResponse->failAndBack(__('Có lỗi xảy ra, vui lòng thử lại'));
+            }
+            try {
+                $this->blueprintNotify->sendUnapproveNotify(
+                    $request->blueprint_Id,
+                    Auth::user()->id,
+                    $request->message
+                );
+            } catch (Exception $e) {
+                DB::rollback();
+
+                return $this->flashResponse->failAndBack(__('Có lỗi xảy ra, vui lòng thử lại'));
+            }
+            DB::commit();
+        } else {
+            try {
+                $this->blueprintNotify->sendUnapproveNotify(
+                    $request->blueprint_Id,
+                    Auth::user()->id,
+                    $request->message
+                );
+            } catch (Exception $e) {
+                return $this->flashResponse->failAndBack(__('Có lỗi xảy ra, vui lòng thử lại'));
+            }
+        }
+        return $this->flashResponse->successAndBack(__('Yêu cầu cập nhật thành công'));
     }
 }
