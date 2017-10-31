@@ -252,4 +252,16 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
         return $this->model::with(['details', 'suggests', 'gallery', 'user'])
             ->find($blueprintId);
     }
+
+    public function approve($blueprintId)
+    {
+        return $this->model::where('id', $blueprintId)
+            ->update(['status' => 1]);
+    }
+
+    public function getStatus($blueprintId)
+    {
+        return $this->model::where('id', $blueprintId)
+            ->first()->status;
+    }
 }

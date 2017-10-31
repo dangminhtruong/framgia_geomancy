@@ -72,6 +72,12 @@ class Blueprint extends BaseEntity
         return $this->hasMany(Gallery::class, 'blueprints_id', 'id');
     }
 
+    public function notifies()
+    {
+        return $this->hasMany(BlueprintNotification::class, 'blueprints_id')
+            ->orderBy('created_at', 'desc');
+    }
+
     /**
      * Format timestamp to d-m-Y
      */
