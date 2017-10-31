@@ -9,6 +9,7 @@ use App\Framgia\Response\FormResponse;
 use App\Framgia\Response\JsonResponse;
 use App\Framgia\Helpers\Paginator;
 use App\Http\Requests\PaginateCategoryRequest;
+use App\Http\Requests\AddCategoryRequest;
 
 class CategoryManagerController extends Controller
 {
@@ -57,5 +58,16 @@ class CategoryManagerController extends Controller
             ])->render();
 
         return $this->jsonResponse->success('', ['view' => $view]);
+    }
+
+    public function create(AddCategoryRequest $request)
+    {
+        try {
+            $this->categoryRepository->create($request->only(['name', 'description']));
+        } catch(Exception $e) {
+            return $this->formResponse->response($request, 'Có lỗi xảy ra, vui lòng thử lại');
+        }
+
+        return $this->flashResponse->successAndBack('Thêm danh mục thành công');
     }
 }

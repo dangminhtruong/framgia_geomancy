@@ -222,4 +222,5 @@
     {{ HTML::script('js/common.js') }}
     {{ HTML::script('js/admin.js') }}
     {{ HTML::script('bowerrc/bxslider-4/dist/jquery.bxslider.min.js') }}
+    {{ HTML::script('js/slider.load.js') }}
 @endsection

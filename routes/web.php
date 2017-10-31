@@ -48,6 +48,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
     Route::prefix('category')->group(function () {
         Route::get('/', 'CategoryManagerController@index')->name('category-show');
         Route::post('/', 'CategoryManagerController@paginateCategory');
+        Route::post('create', 'CategoryManagerController@create')->name('category-create');
     });
 
     Route::prefix('user')->group(function () {
