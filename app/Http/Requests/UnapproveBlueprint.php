@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ApproveBlueprintRequest extends FormRequest
+class UnapproveBlueprint extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,8 @@ class ApproveBlueprintRequest extends FormRequest
     public function rules()
     {
         return [
-            'blueprintId' => 'required|string|exists:blueprints,id',
+            'blueprint_Id' => 'required|string|exists:blueprints,id',
+            'message' => 'required|string',
         ];
     }
 
@@ -36,9 +37,11 @@ class ApproveBlueprintRequest extends FormRequest
     public function messages()
     {
         return [
-            'blueprintId.required' => __('Có lỗi xảy ra, vui lòng thử lại'),
-            'blueprintId.string' => __('Có lỗi xảy ra, vui lòng thử lại'),
-            'blueprintId.exists' => __('Không tìm thấy thiết kế'),
+            'blueprint_Id.required' => __('Có lỗi xảy ra, vui lòng thử lại'),
+            'blueprint_Id.string' => __('Có lỗi xảy ra, vui lòng thử lại'),
+            'blueprint_Id.exists' => __('Không tìm thấy thiết kế'),
+            'message.required' => __('Hãy nhập lý do'),
+            'message.string' => __('Hãy nhập lý do')
         ];
     }
 }

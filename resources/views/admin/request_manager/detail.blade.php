@@ -157,7 +157,7 @@
                 <div class="modal-body">
                     <h4 class="m-t-none">{{ __('Lý do') }}</h4>
                     <div class="row">
-                        <textarea name="message" class="form-control" rows="5" placeholder="{{ __('Lý dó') }}..."></textarea>
+                        <textarea name="message" class="form-control" rows="5" placeholder="{{ __('Lý do') }}...">{{ old('message') }}</textarea>
                         <p class="help-block">{{ $errors->first('message') }}</p>
                     </div>
                 </div>
