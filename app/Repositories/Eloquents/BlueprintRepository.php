@@ -220,4 +220,30 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
         return $this->model::where('topics_id', $topicId)->take(4)->get();
     }
 
+    public function getPendingBlueprints()
+    {
+        return $this->model::with(['user'])
+            ->where('status', 2)
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+    }
+
+    public function getApprovedBlueprints()
+    {
+        return $this->model::with(['user'])
+            ->where('status', 1)
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+    }
+
+    public function getNewBlueprints()
+    {
+        return $this->model::with(['user'])
+            ->where('status', 0)
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+    }
 }

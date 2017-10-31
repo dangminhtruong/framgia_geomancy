@@ -71,4 +71,20 @@ class Blueprint extends BaseEntity
     {
         return $this->hasMany(Gallery::class, 'blueprints_id', 'id');
     }
+
+    /**
+     * Format timestamp to d-m-Y
+     */
+    public function getCreatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d-m-Y');
+    }
+
+    /**
+     * Format timestamp to d-m-Y
+     */
+    public function getUpdatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d-m-Y');
+    }
 }

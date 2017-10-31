@@ -235,4 +235,6 @@ return [
     'lock_account' => 2,
     'pending_request' => 2,
     'approved_request' => 3,
+    'pending_blueprint' => 2,
+    'approved_blueprint' => 3,
 ];

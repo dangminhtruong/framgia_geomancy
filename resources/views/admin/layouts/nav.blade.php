@@ -45,15 +45,23 @@
                 </ul>
             </li>
             <li>
-                <a href="#forms2" data-toggle="collapse" aria-expanded="false">
-                {{ __('Bản thiết kế') }}
-                <span class="sub-nav-icon"><i class="stroke-arrow"></i></span>
-                </a>
-                <ul id="forms2" class="nav nav-second collapse">
+                @if (!isset($nav['blueprint']))
+                    <a href="#forms2" data-toggle="collapse" aria-expanded="false">
+                    {{ __('Bản thiết kế') }}
+                    <span class="sub-nav-icon"><i class="stroke-arrow"></i></span>
+                    </a>
+                    <ul id="forms2" class="nav nav-second collapse">
+                @else
+                    <a href="#forms2" data-toggle="collapse" aria-expanded="true" class="nav-category">
+                    {{ __('Bản thiết kế') }}
+                    <span class="sub-nav-icon"><i class="stroke-arrow"></i></span>
+                    </a>
+                    <ul id="forms2" class="nav nav-second collapse in" aria-expanded="true">
+                @endif
                     <li><a href="#">{{ __('Thống kê') }}</a></li>
-                    <li><a href="#">{{ __('Thiết kế mới') }}</a></li>
-                    <li><a href="#">{{ __('Thiết kế đã duyệt') }}</a></li>
-                    <li><a href="#">{{ __('Thiết kế chờ') }}</a></li>
+                    <li @if (isset($nav['blueprint']['list1'])) class="active" @endif><a href="{{ route('blueprint', ['type' => 1]) }}">{{ __('Thiết kế mới') }}</a></li>
+                    <li @if (isset($nav['blueprint']['list3'])) class="active" @endif><a href="{{ route('blueprint', ['type' => 3]) }}">{{ __('Thiết kế đã duyệt') }}</a></li>
+                    <li @if (isset($nav['blueprint']['list2'])) class="active" @endif><a href="{{ route('blueprint', ['type' => 2]) }}">{{ __('Thiết kế chờ') }}</a></li>
                 </ul>
             </li>
             <li>
