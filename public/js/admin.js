@@ -423,5 +423,43 @@ $(document).ready(function() {
             return false;
         }
         $('._approve_form').submit();
+    });
+
+    //===== REMOVE CATEGORY =====//
+    $('._remove_cate').on('click', function(e) {
+        e.preventDefault();
+
+        var categoryId = $(this).data('cateid');
+        if (isNaN(parseInt(categoryId))) {
+            toastr.warning('Có lỗi xảy ra, vui lòng thử lại');
+
+            return false;
+        }
+
+        var categoryName = $(this).data('catename');
+        var isTrue = confirm('Xác nhận xóa danh mục "' + categoryName + '"');
+        if (!isTrue) {
+            toastr.info('Đã hủy thao tác');
+
+            return false;
+        }
+
+        var data = {
+            categoryId: categoryId,
+            _token: $('meta[name="csrf-token"]').attr('content')
+        };
+
+        $('#load_scr').css('display', 'table');
+        ajaxSubmit('admin/category/delete', 'POST', data, function(result) {
+            if (result.code == 200) {
+                $('#cate' + categoryId).remove();
+                toastr.success(result.message);
+
+                return true;
+            }
+            toastr.warning(result.message);
+
+            return false;
+        }, null);
     })
 });

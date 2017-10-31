@@ -49,6 +49,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
         Route::get('/', 'CategoryManagerController@index')->name('category-show');
         Route::post('/', 'CategoryManagerController@paginateCategory');
         Route::post('create', 'CategoryManagerController@create')->name('category-create');
+        Route::post('delete', 'CategoryManagerController@remove');
     });
 
     Route::prefix('user')->group(function () {
