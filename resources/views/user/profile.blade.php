@@ -10,7 +10,6 @@
          <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#home">{{ __('Edit profile') }}</a></li>
             <li><a data-toggle="tab" href="#menu1">{{ __('Your bluerint') }}</a></li>
-            <li><a data-toggle="tab" href="#menu5">{{ __('Your forked bluerint') }}</a></li>
             <li><a data-toggle="tab" href="#menu2">{{ __('Your blueprint request') }}</a></li>
             <li><a data-toggle="tab" href="#menu3">{{ __('Post') }}</a></li>
             <li><a data-toggle="tab" href="#menu4">{{ __('Notifications') }}</a></li>
@@ -217,30 +216,6 @@
                      </div>
                      <div class="col-md-3">
                         <button class="btn btn-link btn-xs"><a href="{{ route('viewRequestMessage', [$notifi->request_id]) }}"><b>{{ __('Xem') }}</b></a></button>
-                     </div>
-                  </div>
-               @endforeach
-            </div>
-            <div id="menu5" class="tab-pane fade">
-               <div class="col-md-12 col-sm-12">
-                  <div class="col-md-1">{{ __('STT') }}</div>
-                  <div class="col-md-7 qoute">{{ __('Title') }}</div>
-                  <div class="col-md-2">{{ __('Status') }}</div>
-                  <div class="col-md-2">{{ __('Action') }}</div>
-               </div>
-               @foreach(Auth::user()->improves->where('status', '!=', 2) as $forkedBlueprint)
-                  <div class="col-md-12 col-sm-12" id="improveBlueprint{!! $forkedBlueprint->id !!}">
-                     <div class="col-md-1">{!! $forkedBlueprint->id !!}</div>
-                     <div class="col-md-7 qoute">
-                        <p>
-                           {!! $forkedBlueprint->blueprint->title !!}
-                        </p>
-                     </div>
-                     <div class="col-md-2">@if($forkedBlueprint->id != 0) {!! __('Pending') !!} @else {!! __('Approve') !!} @endif</div>
-                     <div class="col-md-2">
-                        <a class="btn btn-sm btn-warning" href="{!! route('viewForkedBlueprint', [$forkedBlueprint->id]) !!}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                        <a class="btn btn-sm btn-info" href="{!! route('viewEditForkedBlueprint', [$forkedBlueprint->id]) !!}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                        <button class="btn btn-sm btn-danger delete-improve-blueprint" value="{!! $forkedBlueprint->id !!}"><i class="fa fa-trash" aria-hidden="true"></i></button>
                      </div>
                   </div>
                @endforeach

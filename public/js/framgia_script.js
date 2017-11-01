@@ -157,7 +157,6 @@ $(document).ready(function() {
             });
     });
 
-
     $('#btn-add-suggest').click(function() {
 
         function checkNullAtribute(attribute) {
@@ -261,11 +260,10 @@ $(document).ready(function() {
             'id': blueprintId
         }
         var success = function(res) {
-            if (res === 'forked') {
-                swal("Đã sao chép !", "Bây giờ nó là của bạn!", "success");
-            } else {
-                swal("Bạn đã có bản thiết kế này");
-            }
+            swal("Đã sao chép !", "Bây giờ nó là của bạn!", "success");
+            setTimeout(function() {
+                location.replace("/blueprint/update-blueprint/" + res);
+            }, 1500);
         }
         var dataType = "text";
         $.get(url, data, success, dataType);
@@ -308,6 +306,53 @@ $(document).ready(function() {
     });
 });
 
+$('.remove-blueprint-suggest').click(function() {
+    var suggestId = $(this).val();
+    var url = '/blueprint/remove-sugest/' + suggestId;
+    var data = {
+        'suggestId': suggestId
+    }
+    var success = function(res) {
+        $('#suggestProduct' + suggestId).remove();
+    }
+    var dataType = 'text';
+
+    swal({
+            title: "Bạn muốn xóa ?",
+            text: "Sản phẩm đề xuất này sẽ bị loại bỏ !",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("Thành công! Sản phẩm đề xuất đã được xóa !", {
+                    icon: "success",
+                });
+                $.get(url, data, success, dataType);
+            } else {
+                swal("Sản phẩm đề xuất đã được giữ lại !");
+            }
+        });
+
+});
+
+$('.btn-reply').click(function() {
+    var requestId = $(this).val();
+    var message = $('#request-reply').val();
+    var url = '/user/send-request-message';
+    var data = {
+        'requestId': requestId,
+        'message': message
+    }
+    var success = function(res) {
+        $('#buble-me').append(res);
+        $('#request-reply').val('');
+    };
+    var dataType = 'html';
+    $.get(url, data, success, dataType);
+});
+
 $('.remove-blueprint-product').click(function() {
     var productId = $(this).val();
     var url = '/blueprint/update-blueprint/remove-product/' + productId;
@@ -336,52 +381,4 @@ $('.remove-blueprint-product').click(function() {
                 swal("Sản phẩm đã được giữ lại !");
             }
         });
-});
-
-function removeSuggest() {
-    $('.remove-blueprint-suggest').click(function() {
-        var suggestId = $(this).val();
-        var url = '/blueprint/remove-sugest/' + suggestId;
-        var data = {
-            'suggestId': suggestId
-        }
-        var success = function(res) {
-            $('#suggestProduct' + suggestId).remove();
-        }
-        var dataType = 'text';
-
-        swal({
-                title: "Bạn muốn xóa ?",
-                text: "Sản phẩm này sẽ bị loại bỏ !",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willDelete) => {
-                if (willDelete) {
-                    swal("Thành công! Sản phẩm đã được xóa !", {
-                        icon: "success",
-                    });
-                    $.get(url, data, success, dataType);
-                } else {
-                    swal("Sản phẩm đã được giữ lại !");
-                }
-            });
-
-    });
-}
-
-$('.btn-reply').click(function() {
-    var requestId = $(this).val();
-    var message = $('#request-reply').val();
-    var url = '/user/send-request-message';
-    var data = {
-        'requestId': requestId,
-        'message': message
-    }
-    var success = function(res) {
-        $('#buble-me').append(res);
-    };
-    var dataType = 'html';
-    $.get(url, data, success, dataType);
 });

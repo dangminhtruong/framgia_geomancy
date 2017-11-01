@@ -59,4 +59,9 @@ class RequestBlueprint extends BaseEntity
     {
         return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d-m-Y');
     }
+
+    public function requestNotify()
+    {
+        return $this->hasMany(RequestNotification::class, 'request_id');
+    }
 }

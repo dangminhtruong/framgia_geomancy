@@ -9,7 +9,7 @@
          <input type="number" class="form-control form-spin" value="{!! $suggestProduct->price !!}" disabled />
       </div>
    </div>
-   <div class="col-xs-4 col-sm-4">
+   <div class="col-xs-5 col-sm-5">
       <div class="form-group">
         <label for="sel1">Product's type:</label>
         <select class="form-control" id="sel1">
@@ -17,12 +17,4 @@
         </select>
       </div>
    </div>
-    <div class="col-xs-1 col-sm-1">
-        <div class="form-group">
-            <label>{{ __('Xóa')  }}</label>
-                <button type="button" class="remove-more-attr remove-blueprint-suggest" value="{{ $suggestProduct->id }}">
-                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </button>
-        </div>
-    </div>
 </div>

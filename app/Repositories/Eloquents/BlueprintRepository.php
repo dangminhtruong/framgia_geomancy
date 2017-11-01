@@ -166,7 +166,7 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
                 $this->blueprintDetailRepository->create($blueprintDetailData);
             }
         }
-
+        $this->suggestProductRepository->updateAfterCreate($blueprintId);
         if (!$request->hasFile('img')) {
             return $this->flashResponse->success(
                 'getCreateBlueprint',
@@ -264,7 +264,7 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
         return $this->model::where('id', $blueprintId)
             ->first()->status;
     }
-    
+
     public function removeProduct($productId)
     {
         return $this->blueprintDetailRepository->removeProduct($productId);

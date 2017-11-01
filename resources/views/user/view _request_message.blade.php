@@ -66,7 +66,7 @@
                </div>
                <div class="col-md-12">
                   <div class="chat" id="buble-me">
-                     @foreach($requestBlueprint->requestNotifies as $notify)
+                     @foreach($requestBlueprint->requestNotify as $notify)
                         @if($notify->users_id == Auth::user()->id)
                            <div class="col-md-12 col-sm-12">
                               <div class="bubble you">

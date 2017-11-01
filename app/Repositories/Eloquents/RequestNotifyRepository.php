@@ -52,6 +52,7 @@ class RequestNotifyRepository extends AbstractRepository implements RequestNotif
 
             return __('Seen');
         }
+        
         return __('Unseen');
     }
 
@@ -64,5 +65,10 @@ class RequestNotifyRepository extends AbstractRepository implements RequestNotif
                 'message' => $message,
                 'view_flg' => 0,
             ]);
+    }
+
+    public function changeStatus($requestId)
+    {
+        return $this->model()->where('request_id', $requestId)->update(['view_flg' => 1]);
     }
 }

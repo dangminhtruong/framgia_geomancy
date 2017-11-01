@@ -19,7 +19,7 @@ class RequestBlueprintController extends Controller
     public function viewRequestMessage($id)
     {
         $requestBlueprint = $this->requestBlueprintRepository->findById($id);
-
+        $this->requestBlueprintRepository->changeMessageStatus($id);
         return view('user.view _request_message', compact('requestBlueprint'));
     }
 

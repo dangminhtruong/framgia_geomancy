@@ -91,4 +91,9 @@ class RequestBlueprintRepository extends AbstractRepository implements RequestBl
     {
         $this->requestNotifyRepository->newMessage($message, $requestId);
     }
+
+    public function changeMessageStatus($requestId)
+    {
+        $this->requestNotifyRepository->changeStatus($requestId);
+    }
 }
