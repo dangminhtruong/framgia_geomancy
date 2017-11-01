@@ -162,7 +162,7 @@
                                     <div class="form-group">
                                        <label for="sel1">Product's type:</label>
                                        <select class="form-control" id="sel1">
-                                          <option selected>{!! $blueprintProduct->id !!}</option>
+                                          <option selected>{!! $blueprintProduct->product->category->name !!}</option>
                                        </select>
                                     </div>
                                  </div>

@@ -6,6 +6,7 @@ use App\Repositories\Contracts\ImproveBlueprintRepositoryInterface;
 use App\Repositories\Contracts\BlueprintRepositoryInterface as BlueprintRepository;
 use App\Repositories\Contracts\BlueprintDetailRepositoryInterface as BlueprintDetailRepository;
 use App\Repositories\Contracts\ImproveDetailRepositoryInterface as ImproveDetailRepository;
+use App\Repositories\Contracts\GalleryRepositoryInterface as GalleryRepository;
 use App\Entities\ImproveBlueprint;
 use Auth;
 
@@ -15,17 +16,20 @@ class ImproveBlueprintRepository extends AbstractRepository implements ImproveBl
     protected $blueprintRepository;
     protected $blueprintDetailRepository;
     protected $improveDetailRepository;
+    protected $galleryRepository;
 
     function __construct(
         ImproveDetailRepository $improveDetailRepository,
         BlueprintRepository $blueprintRepository,
-        BlueprintDetailRepository $blueprintDetailRepository
+        BlueprintDetailRepository $blueprintDetailRepository,
+        GalleryRepository $galleryRepository
     )
     {
         $this->model = $this->model();
         $this->blueprintRepository = $blueprintRepository;
         $this->blueprintDetailRepository = $blueprintDetailRepository;
         $this->improveDetailRepository = $improveDetailRepository;
+        $this->galleryRepository = $galleryRepository;
     }
 
     public function model()
@@ -49,18 +53,25 @@ class ImproveBlueprintRepository extends AbstractRepository implements ImproveBl
         $cloneData = array_add($cloneData, 'publish_flg', 1);
         $cloneData = array_add($cloneData, 'topics_id', $originBlueprint->topics_id);
         $cloneData = array_add($cloneData, 'users_id', Auth::user()->id);
-        $blueprintRepository = $this->blueprintRepository->create($cloneData);
+        $createClone = $this->blueprintRepository->create($cloneData);
 
         foreach ($originBlueprint->details as $blueprintDetail) {
             $originDetail = $this->blueprintDetailRepository->findById($blueprintDetail->id);
             $cloneDetailData = [];
             $cloneDetailData = array_add($cloneDetailData, 'quantity', $originDetail->quantity);
-            $cloneDetailData = array_add($cloneDetailData, 'blueprints_id', $blueprintRepository->id);
+            $cloneDetailData = array_add($cloneDetailData, 'blueprints_id', $createClone->id);
             $cloneDetailData = array_add($cloneDetailData, 'products_id', $originDetail->products_id);
             $this->blueprintDetailRepository->create($cloneDetailData);
         }
 
-        return $blueprintRepository->id;
+        foreach ($originBlueprint->gallery as $image) {
+            $newImage = [];
+            $newImage = array_add($newImage, 'image_name', $image->image_name);
+            $newImage = array_add($newImage, 'blueprints_id', $createClone->id);
+            $this->galleryRepository->create($newImage);
+        }
+
+        return $createClone->id;
     }
 
     public function forkBlueprintInfo($id)

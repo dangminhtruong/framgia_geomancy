@@ -29,6 +29,12 @@ $(document).ready(function() {
         });
     }
 
+     if (document.getElementById("post_content") != undefined) {
+        CKEDITOR.replace('post_content', {
+            height: 600
+        });
+    }
+
     var file = $(this).parent().parent().parent().find('.file');
     file.trigger('click');
 

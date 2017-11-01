@@ -8,10 +8,12 @@ use App\Entities\Post;
 class PostRepository extends AbstractRepository implements PostRepositoryInterface
 {
     protected $model;
+    protected $typeRepository;
 
-    function __construct()
+    function __construct(TypeRepository $typeRepository)
     {
         $this->model = $this->model();
+        $this->typeRepository = $typeRepository;
     }
 
     public function model()
@@ -38,5 +40,15 @@ class PostRepository extends AbstractRepository implements PostRepositoryInterfa
 
             return __('Published');
         }
+    }
+
+    public function create($data)
+    {
+        return $this->model::create($data);
+    }
+
+    public function getAll()
+    {
+        return $this->typeRepository->getAllTypes();
     }
 }
