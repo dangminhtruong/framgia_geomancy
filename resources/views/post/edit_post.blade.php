@@ -4,7 +4,7 @@
    <div class="container request-blueprint">
       <div class="col-md-2"></div>
       <div class="col-md-8 form_request_bblueprint">
-         <form method="post" action="{{ route('postWritePost') }}">
+         <form method="post" action="{{ route('postEditPost', [$postCurrent->id]) }}">
             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             <div class="form-group">
                <label for="sel1">{{ __('Chủ đề bài viết') }}:</label>
@@ -18,7 +18,7 @@
                <label for="example-date-input" class="col-2 col-form-label">{{ __('Title') }}</label>
                <div class="col-10">
                <textarea class="form-control" id="" name="post_title" rows="2" required>
-               		{{ (old('post_title')) ? old('post_title') : null }}
+               		{{ (old('post_title')) ? old('post_title') : $postCurrent->title }}
                </textarea>
                   <p class="text-danger help-block error-text">
                      {{ $errors->first('post_title') }}
@@ -29,7 +29,7 @@
                <label for="example-date-input" class="col-2 col-form-label">{{ __('Form.Descriptions') }}</label>
                <div class="col-10">
                <textarea class="form-control" id="post_content" name="post_content" rows="15" required>
-               {{ (old('post_content')) ? old('post_content') : null }}
+               {{ (old('post_content')) ? old('post_content') : $postCurrent->body }}
                </textarea>
                </div>
             </div>

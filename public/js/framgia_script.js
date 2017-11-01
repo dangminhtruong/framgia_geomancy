@@ -29,7 +29,7 @@ $(document).ready(function() {
         });
     }
 
-     if (document.getElementById("post_content") != undefined) {
+    if (document.getElementById("post_content") != undefined) {
         CKEDITOR.replace('post_content', {
             height: 600
         });
@@ -106,22 +106,22 @@ $(document).ready(function() {
         }
         var dataType = 'text';
         swal({
-                title: "Bạn muốn xóa ?",
-                text: "Hình ảnh này sẽ bị loại bỏ !",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
+            title: "Bạn muốn xóa ?",
+            text: "Hình ảnh này sẽ bị loại bỏ !",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
             .then((willDelete) => {
-                if (willDelete) {
-                    swal("Thành công! Hình ảnh đã được xóa !", {
-                        icon: "success",
-                    });
-                    $.get(url, data, success, dataType);
-                } else {
-                    swal("Hình ảnh đã được giữ lại !");
-                }
-            });
+            if (willDelete) {
+                swal("Thành công! Hình ảnh đã được xóa !", {
+                    icon: "success",
+                });
+                $.get(url, data, success, dataType);
+            } else {
+                swal("Hình ảnh đã được giữ lại !");
+    }
+    });
     });
 
     $('#btn-add-attr').click(function() {
@@ -145,22 +145,22 @@ $(document).ready(function() {
         }
         var dataType = 'text';
         swal({
-                title: "Bạn muốn xóa ?",
-                text: "Yêu cầu thiết kế của bạn sẽ bị xóa bỏ!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
+            title: "Bạn muốn xóa ?",
+            text: "Yêu cầu thiết kế của bạn sẽ bị xóa bỏ!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
             .then((willDelete) => {
-                if (willDelete) {
-                    swal("Thành công! Yêu cầu thiết kế cảu bạn đã được xóa!", {
-                        icon: "success",
-                    });
-                    $.get(url, success, dataType);
-                } else {
-                    swal("Hủy xóa thành công!");
-                }
-            });
+            if (willDelete) {
+                swal("Thành công! Yêu cầu thiết kế cảu bạn đã được xóa!", {
+                    icon: "success",
+                });
+                $.get(url, success, dataType);
+            } else {
+                swal("Hủy xóa thành công!");
+    }
+    });
     });
 
     $('#btn-add-suggest').click(function() {
@@ -228,22 +228,22 @@ $(document).ready(function() {
         var dataType = 'text';
 
         swal({
-                title: "Bạn muốn xóa ?",
-                text: "Bản thiết kế này sẽ bị xóa bỏ !",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
+            title: "Bạn muốn xóa ?",
+            text: "Bản thiết kế này sẽ bị xóa bỏ !",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
             .then((willDelete) => {
-                if (willDelete) {
-                    swal("Thành công! Bản thiết kế đã được xóa !", {
-                        icon: "success",
-                    });
-                    $.get(url, data, success, dataType);
-                } else {
-                    swal("Hủy xóa thành công !");
-                }
-            });
+            if (willDelete) {
+                swal("Thành công! Bản thiết kế đã được xóa !", {
+                    icon: "success",
+                });
+                $.get(url, data, success, dataType);
+            } else {
+                swal("Hủy xóa thành công !");
+    }
+    });
     });
 
     $('.pusblish_status').change(function() {
@@ -293,22 +293,22 @@ $(document).ready(function() {
         }
         var dataType;
         swal({
-                title: "Bạn muốn xóa ?",
-                text: "Bản sao thiết kế này sẽ bị xóa bỏ !",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
+            title: "Bạn muốn xóa ?",
+            text: "Bản sao thiết kế này sẽ bị xóa bỏ !",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
             .then((willDelete) => {
-                if (willDelete) {
-                    swal("Thành công ! Đã xóa bản sao thiết kế !", {
-                        icon: "success",
-                    });
-                    $.get(url, success, dataType);
-                } else {
-                    swal("Hủy xóa thành công !");
-                }
-            });
+            if (willDelete) {
+                swal("Thành công ! Đã xóa bản sao thiết kế !", {
+                    icon: "success",
+                });
+                $.get(url, success, dataType);
+            } else {
+                swal("Hủy xóa thành công !");
+    }
+    });
     });
 });
 
@@ -324,22 +324,22 @@ $('.remove-blueprint-suggest').click(function() {
     var dataType = 'text';
 
     swal({
-            title: "Bạn muốn xóa ?",
-            text: "Sản phẩm đề xuất này sẽ bị loại bỏ !",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
+        title: "Bạn muốn xóa ?",
+        text: "Sản phẩm đề xuất này sẽ bị loại bỏ !",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
         .then((willDelete) => {
-            if (willDelete) {
-                swal("Thành công! Sản phẩm đề xuất đã được xóa !", {
-                    icon: "success",
-                });
-                $.get(url, data, success, dataType);
-            } else {
-                swal("Sản phẩm đề xuất đã được giữ lại !");
-            }
-        });
+        if (willDelete) {
+            swal("Thành công! Sản phẩm đề xuất đã được xóa !", {
+                icon: "success",
+            });
+            $.get(url, data, success, dataType);
+        } else {
+            swal("Sản phẩm đề xuất đã được giữ lại !");
+}
+});
 
 });
 
@@ -371,20 +371,46 @@ $('.remove-blueprint-product').click(function() {
     var dataType = 'text';
 
     swal({
-            title: "Bạn muốn xóa ?",
-            text: "Sản phẩm này sẽ bị loại bỏ !",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
+        title: "Bạn muốn xóa ?",
+        text: "Sản phẩm này sẽ bị loại bỏ !",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
         .then((willDelete) => {
-            if (willDelete) {
-                swal("Thành công! Sản phẩm đã được xóa !", {
-                    icon: "success",
-                });
-                $.get(url, data, success, dataType);
-            } else {
-                swal("Sản phẩm đã được giữ lại !");
-            }
-        });
+        if (willDelete) {
+            swal("Thành công! Sản phẩm đã được xóa !", {
+                icon: "success",
+            });
+            $.get(url, data, success, dataType);
+        } else {
+            swal("Sản phẩm đã được giữ lại !");
+}
+});
+});
+
+$('.btn-del-post').click(function() {
+    var postId = $(this).val();
+    var url = '/post/delete-post/' + postId;
+    var success = function(res) {
+        $('#post' + postId).remove();
+    }
+    var dataType = 'text';
+    swal({
+        title: "Bạn muốn xóa ?",
+        text: "Bài viết này sẽ bị loại bỏ !",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+        .then((willDelete) => {
+        if (willDelete) {
+            swal("Thành công! Bài viết đã được xóa !", {
+                icon: "success",
+            });
+            $.get(url, success, dataType);
+        } else {
+            swal("Bài viết đã được giữ lại !");
+}
+});
 });

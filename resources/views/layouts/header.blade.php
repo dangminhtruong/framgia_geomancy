@@ -36,22 +36,10 @@
                         <a href="#">{{ __('Nav.Posts') }}</a>
                         <ul>
                             <li>
-                                <a href="#">{{ __('Nav.NewPosts') }}</a>
-                                <ul>
-                                    <li><a href="#">{{ __('Nav.FishTanks') }}</a></li>
-                                </ul>
+                                <a href="{{ route('writePost') }}">{{ __('Viết bài') }}</a>
                             </li>
                             <li>
-                                <a href="#">{{ __('Nav.TrendingPosts') }}</a>
-                                <ul>
-                                    <li><a href="#">{{ __('Nav.FishTanks') }}</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">{{ __('Nav.AllPosts') }}</a>
-                                <ul>
-                                    <li><a href="#">{{ __('Nav.FishTanks') }}</a></li>
-                                </ul>
+                                <a href="{{ route('viewListPost') }}">{{ __('Danh sách bài viết') }}</a>
                             </li>
                         </ul>
                     </li>

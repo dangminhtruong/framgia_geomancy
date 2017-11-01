@@ -51,4 +51,35 @@ class PostRepository extends AbstractRepository implements PostRepositoryInterfa
     {
         return $this->typeRepository->getAllTypes();
     }
+
+    public function findById($id)
+    {
+        return $this->model::find($id);
+    }
+
+    public function relativePost($id)
+    {
+        $postCurrent = self::findById($id);
+        return $this->model::where('types_id', $postCurrent->types_id)->take(4)->get();
+    }
+
+    public function editPost($request, $id)
+    {
+        $currentpost = $this->model::find($id);
+        $currentpost->types_id = $request->post_type;
+        $currentpost->title = $request->post_title;
+        $currentpost->body = $request->post_content;
+        $currentpost->save();
+        return __('edited');
+    }
+
+    public function deletePost($id)
+    {
+        return $this->model::destroy($id);
+    }
+
+    public function getAllPost()
+    {
+        return $this->model::with('user')->paginate(16);
+    }
 }
