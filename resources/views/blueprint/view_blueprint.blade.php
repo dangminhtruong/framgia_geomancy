@@ -60,26 +60,26 @@
                            <div class="col-xs-12 col-sm-12 col-md-12" id="detail-content-sticky-nav-03">
                               <div class="featured-list-in-box">
                                  <h4 class="uppercase spacing-1">{{ __('CreateBlueprint.Detail') }}</h4>
-                                 @foreach($blueprintProduct as $product)
+                                 @foreach($blueprintInfo->details as $details)
                                     <div class="col-xss-12 col-xs-12 col-sm-12 col-md-12">
                                        <div class="col-xs-4 col-sm-4">
                                           <div class="form-group">
                                              <label>{{ __('CreateBlueprint.Suggest.Name') }}
-                                                : </label><br/>{!! $product->name !!}
+                                                : </label><br/>{!! $details->product->name !!}
                                           </div>
                                        </div>
                                        <div class="col-xs- col-sm-4">
                                           <div class="form-group form-spin-group">
                                              <label>{{ __('CreateBlueprint.Suggest.Quantity') }}</label>
                                              <input type="text" class="form-control form-spin"
-                                                    value="{!! $product->pivot->quantity !!}"/>
+                                                    value="{!! $details->quantity !!}"/>
                                           </div>
                                        </div>
                                        <div class="col-xs-4 col-sm-4">
                                           <div class="form-group form-spin-group">
                                              <label>{{ __('CreateBlueprint.Suggest.Type') }}</label>
                                              <select class="form-control" id="sel1">
-                                                <option>{!! $product->category->name !!}</option>
+                                                <option>{!! $details->product->category->name !!}</option>
                                              </select>
                                           </div>
                                        </div>

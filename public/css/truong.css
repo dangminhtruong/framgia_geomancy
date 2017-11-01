@@ -219,3 +219,8 @@ input:checked + .slider:before {
     max-height: 58vh;
     overflow-y: hidden;
 }
+
+#index_new_blueprint {
+    min-height: 60vh;
+    max-height: 60vh;
+}
