@@ -29,4 +29,9 @@ class BlueprintDetailRepository extends AbstractRepository implements BlueprintD
     {
         return $this->model::find($id);
     }
+
+    public function removeProduct($id)
+    {
+        return $this->model::destroy($id);
+    }
 }

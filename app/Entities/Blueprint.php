@@ -64,7 +64,7 @@ class Blueprint extends BaseEntity
     public function product()
     {
         return $this->belongsToMany(Product::class, 'blueprint_detail', 'blueprints_id', 'products_id')
-            ->withPivot('quantity');
+            ->withPivot('quantity', 'id');
     }
 
     public function gallery()

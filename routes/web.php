@@ -106,6 +106,7 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
     });
 
     Route::get('suggest-product', 'SuggestProductController@suggetProduct')->name('suggetProduct');
+    Route::get('remove-sugest/{id}', 'SuggestProductController@removeSuggest')->name('removeSuggest');
 
     Route::group(['prefix' => 'create-success'], function () {
         Route::get('/{id}', 'BlueprintController@getCreateDone')->name('getCreateDone');
@@ -117,6 +118,7 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
             Route::post('/', 'BlueprintController@postUpdateBlueprint')->name('postUpdateBlueprint');
         });
         Route::get("remove-gallery/{id}", "BlueprintController@getRemoveGallery")->name('getRemoveGallery');
+        Route::get("remove-product/{productId}", "BlueprintController@removeProduct")->name('removeProduct');
     });
 
     Route::get('delete-blueprint/{id}', 'BlueprintController@deleteBlueprint')->name('deleteBlueprint');
@@ -148,3 +150,8 @@ Route::group(['prefix' => 'post'], function () {
 });
 
 Route::get('list-by-category/{id}', 'CategoryController@listProductByCategory')->name('listProductByCategory');
+
+Route::group(['prefix' => 'user'], function() {
+    Route::get('view-request-message/{requestId}', 'RequestBlueprintController@viewRequestMessage')->name('viewRequestMessage');
+    Route::get('send-request-message', 'RequestBlueprintController@sendRequestMessage')->name('sendRequestMessage');
+});

@@ -44,4 +44,15 @@ class SuggestProductRepository extends AbstractRepository implements SuggestProd
     {
         $this->model::where('blueprints_id', Auth::user()->id)->update(['blueprints_id' => $blueprintId]);
     }
+
+    public function checkNameIfExist($suggestName)
+    {
+        $name = $this->model::where('name', $suggestName)->count();
+        return $name;
+    }
+
+    public function removeSuggest($id)
+    {
+        return $this->model::destroy($id);
+    }
 }

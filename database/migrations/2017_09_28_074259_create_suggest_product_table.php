@@ -16,7 +16,7 @@ class CreateSuggestProductTable extends Migration
         Schema::create('suggest_products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 100)->unique();
-            $table->integer('price');
+            $table->integer('price')->nullable();
             $table->jsonb('attribute')->nullable();
             $table->text('description')->nullable();
             $table->integer('blueprints_id')->nullable()->unsigned();
