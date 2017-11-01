@@ -10,7 +10,7 @@
     </thead>
     <tbody>
         @foreach($categories as $category)
-            <tr>
+            <tr id="cate{{ $category->id }}">
                 <td class="pd-top-15">{{ $category->name }}</td>
                 <td class="text-center pd-top-15">{{ $category->created_at }}</td>
                 <td class="text-center pd-top-15">{{ $category->updated_at }}</td>
@@ -50,7 +50,7 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li><a href="#">{{ __('Cập nhật') }}</a></li>
-                            <li><a href="#">{{ __('Xóa') }}</a></li>
+                            <li><a class="_remove_cate" data-cateName="{{ $category->name }}" data-cateId="{{ $category->id }}" href="javascript:void(0)">{{ __('Xóa') }}</a></li>
                         </ul>
                     </div>
                 </td>

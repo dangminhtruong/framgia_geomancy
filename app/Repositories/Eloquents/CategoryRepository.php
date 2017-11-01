@@ -51,4 +51,10 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
     {
         return $this->productRepository->categoryProduct($cateId);
     }
+
+    public function deleteById($categoryId)
+    {
+        return $this->model::where('id', $categoryId)
+            ->delete($categoryId);
+    }
 }

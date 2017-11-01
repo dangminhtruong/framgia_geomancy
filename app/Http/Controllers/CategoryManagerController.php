@@ -10,6 +10,7 @@ use App\Framgia\Response\JsonResponse;
 use App\Framgia\Helpers\Paginator;
 use App\Http\Requests\PaginateCategoryRequest;
 use App\Http\Requests\AddCategoryRequest;
+use App\Http\Requests\RemoveCategoryRequest;
 
 class CategoryManagerController extends Controller
 {
@@ -69,5 +70,16 @@ class CategoryManagerController extends Controller
         }
 
         return $this->flashResponse->successAndBack('Thêm danh mục thành công');
+    }
+
+    public function remove(RemoveCategoryRequest $request)
+    {
+        try {
+            $this->categoryRepository->deleteById($request->requestId);
+        } catch (Exception $e) {
+            return $this->jsonResponse->success(__('Có lỗi xảy ra, vui lòng thử lại sau'));
+        }
+
+        return $this->jsonResponse->success(__('Xóa danh mục thành công'));
     }
 }
