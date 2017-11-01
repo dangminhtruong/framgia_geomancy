@@ -152,11 +152,11 @@
                   <div class="col-md-2">{{ __('Action') }}</div>
                </div>
                @foreach(Auth::user()->posts as $post)
-                  <div class="col-md-12 col-sm-12">
+                  <div class="col-md-12 col-sm-12" id="post{{ $post->id }}">
                      <div class="col-md-1">{{ $post->id }}</div>
                      <div class="col-md-6 qoute">{{ $post->title }}</div>
                      <div class="col-md-2">
-                        @if($post->publish_flg == 0)
+                        @if(!$post->publish_flg)
                            <span id="publish{!! $post->id !!}">{{ __('Unpublish') }}</span><br/>
                            <label class="switch">
                               <input type="checkbox" class="pusblish_status" value="{!! $post->id !!}">
@@ -171,15 +171,19 @@
                         @endif
                      </div>
                      <div class="col-md-3">
-                        <button type="button" class="btn btn-info btn-xs" value="{{ $post->id }}">
-                           {{ __('View') }}
-                        </button>
-                        <button type="button" class="btn btn-warning btn-xs" value="{{ $post->id }}">
-                           {{ __('Edit') }}
-                        </button>
-                        <button type="button" class="btn btn-danger btn-xs" value="{{ $post->id }}">
+                        <a href="{!! route('viewpost', [$post->id]) !!}">
+                           <button type="button" class="btn btn-info btn-xs" value="{{ $post->id }}">
+                              {{ __('View') }}
+                           </button>
+                        </a>
+                        <a href="{{ route('editPost', [$post->id] ) }}">
+                           <button type="button" class="btn btn-warning btn-xs" value="{{ $post->id }}">
+                              {{ __('Edit') }}
+                           </button>
+                        </a>
+                           <button type="button" class="btn btn-danger btn-xs btn-del-post" value="{{ $post->id }}">
                            {{ __('Delete') }}
-                        </button>
+                           </button>
                      </div>
                   </div>
                @endforeach

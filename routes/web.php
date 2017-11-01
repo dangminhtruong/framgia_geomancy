@@ -69,7 +69,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
         Route::post('unapprove', 'RequestManagerController@unapprove')->name('request-unapprove');
     });
 
-    Route::prefix('blueprint')->group(function() {
+    Route::prefix('blueprint')->group(function () {
         Route::get('/{type}', 'BlueprintManagerController@index')->name('blueprint');
         Route::post('/', 'BlueprintManagerController@viewBlueprint');
         Route::get('/detail/{blueprintId}', 'BlueprintManagerController@viewBlueprintDetail')
@@ -148,11 +148,16 @@ Route::group(['prefix' => 'post'], function () {
     });
     Route::get('list-user-post', 'PostController@listUserPost')->name('listUserPost');
     Route::get('change-publish/{id}', 'PostController@changePushlish')->name('changePushlish');
+    Route::get('view-post/{id}', 'PostController@viewpost')->name('viewpost');
+    Route::get('edit-post/{id}', 'PostController@editPost')->name('editPost');
+    Route::post('edit-post/{id}', 'PostController@postEditPost')->name('postEditPost');
+    Route::get('delete-post/{id}', 'PostController@deletePost')->name('deletePost');
+    Route::get('view-list-post', 'PostController@viewListPost')->name('viewListPost');
 });
 
 Route::get('list-by-category/{id}', 'CategoryController@listProductByCategory')->name('listProductByCategory');
 
-Route::group(['prefix' => 'user'], function() {
+Route::group(['prefix' => 'user'], function () {
     Route::get('view-request-message/{requestId}', 'RequestBlueprintController@viewRequestMessage')->name('viewRequestMessage');
     Route::get('send-request-message', 'RequestBlueprintController@sendRequestMessage')->name('sendRequestMessage');
 });
