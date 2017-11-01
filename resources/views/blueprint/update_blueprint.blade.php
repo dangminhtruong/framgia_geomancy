@@ -169,7 +169,7 @@
                                  <div class="col-xs-1 col-sm-1">
                                     <div class="form-group">
                                        <label>Xóa</label>
-                                       <button type="button" class="remove-more-attr remove-blueprint-product" value="{{ $blueprintProduct->id }}">
+                                       <button type="button" class="remove-blueprint-product" value="{{ $blueprintProduct->id }}">
                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
                                        </button>
                                     </div>
@@ -205,7 +205,7 @@
                                  <div class="col-xs-1 col-sm-1">
                                     <div class="form-group">
                                        <label>Xóa</label>
-                                       <button type="button" class="remove-more-attr remove-blueprint-suggest" value="{{ $suggest->id }}">
+                                       <button type="button" class="remove-blueprint-suggest" value="{{ $suggest->id }}">
                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
                                        </button>
                                     </div>

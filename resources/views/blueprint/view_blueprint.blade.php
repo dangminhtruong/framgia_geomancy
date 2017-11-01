@@ -164,7 +164,7 @@
                               <div class="trip-guide-image">
                                  <!--img src="" alt="images" /-->
                               </div>
-                              <div class="trip-guide-content">
+                              <div class="trip-guide-content relative_blueprint_content">
                                  <h3>{{ $rela->title }}</h3>
                                  <p>
                                     {{ $rela->description }}
@@ -201,7 +201,7 @@
                               </div>
                            </div>
                         </div>
-                     @endforeach()
+                     @endforeach
                   </div>
                </div>
             </div>

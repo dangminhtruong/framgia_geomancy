@@ -135,7 +135,7 @@ input:checked + .slider:before {
 }
 
 .bubble {
-    background-color: #F2F2F2;
+    background-color: #ffffff;
     border-radius: 5px;
     box-shadow: 0 0 6px #B2B2B2;
     display: inline-block;
@@ -145,7 +145,7 @@ input:checked + .slider:before {
 }
 
 .bubble::before {
-    background-color: #F2F2F2;
+    background-color: #ffffff;
     content: "\00a0";
     display: block;
     height: 16px;
@@ -210,6 +210,12 @@ input:checked + .slider:before {
     padding: 0px;
     margin: 0px;
 }
-.text_left{
+
+.text_left {
     text-align: left;
+}
+
+.relative_blueprint_content {
+    max-height: 58vh;
+    overflow-y: hidden;
 }
