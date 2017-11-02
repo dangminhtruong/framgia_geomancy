@@ -19,6 +19,7 @@ class PostController extends Controller
     public function writePost()
     {
         $allType = $this->postRepository->getAll();
+
         return view('post.write_post', compact('allType'));
     }
 
@@ -37,14 +38,16 @@ class PostController extends Controller
         $postData = array_add($postData, 'users_id', Auth::user()->id);
         $postData = array_add($postData, 'types_id', $request->post_type);
 
-        $this->postRepository->create($postData);
-        return redirect()->back()->with('success_msg', __('Tạo bài viết thành công'));
+        $newPost = $this->postRepository->create($postData);
+
+        return redirect()->route('viewpost', [$newPost->id])->with('success_msg', __('Tạo bài viết thành công'));
     }
 
     public function viewpost($id)
     {
         $postInfor = $this->postRepository->findById($id);
         $relativePost = $this->postRepository->relativePost($id);
+
         return view('post.view_post', compact('postInfor', 'relativePost'));
     }
 
@@ -52,24 +55,28 @@ class PostController extends Controller
     {
         $allType = $this->postRepository->getAll();
         $postCurrent = $this->postRepository->findById($id);
+
         return view('post.edit_post', compact('allType', 'postCurrent'));
     }
 
     public function postEditPost(PostRequest $request, $id)
     {
         $this->postRepository->editPost($request, $id);
+
         return redirect()->back()->with('success_msg', __('Sửa bài viết thành công'));
     }
 
     public function deletePost($id)
     {
         $this->postRepository->deletePost($id);
+
         return __('deleted');
     }
 
     public function viewListPost()
     {
         $allPost = $this->postRepository->getAllPost();
+
         return view('post.list_all_post', compact('allPost'));
     }
 }

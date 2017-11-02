@@ -3,7 +3,7 @@
         <div class="container">
             <div class="logo-wrapper">
                 <div class="logo">
-                    <a href="index-2.html"><img src="{{ asset('images/logo-white.png') }}" alt="Logo" /></a>
+                    <a href="{{ route('home') }}"><img src="{{ asset('images/logo-white.png') }}" alt="Logo" /></a>
                 </div>
             </div>
             <div id="navbar" class="navbar-nav-wrapper">

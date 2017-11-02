@@ -7,7 +7,7 @@
             <div class="page-title detail-header-02">
                <div class="row">
                   <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                     <h2>{{ __('Bài viết') }}</h2>
+                     <h2>{{ __('Yêu cầu thiết kế') }}</h2>
                      <ul class="list-with-icon list-inline-block">
                         <li><i class="ion-android-done text-primary"></i>{{ __('ViewBlueprint.ListWith1') }}
                         </li>
@@ -22,7 +22,7 @@
             <div class="breadcrumb-wrapper text-left">
                <ol class="breadcrumb">
                   <li><a href="#">{{ __('Home') }}</a></li>
-                  <li><a href="#">{{ __('Bài viết') }}</a></li>
+                  <li><a href="#">{{ __('Yêu cầu thiết kế') }}</a></li>
                   <li><a href="#">{{ __('Xem') }}</a></li>
                </ol>
             </div>
@@ -47,8 +47,8 @@
                <div class="col-xs-12 col-sm-12 col-md-8">
                   <div class="content-wrapper">
                      <div id="detail-content-sticky-nav-01">
-                        <h2 class="font-lg">{!! $postInfor->title !!}</h2>
-                        <p class="lead">{!! $postInfor->body !!}.</p>
+                        <h2 class="font-lg">{!! $requestInfor->title !!}</h2>
+                        <p class="lead">{!! $requestInfor->description !!}.</p>
                      </div>
                   </div>
                </div>
@@ -59,11 +59,11 @@
       <!-- is used to stop the above stick menu -->
       <div class="bg-light pt-50 pb-70">
          <div class="container">
-            <h2 class="font-lg">{{ __('Có thể bạn cũng muốn xem') }}</h2>
+            <h2 class="font-lg">{{ __('Bản thiết kế tương tự') }}</h2>
             <div class="trip-guide-wrapper">
                <div class="GridLex-gap-20 GridLex-gap-10-mdd GridLex-gap-5-xs">
                   <div class="GridLex-grid-noGutter-equalHeight GridLex-grid-center">
-                     @foreach($relativePost as $rela)
+                     @foreach($ramdomRequest as $rela)
                         <div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
                            <div class="trip-guide-item">
                               <div class="trip-guide-image">
@@ -71,8 +71,8 @@
                               </div>
                               <div class="trip-guide-content relative_blueprint_content">
                                  <h3>{{ $rela->title }}</h3>
-                                 <p>
-                                    {{ $rela->body }}
+                                 <p id="relative_request_body">
+                                    {{ $rela->description }}
                                  </p>
                               </div>
                               <div class="trip-guide-bottom">
@@ -100,7 +100,7 @@
                                        </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 text-right">
-                                       <a href="{!! route('viewpost',[$rela->id]) !!}" class="btn btn-primary">Details</a>
+                                       <a href="{!! route('viewRequest',[$rela->id]) !!}" class="btn btn-primary">Details</a>
                                     </div>
                                  </div>
                               </div>

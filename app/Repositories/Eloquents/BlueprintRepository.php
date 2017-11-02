@@ -7,6 +7,7 @@ use App\Repositories\Contracts\GalleryRepositoryInterface as GalleryRepository;
 use App\Repositories\Contracts\BlueprintDetailRepositoryInterface as BlueprintDetailRepository;
 use App\Repositories\Contracts\SuggestProductRepositoryInterface as SuggestProductRepository;
 use App\Repositories\Contracts\TopicRepositoryInterface as TopicRepository;
+use App\Repositories\Contracts\RequestBlueprintRepositoryInterface as RequestBlueprintRepository;
 use App\Framgia\Response\FlashResponse;
 use App\Framgia\Response\FormResponse;
 use App\Entities\Blueprint;
@@ -122,10 +123,7 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
             'description' => $request->customer_description
         ]);
 
-        return $this->flashResponse->success(
-            'getRequestFishTanksBlueprint',
-            __('Request blueprint successfull !')
-        );
+        return $requestBlueprint->id;
     }
 
     public function getBlueprintInfo($blueprintId)
@@ -269,4 +267,10 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
     {
         return $this->blueprintDetailRepository->removeProduct($productId);
     }
+
+    public function searchByKeyWord($keyWord)
+    {
+        return $this->model::where('title', 'like', '%' . $keyWord . '%')->limit(3)->get();
+    }
+
 }
