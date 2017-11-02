@@ -49,7 +49,7 @@
                             {{ __('Mở rộng') }}<span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="#">{{ __('Cập nhật') }}</a></li>
+                            <li><a class="_update_cate"  data-cateId="{{ $category->id }}">{{ __('Cập nhật') }}</a></li>
                             <li><a class="_remove_cate" data-cateName="{{ $category->name }}" data-cateId="{{ $category->id }}" href="javascript:void(0)">{{ __('Xóa') }}</a></li>
                         </ul>
                     </div>

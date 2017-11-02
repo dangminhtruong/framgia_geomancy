@@ -67,6 +67,38 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none; padding-right: 17px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title">{{ __('Cập nhật danh mục') }}</h4>
+            </div>
+            <form method="POST" action="{{ route('category-update') }}">
+                {{ csrf_field() }}
+                <input id="categoryId" type="hidden" name="categoryId" value="">
+                <div class="modal-body">
+                    <label class="m-t-none">{{ __('Tên danh mục') }}</label>
+                    <input id="categoryName" name="name" class="form-control" placeholder="Tên danh mục..." value="{{ old('name') }}">
+                    <p class="help-block">{{ $errors->first('name') }}</p>
+                    <label class="m-t-none">{{ __('Mô tả') }}</label>
+                    <textarea id="description" name="description" class="form-control" rows="5" placeholder="{{ __('Mô tả...') }}...">{{ old('message') }}</textarea>
+                    <p class="help-block">{{ $errors->first('message') }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-accent">{{ __('Lưu') }}</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __("Đóng") }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@if ($errors->first('name') != null || old('name') != null)
+    <script>
+        $(document).ready(function() {
+            $('#myModal').modal('show');
+        });
+    </script>
+@endif
 @endsection
 @section('script')
     {{ HTML::script('bowerrc/datatables/media/js/jquery.dataTables.min.js') }}
