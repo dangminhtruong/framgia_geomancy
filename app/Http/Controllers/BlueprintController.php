@@ -11,6 +11,8 @@ use App\Repositories\Contracts\TopicRepositoryInterface as TopicRepository;
 use App\Repositories\Contracts\GalleryRepositoryInterface as GalleryRepository;
 use App\Repositories\Contracts\CategoryRepositoryInterface as CategoryRepository;
 use App\Repositories\Contracts\RequestBlueprintRepositoryInterface as RequestBlueprintRepository;
+use App\Repositories\Contracts\CommentRepositoryInterface as CommentRepository;
+
 use Hash, Auth;
 
 class BlueprintController extends Controller
@@ -21,8 +23,10 @@ class BlueprintController extends Controller
     private $userRepository;
     private $categoryRepository;
     private $requestBlueprintRepository;
+    private $commentRepository;
 
     public function __construct(
+        CommentRepository $commentRepository,
         BlueprintRepository $blueprintRepository,
         TopicRepository $topicRepository,
         GalleryRepository $galleryRepository,
@@ -37,6 +41,7 @@ class BlueprintController extends Controller
         $this->userRepository = $userRepository;
         $this->categoryRepository = $categoryRepository;
         $this->requestBlueprintRepository = $requestBlueprintRepository;
+        $this->commentRepository = $commentRepository;
     }
 
     public function getRequestFishTanksBlueprint()
@@ -187,5 +192,33 @@ class BlueprintController extends Controller
         $blueprintResut = $this->blueprintRepository->searchByKeyWord($request->keyWord);
 
         return view('blueprint.sub_pages.navbar_search_respon', compact('blueprintResut'))->render();
+    }
+
+    public function addComment(Request $request)
+    {
+        $comment = [];
+        $comment = array_add($comment, 'body', $request->commentContent);
+        $comment = array_add($comment, 'commentable_id', $request->blueprintId);
+        $comment = array_add($comment, 'commentable_type', 'App\Entities\Blueprint');
+        $comment = array_add($comment, 'users_id', Auth::user()->id);
+
+        $newComment = $this->commentRepository->create($comment);
+
+        return view('blueprint.sub_pages.comment_respon', compact('newComment'))->render();
+    }
+
+    public function addReply(Request $request)
+    {
+        $reply = [];
+        $reply = array_add($reply, 'body', $request->replyContent);
+        $reply = array_add($reply, 'parents_comment_id', $request->comentId);
+        $reply = array_add($reply, 'commentable_id', $request->blueprintId);
+        $reply = array_add($reply, 'commentable_type', 'App\Entities\Blueprint');
+        $reply = array_add($reply, 'users_id', Auth::user()->id);
+        $reply = $this->commentRepository->create($reply);
+        $blueprintInfo = $this->blueprintRepository->findById($request->blueprintId);
+        $commentId = $request->comentId;
+
+        return view('blueprint.sub_pages.reply_respon', compact('blueprintInfo', 'reply', 'commentId'))->render();
     }
 }

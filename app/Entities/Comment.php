@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Entities;
 
 use App\Entities\BaseEntity;
@@ -9,8 +10,10 @@ class Comment extends BaseEntity
     protected $table = 'comments';
     protected $dates = ['deleted_at'];
     protected $fillable = [
-    	'id',
+        'id',
         'body',
+        'users_id',
+        'parents_comment_id',
         'commentable_id',
         'commentable_type',
     ];
