@@ -96,4 +96,14 @@ class RequestBlueprintRepository extends AbstractRepository implements RequestBl
     {
         $this->requestNotifyRepository->changeStatus($requestId);
     }
+
+    public function ramdomRequest($numberRandom)
+    {
+        return $this->model::orderByRaw('RAND()')->take($numberRandom)->get();
+    }
+
+    public function searchByKeyWord($keyWord)
+    {
+        return $this->model::where('title', 'like', '%' . $keyWord . '%')->limit(3)->get();
+    }
 }

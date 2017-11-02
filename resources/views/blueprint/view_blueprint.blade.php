@@ -203,6 +203,96 @@
                         </div>
                      @endforeach
                   </div>
+                  <div class="col-md-12 bg-light pt-50 pb-70">
+                     <div id="detail-content-sticky-nav-05">
+                        <h2 class="font-lg">{{ __('Bình luận') }}</h2>
+                        <div class="review-wrapper">
+                           <div class="review-header">
+                              <div class="GridLex-gap-30">
+                                 <div class="GridLex-grid-noGutter-equalHeight GridLex-grid-middle">
+                                    <div class="GridLex-col-9_sm-8_xs-12_xss-12">
+                                       <div class="review-rating">
+                                          <div class="rating-wrapper">
+                                             {{ $blueprintInfo->comments->count() }} {{ __('Bình luận') }}
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="GridLex-col-3_sm-4_xs-12_xss-12">
+                                       <div class="GridLex-inner">
+                                          <a href="#review-form" class="btn btn-primary btn-block anchor">Write a review</a>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="review-content">
+                              <ul class="review-list">
+                                 @foreach($blueprintInfo->comments->where('parents_comment_id', null) as $comment)
+                                    @if($comment)
+                                       <li class="clearfix">
+                                          <div class="row">
+                                             <div class="col-xs-12 col-sm-4 col-md-3">
+                                                <div class="review-header">
+                                                   <h6>{{ $comment->user->name }}</h6>
+                                                   <a href="#" class="btn btn-primary">Reply</a>
+                                                </div>
+                                             </div>
+                                             <div class="col-xs-12 col-sm-8 col-md-9">
+                                                <div class="review-content">
+                                                   <p>{{ $comment->body }}</p>
+                                                </div>
+                                                @foreach($blueprintInfo->comments->where('parents_comment_id', $comment->id) as $reply)
+                                                   <div class="review-replied">
+                                                      <div class="review-replied-header">
+                                                         <div class="row">
+                                                            <div class="col-xs-12 col-sm-8 col-md-9">
+                                                               <h6>{{ $reply->user->name }}
+                                                                  @if($blueprintInfo->user_id == $reply->user->id)
+                                                                     <small>
+                                                                        {{ __('Sở hữ bản thiết kế này') }}
+                                                                     </small>
+                                                                  @endif
+                                                               </h6>
+                                                            </div>
+                                                            <div class="col-xs-12 col-sm-4 col-md-3 text-right text-left-xs">
+                                                               <a href="#" class="btn btn-primary">{{ __('Trả lời') }}</a>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                      <div class="review-replied-content">
+                                                         <p>{{ $reply->body }}</p>
+                                                      </div>
+                                                   </div>
+                                                @endforeach
+                                             </div>
+                                          </div>
+                                       </li>
+                                    @endif
+                                 @endforeach
+                              </ul>
+                              <!--a href="#" class="review-load-more mb-40">load more...</a-->
+                           </div>
+                           <div id="review-form" class="review-form">
+                              <h3 class="review-form-title">{{ __('Viết bình luận') }}</h3>
+                              <form class="">
+                                 <div class="row">
+                                    <div class="clear"></div>
+                                    <div class="col-sm-12 col-md-12">
+                                       <div class="form-group">
+                                          <label>{{ __('Nội dung') }}: </label>
+                                          <textarea class="form-control form-control-sm" rows="5"></textarea>
+                                       </div>
+                                    </div>
+                                    <div class="clear mb-5"></div>
+                                    <div class="col-sm-12 col-md-8">
+                                       <a href="#" class="btn btn-primary btn-lg">{{ __('Xong') }}</a>
+                                    </div>
+                                 </div>
+                              </form>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
                </div>
             </div>
          </div>

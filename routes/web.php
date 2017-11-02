@@ -92,6 +92,7 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
                 Route::post('/', 'BlueprintController@postEditRequest')->name('postEditRequest');
             });
         });
+        Route::get('view-request/{requestId}', 'BlueprintController@viewRequest')->name('viewRequest');
         Route::get('delete/{id}', 'BlueprintController@deleteRequest')->name('deleteRequest');
     });
 
@@ -161,3 +162,5 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('view-request-message/{requestId}', 'RequestBlueprintController@viewRequestMessage')->name('viewRequestMessage');
     Route::get('send-request-message', 'RequestBlueprintController@sendRequestMessage')->name('sendRequestMessage');
 });
+
+Route::get('navbar-search', 'BlueprintController@searchByKeyWord')->name('searchByKeyWord');

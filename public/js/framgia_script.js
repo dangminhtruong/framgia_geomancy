@@ -414,3 +414,17 @@ $('.btn-del-post').click(function() {
 }
 });
 });
+
+$('#nav-search').keyup(function() {
+    var keyWord = $(this).val();
+    var url = '/navbar-search';
+    var data = {
+        'keyWord': keyWord
+    }
+    var success = function(res) {
+        $('#nav-serch-result').html(res);
+        $('#nav-serch-result').show();
+    }
+    var dataType = 'html';
+    $.get(url, data, success, dataType);
+});

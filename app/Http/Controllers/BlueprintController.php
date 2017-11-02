@@ -11,7 +11,6 @@ use App\Repositories\Contracts\TopicRepositoryInterface as TopicRepository;
 use App\Repositories\Contracts\GalleryRepositoryInterface as GalleryRepository;
 use App\Repositories\Contracts\CategoryRepositoryInterface as CategoryRepository;
 use App\Repositories\Contracts\RequestBlueprintRepositoryInterface as RequestBlueprintRepository;
-
 use Hash, Auth;
 
 class BlueprintController extends Controller
@@ -47,7 +46,8 @@ class BlueprintController extends Controller
 
     public function postRequestFishTanksBlueprint(RequireBlueprintRequest $request)
     {
-        return $this->blueprintRepository->createRequestBlueprint($request);
+        $newRequest = $this->blueprintRepository->createRequestBlueprint($request);
+        return redirect()->route('viewRequest', [$newRequest])->with('success_msg', __('Yêu cầu thành công !'));
     }
 
     public function getCreateBlueprint()
@@ -172,5 +172,20 @@ class BlueprintController extends Controller
     public function removeProduct($productId)
     {
         return $this->blueprintRepository->removeProduct($productId);
+    }
+
+    public function viewRequest($requestId)
+    {
+        $requestInfor = $this->requestBlueprintRepository->findById($requestId);
+        $ramdomRequest = $this->requestBlueprintRepository->ramdomRequest(4);
+
+        return view('blueprint.view_request_blueprint', compact('requestInfor', 'ramdomRequest'));
+    }
+
+    public function searchByKeyWord(Request $request)
+    {
+        $blueprintResut = $this->blueprintRepository->searchByKeyWord($request->keyWord);
+
+        return view('blueprint.sub_pages.navbar_search_respon', compact('blueprintResut'))->render();
     }
 }
