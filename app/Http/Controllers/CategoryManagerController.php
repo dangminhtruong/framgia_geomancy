@@ -11,6 +11,8 @@ use App\Framgia\Helpers\Paginator;
 use App\Http\Requests\PaginateCategoryRequest;
 use App\Http\Requests\AddCategoryRequest;
 use App\Http\Requests\RemoveCategoryRequest;
+use App\Http\Requests\GetCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 
 class CategoryManagerController extends Controller
 {
@@ -81,5 +83,24 @@ class CategoryManagerController extends Controller
         }
 
         return $this->jsonResponse->success(__('Xóa danh mục thành công'));
+    }
+
+    public function getCategory(GetCategoryRequest $request)
+    {
+        return $this->categoryRepository->getJsonFormat($request->categoryId);
+    }
+
+    public function update(UpdateCategoryRequest $request)
+    {
+        try {
+            $this->categoryRepository->updateById(
+                $request->categoryId,
+                $request->only(['name', 'description'])
+            );
+        } catch (Exception $e) {
+            return $this->formResponse->response(__($request, 'Có lỗi xảy ra, vui lòng thử lại sau'));
+        }
+
+        return $this->flashResponse->successAndBack(__('Cập nhật danh mục thành công'));
     }
 }

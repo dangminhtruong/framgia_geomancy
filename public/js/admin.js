@@ -426,7 +426,7 @@ $(document).ready(function() {
     });
 
     //===== REMOVE CATEGORY =====//
-    $('._remove_cate').on('click', function(e) {
+    $('#_category-table').on('click', '._remove_cate', function(e) {
         e.preventDefault();
 
         var categoryId = $(this).data('cateid');
@@ -461,5 +461,33 @@ $(document).ready(function() {
 
             return false;
         }, null);
-    })
+    });
+
+    //===== GET CATEGORY =====//
+    $('#_category-table').on('click', '._update_cate', function(e) {
+        e.preventDefault();
+
+        var categoryId = $(this).data('cateid');
+        if (isNaN(parseInt(categoryId))) {
+            toastr.warning('Có lỗi xảy ra, vui lòng thử lại');
+
+            return false;
+        }
+
+        var data = {
+            categoryId: categoryId,
+            _token: $('meta[name="csrf-token"]').attr('content')
+        };
+
+        $('#load_scr').css('display', 'table');
+        ajaxSubmit('admin/category/get', 'POST', data, function(result) {
+            var data = JSON.parse(result);
+            $('#categoryId').val(data.id);
+            $('#categoryName').val(data.name);
+            $('#description').html(data.description);
+            $('#updateModal').modal('show');
+
+            return false;
+        }, null);
+    });
 });

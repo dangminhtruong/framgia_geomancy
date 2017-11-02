@@ -57,4 +57,17 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
         return $this->model::where('id', $categoryId)
             ->delete($categoryId);
     }
+
+    public function getJsonFormat($categoryId)
+    {
+        return $this->model::where('id', $categoryId)
+            ->first()
+            ->toJson();
+    }
+
+    public function updateById($categoryId, $data)
+    {
+        return $this->model::where('id', $categoryId)
+            ->update($data);
+    }
 }
