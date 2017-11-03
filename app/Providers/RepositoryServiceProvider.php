@@ -63,6 +63,10 @@ class RepositoryServiceProvider extends ServiceProvider
         'blueprintNotify' => [
             \App\Repositories\Contracts\BlueprintNotifyRepositoryInterface::class,
             \App\Repositories\Eloquents\BlueprintNotifyRepository::class
+        ],
+        'blueprintNotify' => [
+            \App\Repositories\Contracts\CommentRepositoryInterface::class,
+            \App\Repositories\Eloquents\CommentRepository::class
         ]
     ];
 

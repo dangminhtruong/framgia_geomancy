@@ -81,14 +81,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
     });
 });
 
-Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function () {
+Route::group(['prefix' => 'blueprint'], function () {
 
     Route::group(['prefix' => 'request-blueprint'], function () {
         Route::get('/', 'BlueprintController@getRequestFishTanksBlueprint')
-            ->name('getRequestFishTanksBlueprint');
+            ->name('getRequestFishTanksBlueprint')->middleware('check.signed');
         Route::post('/', 'BlueprintController@postRequestFishTanksBlueprint')
             ->name('postRequestFishTanksBlueprint');
-        Route::group(['prefix' => 'edit'], function () {
+        Route::group(['prefix' => 'edit', 'middleware' => 'check.signed'], function () {
             Route::group(['prefix' => '{id}'], function () {
                 Route::get('/', 'BlueprintController@getEditRequest')->name('getEditRequest');
                 Route::post('/', 'BlueprintController@postEditRequest')->name('postEditRequest');
@@ -98,7 +98,7 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
         Route::get('delete/{id}', 'BlueprintController@deleteRequest')->name('deleteRequest');
     });
 
-    Route::group(['prefix' => 'create-blueprint'], function () {
+    Route::group(['prefix' => 'create-blueprint', 'middleware' => 'check.signed'], function () {
         Route::get('/', 'BlueprintController@getCreateBlueprint')->name('getCreateBlueprint');
         Route::post('/', 'BlueprintController@postCreateBlueprint')->name('postCreateBlueprint');
         Route::get('add-attribute/{id}', 'BlueprintController@getAddAttribute')->name('getAddAttribute');
@@ -129,9 +129,9 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
 
     Route::get('fork-blueprint/{id}', 'ImproveBlueprintController@forkBLueprint')->name('forkBLueprint');
 
-    Route::get('view-blueprint/{id}', 'BlueprintController@getViewBlueprint')->name('getViewBlueprint');
+    Route::get('view-blueprint/{id}', 'BlueprintController@getViewBlueprint')->name('getViewBlueprint')->middleware('check.signed');
     Route::get('list-blueprint', 'BlueprintController@listBlueprint')->name('listBlueprint');
-    Route::get('list-my-blueprint', 'BlueprintController@listMyBlueprint')->name('listMyBlueprint');
+    Route::get('list-my-blueprint', 'BlueprintController@listMyBlueprint')->name('listMyBlueprint')->middleware('check.signed');
     Route::get('list-new-blueprint', 'BlueprintController@listNewBlueprint')->name('listNewBlueprint');
     Route::get('view-fork-blueprint/{id}', 'ImproveBlueprintController@viewForkedBlueprint')->name('viewForkedBlueprint');
     Route::group(['prefix' => 'edit-fork-blueprint'], function () {
@@ -142,17 +142,19 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
     });
     Route::get('del-improve/{improve_id}', 'ImproveBlueprintController@delForkedBlueprint')->name('delForkedBlueprint');
     Route::get('update-message/{messageId}', 'RequestManagerController@updateMessageStatus')->name('updateMessageStatus');
+    Route::get('add-comment', 'BlueprintController@addComment')->name('addComment');
+    Route::get('add-reply', 'BlueprintController@addReply')->name('addReply');
 });
 
 Route::group(['prefix' => 'post'], function () {
-    Route::group(['prefix' => 'write'], function () {
+    Route::group(['prefix' => 'write', 'middleware' => 'check.signed'], function () {
         Route::get('/', 'PostController@writePost')->name('writePost');
         Route::post('/', 'PostController@postWritePost')->name('postWritePost');
     });
     Route::get('list-user-post', 'PostController@listUserPost')->name('listUserPost');
     Route::get('change-publish/{id}', 'PostController@changePushlish')->name('changePushlish');
     Route::get('view-post/{id}', 'PostController@viewpost')->name('viewpost');
-    Route::get('edit-post/{id}', 'PostController@editPost')->name('editPost');
+    Route::get('edit-post/{id}', 'PostController@editPost')->name('editPost')->middleware('check.signed');
     Route::post('edit-post/{id}', 'PostController@postEditPost')->name('postEditPost');
     Route::get('delete-post/{id}', 'PostController@deletePost')->name('deletePost');
     Route::get('view-list-post', 'PostController@viewListPost')->name('viewListPost');

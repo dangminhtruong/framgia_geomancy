@@ -219,14 +219,14 @@
                                     </div>
                                     <div class="GridLex-col-3_sm-4_xs-12_xss-12">
                                        <div class="GridLex-inner">
-                                          <a href="#review-form" class="btn btn-primary btn-block anchor">Write a review</a>
+                                          <a href="#review-form" class="btn btn-primary btn-block anchor">{{ __('Viết bình luận') }}</a>
                                        </div>
                                     </div>
                                  </div>
                               </div>
                            </div>
                            <div class="review-content">
-                              <ul class="review-list">
+                              <ul class="review-list" id="review_list">
                                  @foreach($blueprintInfo->comments->where('parents_comment_id', null) as $comment)
                                     @if($comment)
                                        <li class="clearfix">
@@ -249,13 +249,13 @@
                                                                <h6>{{ $reply->user->name }}
                                                                   @if($blueprintInfo->user_id == $reply->user->id)
                                                                      <small>
-                                                                        {{ __('Sở hữ bản thiết kế này') }}
+                                                                        {{ __('Sở hữu bản thiết kế này') }}
                                                                      </small>
                                                                   @endif
                                                                </h6>
                                                             </div>
                                                             <div class="col-xs-12 col-sm-4 col-md-3 text-right text-left-xs">
-                                                               <a href="#" class="btn btn-primary">{{ __('Trả lời') }}</a>
+                                                               <button class="btn btn-primary" data-toggle="collapse" data-target="#demo{{ $comment->id }}">{{ __('Trả lời') }}</button>
                                                             </div>
                                                          </div>
                                                       </div>
@@ -264,31 +264,40 @@
                                                       </div>
                                                    </div>
                                                 @endforeach
+                                                <div class="collapse" id="demo{{ $comment->id }}"">
+                                                <div class="col-sm-12 col-md-12">
+                                                   <div class="form-group">
+                                                      <label>{{ __('Nội dung trả lời') }}: </label>
+                                                      <textarea class="form-control form-control-sm" rows="5" id="reply_body{{ $comment->id }}"></textarea>
+                                                   </div>
+                                                </div>
+                                                <div class="clear mb-5"></div>
+                                                <div class="col-sm-12 col-md-8">
+                                                   <button type="text" class="btn btn-primary btn-lg add_reply" value="{{ $comment->id }}">{{ __('Xong') }}</button>
+                                                </div>
                                              </div>
                                           </div>
-                                       </li>
-                                    @endif
-                                 @endforeach
-                              </ul>
-                              <!--a href="#" class="review-load-more mb-40">load more...</a-->
                            </div>
-                           <div id="review-form" class="review-form">
-                              <h3 class="review-form-title">{{ __('Viết bình luận') }}</h3>
-                              <form class="">
-                                 <div class="row">
-                                    <div class="clear"></div>
-                                    <div class="col-sm-12 col-md-12">
-                                       <div class="form-group">
-                                          <label>{{ __('Nội dung') }}: </label>
-                                          <textarea class="form-control form-control-sm" rows="5"></textarea>
-                                       </div>
-                                    </div>
-                                    <div class="clear mb-5"></div>
-                                    <div class="col-sm-12 col-md-8">
-                                       <a href="#" class="btn btn-primary btn-lg">{{ __('Xong') }}</a>
-                                    </div>
+                           </li>
+                           @endif
+                           @endforeach
+                           </ul>
+                           <!--a href="#" class="review-load-more mb-40">load more...</a-->
+                        </div>
+                        <div id="review-form" class="review-form">
+                           <h3 class="review-form-title">{{ __('Viết bình luận') }}</h3>
+                           <div class="row">
+                              <div class="clear"></div>
+                              <div class="col-sm-12 col-md-12">
+                                 <div class="form-group">
+                                    <label>{{ __('Nội dung') }}: </label>
+                                    <textarea class="form-control form-control-sm" rows="5" id="comment_content"></textarea>
                                  </div>
-                              </form>
+                              </div>
+                              <div class="clear mb-5"></div>
+                              <div class="col-sm-12 col-md-8">
+                                 <button type="text" class="btn btn-primary btn-lg" id="add_comment" value="{{ $blueprintInfo->id }}">{{ __('Xong') }}</button>
+                              </div>
                            </div>
                         </div>
                      </div>
@@ -297,5 +306,6 @@
             </div>
          </div>
       </div>
+   </div>
    </div>
 @stop
