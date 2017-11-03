@@ -428,3 +428,43 @@ $('#nav-search').keyup(function() {
     var dataType = 'html';
     $.get(url, data, success, dataType);
 });
+
+$('#add_comment').click(function(){
+    var blueprintId = $(this).val();
+    var commentContent = $('#comment_content').val();
+    var url = '/blueprint/add-comment';
+    var data = {
+        'blueprintId' : blueprintId,
+        'commentContent' : commentContent
+    }
+    var success = function(res){
+        $('#review_list').append(res);
+        $('#comment_content').val('');
+    }
+    var dataType = "html";
+    $.get(url, data, success, dataType);
+});
+
+$('.add_reply').click(function(){
+    var comentId = $(this).val();
+    var replyContent = $('#reply_body' + comentId).val();
+    var blueprintId = $('#add_comment').val();
+
+    console.log(comentId);
+    console.log(replyContent);
+    console.log(blueprintId);
+
+    var url = '/blueprint/add-reply';
+    var data = {
+        'comentId' : comentId,
+        'replyContent' : replyContent,
+        'blueprintId' : blueprintId
+    }
+    var success = function(res){
+        $('#demo' + comentId).before(res);
+        $('#reply_body' + comentId).val('');
+    }
+    var dataType = "html";
+    $.get(url, data, success, dataType);
+});
+

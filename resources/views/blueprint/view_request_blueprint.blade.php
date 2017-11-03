@@ -59,7 +59,7 @@
       <!-- is used to stop the above stick menu -->
       <div class="bg-light pt-50 pb-70">
          <div class="container">
-            <h2 class="font-lg">{{ __('Bản thiết kế tương tự') }}</h2>
+            <h2 class="font-lg">{{ __('Yêu cầu tương tự') }}</h2>
             <div class="trip-guide-wrapper">
                <div class="GridLex-gap-20 GridLex-gap-10-mdd GridLex-gap-5-xs">
                   <div class="GridLex-grid-noGutter-equalHeight GridLex-grid-center">
