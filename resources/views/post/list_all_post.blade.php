@@ -30,7 +30,7 @@
                      @foreach($allPost as $post)
                         <div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
                            <div class="trip-guide-item">
-                              <div class="trip-guide-content">
+                              <div class="trip-guide-content list_post_content">
                                  <h3>{!! $post->title !!}</h3>
                                  <p class="blueprint-description">{!! $post->body !!}</p>
                               </div>

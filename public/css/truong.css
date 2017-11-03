@@ -238,3 +238,24 @@ input:checked + .slider:before {
 #nav-drop-result {
     width: 260px;
 }
+
+.index_product_new{
+    max-height: 45vh;
+    min-height: 45vh;
+}
+
+.index_blueprint_new{
+    max-height: 45vh;
+    min-height: 45vh;
+}
+
+.list_post_content{
+    max-height: 45vh;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.list_blueprint_new{
+    max-height: 25vh;
+    min-height: 25vh;
+}

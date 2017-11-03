@@ -56,9 +56,9 @@
                         <a href="{!! route('getViewBlueprint', [$blueprint->id])  !!}">
                            <div class="image">
                               @if(isset($blueprint->gallery->first()->image_name))
-                                 <img src="{!! url('images/gallery', [$blueprint->gallery()->first()->image_name]) !!}" alt="images" />
+                                 <img src="{!! url('images/gallery', [$blueprint->gallery()->first()->image_name]) !!}" alt="images" class="index_blueprint_new" />
                               @else 
-                                 <img src="{!! url('images/gallery/heroes.jpg') !!}" alt="images" />
+                                 <img src="{!! url('images/gallery/heroes.jpg') !!}" alt="images" class="index_blueprint_new"/>
                               @endif
                            </div>
                            <h4 class="uppercase"><span>{{ __('News') }}</span></h4>
@@ -88,7 +88,7 @@
                      <div class="GridLex-col-4_mdd-4_sm-6_xs-6_xss-12">
                         <div class="trip-guide-item">
                            <div class="trip-guide-image">
-                              <img src="{!! url('images/products', [$product->image]) !!}" alt="images" />
+                              <img src="{!! url('images/products', [$product->image]) !!}" alt="images" class="index_product_new" />
                            </div>
                            <div class="trip-guide-content">
                               <h3>{!! $product->name !!}</h3>

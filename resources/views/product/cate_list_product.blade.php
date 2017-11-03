@@ -31,7 +31,7 @@
                         <div class="GridLex-col-4_mdd-4_sm-6_xs-6_xss-12">
                            <div class="trip-guide-item">
                               <div class="trip-guide-image">
-                                 <img src="{!! url('images/products', [$product->image]) !!}" alt="images" />
+                                 <img src="{!! url('images/products', [$product->image]) !!}" alt="images" class="index_product_new" />
                               </div>
                               <div class="trip-guide-content">
                                  <h3>{!! $product->name !!}</h3>

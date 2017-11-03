@@ -32,9 +32,9 @@
                            <div class="trip-guide-item">
                               <div class="trip-guide-image">
                                  @if(isset($blueprint->gallery->first()->image_name))
-                                    <img src="{!! url('images/gallery', [$blueprint->gallery->first()->image_name]) !!}" alt="images" />
+                                    <img src="{!! url('images/gallery', [$blueprint->gallery->first()->image_name]) !!}" alt="images" class="list_blueprint_new"/>
                                  @else
-                                    <img src="{!! url('images/gallery/heroes.jpg') !!}" class="" alt="images" />
+                                    <img src="{!! url('images/gallery/heroes.jpg') !!}" class="" alt="images" class="list_blueprint_new"/>
                                  @endif
                               </div>
                               <div class="trip-guide-content">
