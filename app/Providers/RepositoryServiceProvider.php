@@ -59,6 +59,10 @@ class RepositoryServiceProvider extends ServiceProvider
         'improveDetail' => [
             \App\Repositories\Contracts\ImproveDetailRepositoryInterface::class,
             \App\Repositories\Eloquents\ImproveDetailRepository::class
+        ],
+        'blueprintNotify' => [
+            \App\Repositories\Contracts\BlueprintNotifyRepositoryInterface::class,
+            \App\Repositories\Eloquents\BlueprintNotifyRepository::class
         ]
     ];
 

@@ -55,9 +55,6 @@
                             <small>
                             {{ __('Tổng số yêu cầu đã tạo: ') . $requestBlueprint->user->requests()->count() }}
                             </small>
-                            {{--  <div class="btn-group m-t-sm">
-                                <a href="#" class="btn btn-default btn-sm"><i class="fa fa-envelope"></i> Contact</a>
-                            </div>  --}}
                         </div>
                     </div>
                 </div>
@@ -86,10 +83,23 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-12">
+            <div class="panel panel-filled panel-c-accent">
+                <div class="panel-heading">
+                    <h4>{{ __('Chi tiết') }}</h4>
+                </div>
+                <div class="panel-body">
+                    {!! $requestBlueprint->description !!}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
             <div class="panel">
                 <div class="panel-body">
                     <h4>{{ __("Tin nhắn") }}</h4>
+                    @if ($requestBlueprint->requestNotifies->count() == 0)
+                    <p>{{ __('Không có tin nhắn nào') }}
+                    @else
                     <div class="v-timeline vertical-container">
                         @foreach ($requestBlueprint->requestNotifies as $notify)
                             <div class="vertical-timeline-block">
@@ -108,16 +118,7 @@
                             </div>
                         @endforeach
                     </div>
-                </div>
-</div>
-        </div>
-        <div class="col-md-8">
-            <div class="panel panel-filled panel-c-accent">
-                <div class="panel-heading">
-                    <h4>{{ __('Chi tiết') }}</h4>
-                </div>
-                <div class="panel-body">
-                    {!! $requestBlueprint->description !!}
+                    @endif
                 </div>
             </div>
         </div>
@@ -156,7 +157,7 @@
                 <div class="modal-body">
                     <h4 class="m-t-none">{{ __('Lý do') }}</h4>
                     <div class="row">
-                        <textarea name="message" class="form-control" rows="5" placeholder="{{ __('Lý dó') }}..."></textarea>
+                        <textarea name="message" class="form-control" rows="5" placeholder="{{ __('Lý do') }}...">{{ old('message') }}</textarea>
                         <p class="help-block">{{ $errors->first('message') }}</p>
                     </div>
                 </div>

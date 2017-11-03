@@ -22,6 +22,37 @@
          </div>
       </div>
       <!-- end breadcrumb -->
+      <div class="filter-full-width-wrapper">
+         <form class="">
+            <div class="filter-full-primary">
+               <div class="container">
+                  <div class="filter-full-primary-inner">
+                     <div class="form-holder">
+                        <div class="row">
+                           <div class="col-xs-12 col-sm-12 col-md-6">
+                              <div class="filter-item-wrapper">
+                                 <div class="row">
+                                    <div class="col-xss-12 col-xs-6 col-sm-5">
+                                       <div class="filter-item mmr">
+                                          <div class="input-group input-group-addon-icon no-border no-br-xs">
+                                             <div class="input-group dropdown" id="result-dropdown">
+                                                <input type="text" class="form-control dropdown-toggle" id="nav-search" data-toggle="dropdown" placeholder="{{ __('Tìm kiếm') }}">
+                                                <ul class="dropdown-menu" id="nav-serch-result">
+                                                </ul>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </form>
+      </div>
       <div class="pt-30 pb-50">
          <div class="container">
             <div class="trip-guide-wrapper">

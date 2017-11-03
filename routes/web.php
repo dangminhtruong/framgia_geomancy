@@ -48,6 +48,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
     Route::prefix('category')->group(function () {
         Route::get('/', 'CategoryManagerController@index')->name('category-show');
         Route::post('/', 'CategoryManagerController@paginateCategory');
+        Route::post('create', 'CategoryManagerController@create')->name('category-create');
+        Route::post('delete', 'CategoryManagerController@remove');
+        Route::post('get', 'CategoryManagerController@getCategory');
+        Route::post('update', 'CategoryManagerController@update')->name('category-update');
     });
 
     Route::prefix('user')->group(function () {
@@ -67,6 +71,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
         Route::post('unapprove', 'RequestManagerController@unapprove')->name('request-unapprove');
     });
 
+    Route::prefix('blueprint')->group(function () {
+        Route::get('/{type}', 'BlueprintManagerController@index')->name('blueprint');
+        Route::post('/', 'BlueprintManagerController@viewBlueprint');
+        Route::get('/detail/{blueprintId}', 'BlueprintManagerController@viewBlueprintDetail')
+            ->name('blueprint-detail');
+        Route::post('approve', 'BlueprintManagerController@approve')->name('blueprint-approve');
+        Route::post('unapprove', 'BlueprintManagerController@unapprove')->name('blueprint-unapprove');
+    });
 });
 
 Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function () {
@@ -82,6 +94,7 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
                 Route::post('/', 'BlueprintController@postEditRequest')->name('postEditRequest');
             });
         });
+        Route::get('view-request/{requestId}', 'BlueprintController@viewRequest')->name('viewRequest');
         Route::get('delete/{id}', 'BlueprintController@deleteRequest')->name('deleteRequest');
     });
 
@@ -97,6 +110,7 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
     });
 
     Route::get('suggest-product', 'SuggestProductController@suggetProduct')->name('suggetProduct');
+    Route::get('remove-sugest/{id}', 'SuggestProductController@removeSuggest')->name('removeSuggest');
 
     Route::group(['prefix' => 'create-success'], function () {
         Route::get('/{id}', 'BlueprintController@getCreateDone')->name('getCreateDone');
@@ -108,6 +122,7 @@ Route::group(['prefix' => 'blueprint', 'middleware' => 'check.signed'], function
             Route::post('/', 'BlueprintController@postUpdateBlueprint')->name('postUpdateBlueprint');
         });
         Route::get("remove-gallery/{id}", "BlueprintController@getRemoveGallery")->name('getRemoveGallery');
+        Route::get("remove-product/{productId}", "BlueprintController@removeProduct")->name('removeProduct');
     });
 
     Route::get('delete-blueprint/{id}', 'BlueprintController@deleteBlueprint')->name('deleteBlueprint');
@@ -136,6 +151,18 @@ Route::group(['prefix' => 'post'], function () {
     });
     Route::get('list-user-post', 'PostController@listUserPost')->name('listUserPost');
     Route::get('change-publish/{id}', 'PostController@changePushlish')->name('changePushlish');
+    Route::get('view-post/{id}', 'PostController@viewpost')->name('viewpost');
+    Route::get('edit-post/{id}', 'PostController@editPost')->name('editPost');
+    Route::post('edit-post/{id}', 'PostController@postEditPost')->name('postEditPost');
+    Route::get('delete-post/{id}', 'PostController@deletePost')->name('deletePost');
+    Route::get('view-list-post', 'PostController@viewListPost')->name('viewListPost');
 });
 
 Route::get('list-by-category/{id}', 'CategoryController@listProductByCategory')->name('listProductByCategory');
+
+Route::group(['prefix' => 'user'], function () {
+    Route::get('view-request-message/{requestId}', 'RequestBlueprintController@viewRequestMessage')->name('viewRequestMessage');
+    Route::get('send-request-message', 'RequestBlueprintController@sendRequestMessage')->name('sendRequestMessage');
+});
+
+Route::get('navbar-search', 'BlueprintController@searchByKeyWord')->name('searchByKeyWord');

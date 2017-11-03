@@ -69,4 +69,9 @@ class Product extends BaseEntity
     {
         return $this->hasMany('App\Entities\ImproveDetail', 'products_id');
     }
+
+    public function blueprintDetails()
+    {
+        return $this->hasMany(BlueprintDetail::class, 'products_id');
+    }
 }

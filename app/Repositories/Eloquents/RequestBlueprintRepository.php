@@ -3,15 +3,18 @@
 namespace App\Repositories\Eloquents;
 
 use App\Repositories\Contracts\RequestBlueprintRepositoryInterface;
+use App\Repositories\Contracts\RequestNotifyRepositoryInterface as RequestNotifyRepository;
 use App\Entities\RequestBlueprint;
 
 class RequestBlueprintRepository extends AbstractRepository implements RequestBlueprintRepositoryInterface
 {
     protected $model;
+    private $requestNotifyRepository;
 
-    function __construct()
+    function __construct(RequestNotifyRepository $requestNotifyRepository)
     {
         $this->model = $this->model();
+        $this->requestNotifyRepository = $requestNotifyRepository;
     }
 
     public function model()
@@ -48,6 +51,8 @@ class RequestBlueprintRepository extends AbstractRepository implements RequestBl
     {
         return $this->model::with(['user'])
             ->where('status', 2)
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
             ->get();
     }
 
@@ -55,6 +60,8 @@ class RequestBlueprintRepository extends AbstractRepository implements RequestBl
     {
         return $this->model::with(['user'])
             ->where('status', 1)
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
             ->get();
     }
 
@@ -62,6 +69,8 @@ class RequestBlueprintRepository extends AbstractRepository implements RequestBl
     {
         return $this->model::with(['user'])
             ->where('status', 0)
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
             ->get();
     }
 
@@ -69,5 +78,32 @@ class RequestBlueprintRepository extends AbstractRepository implements RequestBl
     {
         return $this->model::where('id', $requestId)
             ->update(['status' => 1]);
+    }
+
+
+    public function getStatus($requestId)
+    {
+        return $this->model::where('id', $requestId)
+            ->first()->status;
+    }
+
+    public function sendNewMessage($message, $requestId)
+    {
+        $this->requestNotifyRepository->newMessage($message, $requestId);
+    }
+
+    public function changeMessageStatus($requestId)
+    {
+        $this->requestNotifyRepository->changeStatus($requestId);
+    }
+
+    public function ramdomRequest($numberRandom)
+    {
+        return $this->model::orderByRaw('RAND()')->take($numberRandom)->get();
+    }
+
+    public function searchByKeyWord($keyWord)
+    {
+        return $this->model::where('title', 'like', '%' . $keyWord . '%')->limit(3)->get();
     }
 }

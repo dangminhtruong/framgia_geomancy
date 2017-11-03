@@ -3,7 +3,7 @@
         <div class="container">
             <div class="logo-wrapper">
                 <div class="logo">
-                    <a href="index-2.html"><img src="{{ asset('images/logo-white.png') }}" alt="Logo" /></a>
+                    <a href="{{ route('home') }}"><img src="{{ asset('images/logo-white.png') }}" alt="Logo" /></a>
                 </div>
             </div>
             <div id="navbar" class="navbar-nav-wrapper">
@@ -36,22 +36,10 @@
                         <a href="#">{{ __('Nav.Posts') }}</a>
                         <ul>
                             <li>
-                                <a href="#">{{ __('Nav.NewPosts') }}</a>
-                                <ul>
-                                    <li><a href="#">{{ __('Nav.FishTanks') }}</a></li>
-                                </ul>
+                                <a href="{{ route('writePost') }}">{{ __('Viết bài') }}</a>
                             </li>
                             <li>
-                                <a href="#">{{ __('Nav.TrendingPosts') }}</a>
-                                <ul>
-                                    <li><a href="#">{{ __('Nav.FishTanks') }}</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">{{ __('Nav.AllPosts') }}</a>
-                                <ul>
-                                    <li><a href="#">{{ __('Nav.FishTanks') }}</a></li>
-                                </ul>
+                                <a href="{{ route('viewListPost') }}">{{ __('Danh sách bài viết') }}</a>
                             </li>
                         </ul>
                     </li>

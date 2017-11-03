@@ -129,3 +129,112 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
+.chat {
+    width: 400px;
+}
+
+.bubble {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 6px #B2B2B2;
+    display: inline-block;
+    padding: 10px 18px;
+    position: relative;
+    vertical-align: top;
+}
+
+.bubble::before {
+    background-color: #ffffff;
+    content: "\00a0";
+    display: block;
+    height: 16px;
+    position: absolute;
+    top: 11px;
+    transform: rotate(29deg) skew(-35deg);
+    -moz-transform: rotate(29deg) skew(-35deg);
+    -ms-transform: rotate(29deg) skew(-35deg);
+    -o-transform: rotate(29deg) skew(-35deg);
+    -webkit-transform: rotate(29deg) skew(-35deg);
+    width: 20px;
+}
+
+.me {
+    float: left;
+    margin: 5px 45px 5px 20px;
+}
+
+.me::before {
+    box-shadow: -2px 2px 2px 0 rgba(178, 178, 178, .4);
+    left: -9px;
+}
+
+.you {
+    float: right;
+    margin: 5px 20px 5px 45px;
+}
+
+.you::before {
+    box-shadow: 2px -2px 2px 0 rgba(178, 178, 178, .4);
+    right: -9px;
+}
+
+#request-details {
+    border-left: 1px solid black;
+    padding-left: 2vh;
+}
+
+.btn-reply {
+    float: right;
+}
+
+#request-message-top {
+    padding-bottom: 2vh;
+    border-bottom: 1px solid black;
+}
+
+#message-title {
+    padding-top: 2vh;
+}
+
+#detail-title {
+    padding-top: 2vh;
+}
+
+.create_at {
+    font-size: 10px;
+}
+
+#reply-input {
+    float: right;
+    padding: 0px;
+    margin: 0px;
+}
+
+.text_left {
+    text-align: left;
+}
+
+.relative_blueprint_content {
+    max-height: 58vh;
+    overflow-y: hidden;
+}
+
+#index_new_blueprint {
+    min-height: 60vh;
+    max-height: 60vh;
+}
+
+#relative_request_body {
+    max-height: 58vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+#result-dropdown {
+    width: 260px;
+}
+
+#nav-drop-result {
+    width: 260px;
+}

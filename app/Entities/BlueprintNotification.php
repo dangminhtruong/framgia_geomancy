@@ -20,7 +20,7 @@ class BlueprintNotification extends BaseEntity
      */
     public function user()
     {
-        return $this->hasOne(User::class, 'users_id');
+        return $this->belongsTo(User::class, 'users_id');
     }
 
     /**
@@ -28,6 +28,14 @@ class BlueprintNotification extends BaseEntity
      */
     public function blueprint()
     {
-        return $this->hasOne(Blueprint::class, 'blueprints_id');
+        return $this->belongsTo(Blueprint::class, 'blueprints_id');
+    }
+
+    /**
+     * Format timestamp to diffForHuman
+     */
+    public function getCreatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->diffForHumans();
     }
 }

@@ -7,6 +7,7 @@ use App\Repositories\Contracts\GalleryRepositoryInterface as GalleryRepository;
 use App\Repositories\Contracts\BlueprintDetailRepositoryInterface as BlueprintDetailRepository;
 use App\Repositories\Contracts\SuggestProductRepositoryInterface as SuggestProductRepository;
 use App\Repositories\Contracts\TopicRepositoryInterface as TopicRepository;
+use App\Repositories\Contracts\RequestBlueprintRepositoryInterface as RequestBlueprintRepository;
 use App\Framgia\Response\FlashResponse;
 use App\Framgia\Response\FormResponse;
 use App\Entities\Blueprint;
@@ -122,10 +123,7 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
             'description' => $request->customer_description
         ]);
 
-        return $this->flashResponse->success(
-            'getRequestFishTanksBlueprint',
-            __('Request blueprint successfull !')
-        );
+        return $requestBlueprint->id;
     }
 
     public function getBlueprintInfo($blueprintId)
@@ -166,7 +164,7 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
                 $this->blueprintDetailRepository->create($blueprintDetailData);
             }
         }
-
+        $this->suggestProductRepository->updateAfterCreate($blueprintId);
         if (!$request->hasFile('img')) {
             return $this->flashResponse->success(
                 'getCreateBlueprint',
@@ -218,6 +216,61 @@ class BlueprintRepository extends AbstractRepository implements BlueprintReposit
     public function getRelative($topicId)
     {
         return $this->model::where('topics_id', $topicId)->take(4)->get();
+    }
+
+    public function getPendingBlueprints()
+    {
+        return $this->model::with(['user'])
+            ->where('status', 2)
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+    }
+
+    public function getApprovedBlueprints()
+    {
+        return $this->model::with(['user'])
+            ->where('status', 1)
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+    }
+
+    public function getNewBlueprints()
+    {
+        return $this->model::with(['user'])
+            ->where('status', 0)
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+    }
+
+    public function findByIdWithRelation($blueprintId)
+    {
+        return $this->model::with(['details', 'suggests', 'gallery', 'user'])
+            ->find($blueprintId);
+    }
+
+    public function approve($blueprintId)
+    {
+        return $this->model::where('id', $blueprintId)
+            ->update(['status' => 1]);
+    }
+
+    public function getStatus($blueprintId)
+    {
+        return $this->model::where('id', $blueprintId)
+            ->first()->status;
+    }
+
+    public function removeProduct($productId)
+    {
+        return $this->blueprintDetailRepository->removeProduct($productId);
+    }
+
+    public function searchByKeyWord($keyWord)
+    {
+        return $this->model::where('title', 'like', '%' . $keyWord . '%')->limit(3)->get();
     }
 
 }

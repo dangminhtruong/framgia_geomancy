@@ -60,26 +60,26 @@
                            <div class="col-xs-12 col-sm-12 col-md-12" id="detail-content-sticky-nav-03">
                               <div class="featured-list-in-box">
                                  <h4 class="uppercase spacing-1">{{ __('CreateBlueprint.Detail') }}</h4>
-                                 @foreach($blueprintProduct as $product)
+                                 @foreach($blueprintInfo->details as $details)
                                     <div class="col-xss-12 col-xs-12 col-sm-12 col-md-12">
                                        <div class="col-xs-4 col-sm-4">
                                           <div class="form-group">
                                              <label>{{ __('CreateBlueprint.Suggest.Name') }}
-                                                : </label><br/>{!! $product->name !!}
+                                                : </label><br/>{!! $details->product->name !!}
                                           </div>
                                        </div>
                                        <div class="col-xs- col-sm-4">
                                           <div class="form-group form-spin-group">
                                              <label>{{ __('CreateBlueprint.Suggest.Quantity') }}</label>
                                              <input type="text" class="form-control form-spin"
-                                                    value="{!! $product->pivot->quantity !!}"/>
+                                                    value="{!! $details->quantity !!}"/>
                                           </div>
                                        </div>
                                        <div class="col-xs-4 col-sm-4">
                                           <div class="form-group form-spin-group">
                                              <label>{{ __('CreateBlueprint.Suggest.Type') }}</label>
                                              <select class="form-control" id="sel1">
-                                                <option>{!! $product->category->name !!}</option>
+                                                <option>{!! $details->product->category->name !!}</option>
                                              </select>
                                           </div>
                                        </div>
@@ -164,7 +164,7 @@
                               <div class="trip-guide-image">
                                  <!--img src="" alt="images" /-->
                               </div>
-                              <div class="trip-guide-content">
+                              <div class="trip-guide-content relative_blueprint_content">
                                  <h3>{{ $rela->title }}</h3>
                                  <p>
                                     {{ $rela->description }}
@@ -201,7 +201,97 @@
                               </div>
                            </div>
                         </div>
-                     @endforeach()
+                     @endforeach
+                  </div>
+                  <div class="col-md-12 bg-light pt-50 pb-70">
+                     <div id="detail-content-sticky-nav-05">
+                        <h2 class="font-lg">{{ __('Bình luận') }}</h2>
+                        <div class="review-wrapper">
+                           <div class="review-header">
+                              <div class="GridLex-gap-30">
+                                 <div class="GridLex-grid-noGutter-equalHeight GridLex-grid-middle">
+                                    <div class="GridLex-col-9_sm-8_xs-12_xss-12">
+                                       <div class="review-rating">
+                                          <div class="rating-wrapper">
+                                             {{ $blueprintInfo->comments->count() }} {{ __('Bình luận') }}
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="GridLex-col-3_sm-4_xs-12_xss-12">
+                                       <div class="GridLex-inner">
+                                          <a href="#review-form" class="btn btn-primary btn-block anchor">Write a review</a>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="review-content">
+                              <ul class="review-list">
+                                 @foreach($blueprintInfo->comments->where('parents_comment_id', null) as $comment)
+                                    @if($comment)
+                                       <li class="clearfix">
+                                          <div class="row">
+                                             <div class="col-xs-12 col-sm-4 col-md-3">
+                                                <div class="review-header">
+                                                   <h6>{{ $comment->user->name }}</h6>
+                                                   <a href="#" class="btn btn-primary">Reply</a>
+                                                </div>
+                                             </div>
+                                             <div class="col-xs-12 col-sm-8 col-md-9">
+                                                <div class="review-content">
+                                                   <p>{{ $comment->body }}</p>
+                                                </div>
+                                                @foreach($blueprintInfo->comments->where('parents_comment_id', $comment->id) as $reply)
+                                                   <div class="review-replied">
+                                                      <div class="review-replied-header">
+                                                         <div class="row">
+                                                            <div class="col-xs-12 col-sm-8 col-md-9">
+                                                               <h6>{{ $reply->user->name }}
+                                                                  @if($blueprintInfo->user_id == $reply->user->id)
+                                                                     <small>
+                                                                        {{ __('Sở hữ bản thiết kế này') }}
+                                                                     </small>
+                                                                  @endif
+                                                               </h6>
+                                                            </div>
+                                                            <div class="col-xs-12 col-sm-4 col-md-3 text-right text-left-xs">
+                                                               <a href="#" class="btn btn-primary">{{ __('Trả lời') }}</a>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                      <div class="review-replied-content">
+                                                         <p>{{ $reply->body }}</p>
+                                                      </div>
+                                                   </div>
+                                                @endforeach
+                                             </div>
+                                          </div>
+                                       </li>
+                                    @endif
+                                 @endforeach
+                              </ul>
+                              <!--a href="#" class="review-load-more mb-40">load more...</a-->
+                           </div>
+                           <div id="review-form" class="review-form">
+                              <h3 class="review-form-title">{{ __('Viết bình luận') }}</h3>
+                              <form class="">
+                                 <div class="row">
+                                    <div class="clear"></div>
+                                    <div class="col-sm-12 col-md-12">
+                                       <div class="form-group">
+                                          <label>{{ __('Nội dung') }}: </label>
+                                          <textarea class="form-control form-control-sm" rows="5"></textarea>
+                                       </div>
+                                    </div>
+                                    <div class="clear mb-5"></div>
+                                    <div class="col-sm-12 col-md-8">
+                                       <a href="#" class="btn btn-primary btn-lg">{{ __('Xong') }}</a>
+                                    </div>
+                                 </div>
+                              </form>
+                           </div>
+                        </div>
+                     </div>
                   </div>
                </div>
             </div>

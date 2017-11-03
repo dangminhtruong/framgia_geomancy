@@ -64,11 +64,38 @@ class Blueprint extends BaseEntity
     public function product()
     {
         return $this->belongsToMany(Product::class, 'blueprint_detail', 'blueprints_id', 'products_id')
-            ->withPivot('quantity');
+            ->withPivot('quantity', 'id');
     }
 
     public function gallery()
     {
         return $this->hasMany(Gallery::class, 'blueprints_id', 'id');
+    }
+
+    public function notifies()
+    {
+        return $this->hasMany(BlueprintNotification::class, 'blueprints_id')
+            ->orderBy('created_at', 'desc');
+    }
+
+    /**
+     * Format timestamp to d-m-Y
+     */
+    public function getCreatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d-m-Y');
+    }
+
+    /**
+     * Format timestamp to d-m-Y
+     */
+    public function getUpdatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d-m-Y');
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

@@ -11,7 +11,6 @@ use App\Repositories\Contracts\TopicRepositoryInterface as TopicRepository;
 use App\Repositories\Contracts\GalleryRepositoryInterface as GalleryRepository;
 use App\Repositories\Contracts\CategoryRepositoryInterface as CategoryRepository;
 use App\Repositories\Contracts\RequestBlueprintRepositoryInterface as RequestBlueprintRepository;
-
 use Hash, Auth;
 
 class BlueprintController extends Controller
@@ -47,7 +46,8 @@ class BlueprintController extends Controller
 
     public function postRequestFishTanksBlueprint(RequireBlueprintRequest $request)
     {
-        return $this->blueprintRepository->createRequestBlueprint($request);
+        $newRequest = $this->blueprintRepository->createRequestBlueprint($request);
+        return redirect()->route('viewRequest', [$newRequest])->with('success_msg', __('Yêu cầu thành công !'));
     }
 
     public function getCreateBlueprint()
@@ -80,7 +80,6 @@ class BlueprintController extends Controller
         $categories = $this->categoryRepository->getAllCategory();
         $blueprintProduct = $this->blueprintRepository->getBlueprintProduct($id);
         $gallery = $this->blueprintRepository->getBlueprintImage($id);
-
         return view('blueprint.update_blueprint',
             compact(
                 'blueprintInfo',
@@ -107,14 +106,12 @@ class BlueprintController extends Controller
     {
         $blueprintInfo = $this->blueprintRepository->getBlueprintInfo($id);
         $gallery = $this->blueprintRepository->getBlueprintImage($id);
-        $blueprintProduct = $this->blueprintRepository->getBlueprintProduct($id);
         $relative = $this->blueprintRepository->getRelative($blueprintInfo->topic->id);
 
         return view("blueprint.view_blueprint",
             compact(
                 'blueprintInfo',
                 'gallery',
-                'blueprintProduct',
                 'relative'
             )
         );
@@ -123,18 +120,21 @@ class BlueprintController extends Controller
     public function getEditRequest($id)
     {
         $requestBlueprint = $this->requestBlueprintRepository->findById($id);
+
         return view('blueprint.edit_request_blueprint', compact('requestBlueprint'));
     }
 
     public function postEditRequest(RequireBlueprintRequest $request, $id)
     {
         $this->requestBlueprintRepository->updateRequestBlueprint($request, $id);
+
         return redirect()->back()->with('success_msg', __('Update successfully'));
     }
 
     public function deleteRequest($id)
     {
         $this->requestBlueprintRepository->delete($id);
+
         return "deleted";
     }
 
@@ -151,18 +151,41 @@ class BlueprintController extends Controller
     public function listBlueprint()
     {
         $listBlueprint = $this->blueprintRepository->listAllBlueprint();
+
         return view('blueprint.list_blueprint', compact('listBlueprint'));
     }
 
     public function listNewBlueprint()
     {
         $listNewBlueprint = $this->blueprintRepository->listWeekBlueprint();
+
         return view('blueprint.list_new_blueprint', compact('listNewBlueprint'));
     }
 
     public function listMyBlueprint()
     {
         $allUserblueprint = $this->blueprintRepository->allUserBlueprint();
+
         return view('blueprint.list_my_blueprint', compact('allUserblueprint'));
+    }
+
+    public function removeProduct($productId)
+    {
+        return $this->blueprintRepository->removeProduct($productId);
+    }
+
+    public function viewRequest($requestId)
+    {
+        $requestInfor = $this->requestBlueprintRepository->findById($requestId);
+        $ramdomRequest = $this->requestBlueprintRepository->ramdomRequest(4);
+
+        return view('blueprint.view_request_blueprint', compact('requestInfor', 'ramdomRequest'));
+    }
+
+    public function searchByKeyWord(Request $request)
+    {
+        $blueprintResut = $this->blueprintRepository->searchByKeyWord($request->keyWord);
+
+        return view('blueprint.sub_pages.navbar_search_respon', compact('blueprintResut'))->render();
     }
 }

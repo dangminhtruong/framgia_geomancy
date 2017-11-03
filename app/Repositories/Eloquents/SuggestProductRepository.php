@@ -23,6 +23,7 @@ class SuggestProductRepository extends AbstractRepository implements SuggestProd
     public function create($data)
     {
         $result = $this->model::create($data);
+
         return $result;
     }
 
@@ -37,11 +38,22 @@ class SuggestProductRepository extends AbstractRepository implements SuggestProd
         foreach (array_chunk($data, 2) as $key => $value) {
             $tojson[$value[0]] = $value[1];
         }
+
         return json_encode($tojson);
     }
 
     public function updateAfterCreate($blueprintId)
     {
         $this->model::where('blueprints_id', Auth::user()->id)->update(['blueprints_id' => $blueprintId]);
+    }
+
+    public function checkNameIfExist($suggestName)
+    {
+        return $this->model::where('name', $suggestName)->count();
+    }
+
+    public function removeSuggest($id)
+    {
+        return $this->model::destroy($id);
     }
 }

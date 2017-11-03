@@ -124,25 +124,29 @@ class RequestManagerController extends Controller
 
     public function approve(ApproveRequest $request)
     {
-        DB::beginTransaction();
-        try {
-            $this->requestRepository->approve($request->requestId);
-        } catch (Exception $e) {
-            DB::rollback();
+        $requestStatus = $this->requestRepository->getStatus($request->requestId);
+        if ($requestStatus != 1) {
+            DB::beginTransaction();
+            try {
+                $this->requestRepository->approve($request->requestId);
+            } catch (Exception $e) {
+                DB::rollback();
 
-            return $this->flashResponse->failAndBack(__('Có lỗi xảy ra, yêu cầu chưa được duyệt'));
+                return $this->flashResponse->failAndBack(__('Có lỗi xảy ra, yêu cầu chưa được duyệt'));
+            }
+
+            try {
+                $this->requestNotifyRepository->sendSuccessNotify($request->requestId, Auth::user()->id);
+            } catch (Exception $e) {
+                DB::rollback();
+
+                return $this->flashResponse->failAndBack(__('Có lỗi xảy ra, yêu cầu chưa được duyệt'));
+            }
+            DB::commit();
+
+            return $this->flashResponse->successAndBack(__('Phê duyệt thành công'));
         }
-
-        try {
-            $this->requestNotifyRepository->sendSuccessNotify($request->requestId, Auth::user()->id);
-        } catch (Exception $e) {
-            DB::rollback();
-
-            return $this->flashResponse->failAndBack(__('Có lỗi xảy ra, yêu cầu chưa được duyệt'));
-        }
-        DB::commit();
-
-        return $this->flashResponse->successAndBack(__('Phê duyệt thành công'));
+        return $this->flashResponse->failAndBack(__('Yêu cầu đã được duyệt trước đó'));
     }
 
     public function unapprove(UnapproveRequest $request)
